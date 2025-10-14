@@ -169,13 +169,7 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
         Route::post('/store', [App\Http\Controllers\Admin\InvoiceController::class, 'store'])
             ->name('invoices.store');
 
-        // Payments List Page
-        Route::get('/payments', [App\Http\Controllers\Admin\PaymentController::class, 'index'])
-            ->name('payments.index');
 
-        // Payment Details (optional)
-        Route::get('/payments/{id}', [App\Http\Controllers\Admin\PaymentController::class, 'show'])
-            ->name('payments.show');
 
         Route::prefix('payments')->middleware(['auth'])->group(function () {
             Route::get('stk', [MpesaStkPaymentController::class, 'index'])->name('payments.stk.index');

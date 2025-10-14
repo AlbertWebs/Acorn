@@ -11,12 +11,12 @@ class MpesaStkPaymentController extends Controller
     public function index()
     {
         $payments = MpesaStkPayment::latest()->paginate(20);
-        return view('admin.payments.stk.index', compact('payments'));
+        return view('admin.billing.payments.stk.index', compact('payments'));
     }
 
     public function show(MpesaStkPayment $payment)
     {
-        return view('admin.payments.stk.show', compact('payment'));
+        return view('admin.billing.payments.stk.show', compact('payment'));
     }
 
     public function destroy(MpesaStkPayment $payment)
