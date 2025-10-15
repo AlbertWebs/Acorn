@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up()
+    {
+        Schema::create('founders', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('title')->nullable();
+            $table->string('roles')->nullable(); // For "Founder | Chair | Consultant" line
+            $table->text('about')->nullable();
+            $table->text('catalyst_for_change')->nullable();
+            $table->text('community_impact')->nullable();
+            $table->text('leadership')->nullable();
+            $table->timestamps();
+        });
+    }
+
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('founders');
+    }
+};

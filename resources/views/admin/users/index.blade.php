@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="p-6">
+<div class="max-w-7xl mx-auto bg-white p-6 rounded shadow">
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-bold">All Users</h2>
         <a href="{{ route('admin.users.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Add User</a>

@@ -30,6 +30,7 @@
                 <tr>
                     <th class="py-3 px-4 text-left border-b">#</th>
                     <th class="py-3 px-4 text-left border-b">Title</th>
+                    <th class="py-3 px-4 text-left border-b">Image</th>
                     <th class="py-3 px-4 text-left border-b">Status</th>
                     <th class="py-3 px-4 text-left border-b">Actions</th>
                 </tr>
@@ -39,6 +40,13 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-4 border-b">{{ $loop->iteration }}</td>
                         <td class="py-3 px-4 border-b font-medium">{{ $service->title }}</td>
+                        <td class="py-3 px-4 border-b">
+                            @if($service->image)
+                                <img src="{{ asset('storage/' . $service->image) }}" alt="Service Image" class="w-16 h-16 object-cover rounded-md">
+                            @else
+                                <span class="text-gray-400 text-sm">No image</span>
+                            @endif
+                        </td>
                         <td class="py-3 px-4 border-b">
                             @if($service->is_active)
                                 <span class="inline-block px-3 py-1 text-xs font-semibold text-green-800 bg-green-100 rounded-full">Active</span>

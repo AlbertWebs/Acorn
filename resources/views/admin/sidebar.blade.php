@@ -19,6 +19,14 @@
             </a>
         </li>
 
+         <li>
+            <a href="{{ route('admin.founder.show') }}"
+               class="flex items-center gap-3 px-3 py-2 rounded-md border transition hover:bg-gray-100 hover:shadow-sm {{ Request::routeIs('admin.dashboard') ? 'bg-gray-100 font-semibold border-indigo-500' : 'border-gray-200' }}">
+                <i class="fas fa-user text-gold"></i>
+                <span class="sidebar-text">Founder</span>
+            </a>
+        </li>
+
         <!-- Simple Links -->
         @foreach ([
             ['route' => 'admin.carousel.index', 'icon' => 'fas fa-images', 'label' => 'Carousel'],

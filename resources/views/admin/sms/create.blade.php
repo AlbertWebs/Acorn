@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="max-w-12xl mx-auto bg-white p-6 rounded shadow">
+<div class="max-w-7xl mx-auto bg-white p-6 rounded shadow">
     <h1 class="text-2xl font-bold mb-4">Send New SMS</h1>
 
     <form action="{{ route('admin.sms.store') }}" method="POST">

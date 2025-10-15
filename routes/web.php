@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarouselController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LegalController;
+use App\Http\Controllers\Admin\FounderController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\InvoiceController;
@@ -143,6 +144,12 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     Route::resource('fleets', FleetController::class)->names('fleets');
 
     Route::resource('services', ServiceController::class)->names('services');
+
+
+
+    Route::get('/admin/founder', [FounderController::class, 'edit'])->name('founder.edit');
+    Route::put('/admin/founder', [FounderController::class, 'update'])->name('founder.update');
+    Route::get('/about-founder', [FounderController::class, 'show'])->name('founder.show');
 
 
 
