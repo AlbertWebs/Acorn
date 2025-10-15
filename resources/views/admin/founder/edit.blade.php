@@ -2,7 +2,7 @@
 @section('title', 'Edit Founder Profile')
 
 @section('content')
-<div class="max-w-4xl mx-auto p-6 bg-white shadow rounded-lg">
+<div class="max-w-7xl mx-auto p-6 bg-white shadow rounded-lg">
     <h2 class="text-xl font-bold mb-4">Edit Founder Profile</h2>
 
     @if(session('success'))

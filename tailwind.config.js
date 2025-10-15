@@ -16,6 +16,8 @@ export default {
             },
             colors: {
                 gold: '#B8860B', // 💛 Add a true gold color
+                acorn: '#9d4522',
+                acorn_green: '#777223'
             },
         },
     },

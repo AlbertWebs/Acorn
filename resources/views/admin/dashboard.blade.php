@@ -4,48 +4,59 @@
 @section('page-title','Dashboard')
 
 @section('content')
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4">Daily Visits</h3>
+    <canvas id="trafficChart"></canvas>
+  </div>
 
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4">Devices</h3>
+    <canvas id="deviceChart"></canvas>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4">Browsers</h3>
+    <canvas id="browserChart"></canvas>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h3 class="text-lg font-semibold mb-4">Top Pages</h3>
+    <canvas id="pageChart"></canvas>
+  </div>
+</div>
 @endsection
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Bookings line chart
-  const bookingsCtx = document.getElementById('bookingsChart').getContext('2d');
-  new Chart(bookingsCtx, {
+  const visitsData = {!! json_encode(array_values($visitsPerDay->toArray())) !!};
+  const visitsLabels = {!! json_encode(array_keys($visitsPerDay->toArray())) !!};
+  const devicesData = {!! json_encode(array_values($devices->toArray())) !!};
+  const devicesLabels = {!! json_encode(array_keys($devices->toArray())) !!};
+  const browsersData = {!! json_encode(array_values($browsers->toArray())) !!};
+  const browsersLabels = {!! json_encode(array_keys($browsers->toArray())) !!};
+  const pagesData = {!! json_encode(array_values($pages->toArray())) !!};
+  const pagesLabels = {!! json_encode(array_keys($pages->toArray())) !!};
+
+  new Chart(document.getElementById('trafficChart'), {
     type: 'line',
-    data: {
-      labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
-      datasets: [{
-        label: 'Bookings',
-        data: [3, 7, 4, 6, 8, 10, 7],
-        borderColor: '#6366F1',
-        backgroundColor: 'rgba(99, 102, 241, 0.2)',
-        tension: 0.4,
-        fill: true
-      }]
-    }
+    data: { labels: visitsLabels, datasets: [{ label: 'Visits', data: visitsData, borderColor: '#6366F1', backgroundColor: 'rgba(99,102,241,0.3)', fill: true, tension: 0.4 }] }
   });
 
-  // Cars pie chart
-  const carsCtx = document.getElementById('carsChart').getContext('2d');
-  new Chart(carsCtx, {
+  new Chart(document.getElementById('deviceChart'), {
     type: 'doughnut',
-    data: {
-      labels: ['SUV', 'Sedan', 'Truck', 'Other'],
-      datasets: [{
-        label: 'Cars',
-        data: [5, 3, 2, 2],
-        backgroundColor: ['#34D399', '#60A5FA', '#FBBF24', '#F87171']
-      }]
-    },
-    options: {
-      plugins: {
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }
+    data: { labels: devicesLabels, datasets: [{ data: devicesData, backgroundColor: ['#34D399', '#60A5FA', '#FBBF24'] }] }
+  });
+
+  new Chart(document.getElementById('browserChart'), {
+    type: 'pie',
+    data: { labels: browsersLabels, datasets: [{ data: browsersData, backgroundColor: ['#F87171', '#FBBF24', '#60A5FA', '#34D399'] }] }
+  });
+
+  new Chart(document.getElementById('pageChart'), {
+    type: 'bar',
+    data: { labels: pagesLabels, datasets: [{ label: 'Page Views', data: pagesData, backgroundColor: '#6366F1' }] }
   });
 </script>
 @endpush

@@ -20,6 +20,10 @@ use App\Http\Controllers\Admin\KycController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\MpesaStkPaymentController;
 use App\Http\Controllers\Admin\MpesaC2bPaymentController;
+use App\Http\Controllers\Admin\PurposeController;
+use App\Http\Controllers\Admin\CoreValueController;
+
+
 
 
 use App\Http\Controllers\SubscriberPostController;
@@ -38,24 +42,6 @@ Route::get('/updates/{slung}', [HomeController::class, 'show'])->name('blogs.sho
 Route::post('/send-message', [HomeController::class, 'contactFormSubmit'])->name('contact.submit');
 Route::post('/subscribe/ajax', [SubscriberPostController::class, 'ajaxStore'])->name('subscribe.ajax');
 
-//KYC
-Route::get('/kyc/start/{token}', [KycController::class, 'showPublicForm'])->name('kyc.public.start');
-Route::post('/kyc/submit', [KycController::class, 'storePublic'])->name('kyc.public.store');
-Route::view('/kyc/thankyou', 'kyc.thankyou')->name('kyc.thankyou');
-
-
-//
-Route::prefix('bookings')->group(function () {
-    Route::get('/step1', [BookingController::class, 'step1'])->name('bookings.step1');
-    Route::post('/step1', [BookingController::class, 'storeStep1'])->name('bookings.storeStep1');
-
-    Route::get('/step2', [BookingController::class, 'step2'])->name('bookings.step2');
-    Route::post('/step2', [BookingController::class, 'storeStep2'])->name('bookings.storeStep2');
-
-    Route::get('/step3', [BookingController::class, 'step3'])->name('bookings.step3');
-    Route::post('/complete', [BookingController::class, 'complete'])->name('bookings.complete');
-});
-
 
 // ====================
 // ADMIN AUTH
@@ -63,7 +49,6 @@ Route::prefix('bookings')->group(function () {
 Route::get('admin/login', [AuthController::class, 'showLogin'])->name('admin.login');
 Route::post('admin/login', [AuthController::class, 'login'])->name('admin.login.attempt');
 Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
-
 // ====================
 // PROTECTED ADMIN AREA
 // ====================
@@ -74,9 +59,14 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     // About Us (simple info/editable)
     Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+    Route::get('/purpose', [PurposeController::class, 'edit'])->name('purpose.edit');
+    Route::put('/purpose/{id}', [PurposeController::class, 'update'])->name('purpose.update');
+
 
     // Clients CRUD
     Route::resource('clients', App\Http\Controllers\Admin\ClientController::class)->names('clients');
+
+    Route::resource('core-values', CoreValueController::class)->except(['show'])->names('core-values');
 
 
     // Bookings CRUD

@@ -5,7 +5,7 @@
         <li>
             <a href="{{ route('home') }}" target="_blank"
                class="flex items-center gap-3 px-3 py-2 rounded-md border transition hover:bg-gray-100 hover:shadow-sm {{ Request::routeIs('admin.dashboard') ? 'bg-gray-100 font-semibold border-indigo-500' : 'border-gray-200' }}">
-                <i class="fas fa-globe text-gold"></i>
+                <i class="fas fa-globe text-acorn"></i>
                 <span class="sidebar-text">Main Website</span>
             </a>
         </li>
@@ -14,7 +14,7 @@
         <li>
             <a href="{{ route('admin.dashboard') }}"
                class="flex items-center gap-3 px-3 py-2 rounded-md border transition hover:bg-gray-100 hover:shadow-sm {{ Request::routeIs('admin.dashboard') ? 'bg-gray-100 font-semibold border-indigo-500' : 'border-gray-200' }}">
-                <i class="fas fa-home text-gold"></i>
+                <i class="fas fa-home text-acorn"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
         </li>
@@ -22,7 +22,7 @@
          <li>
             <a href="{{ route('admin.founder.show') }}"
                class="flex items-center gap-3 px-3 py-2 rounded-md border transition hover:bg-gray-100 hover:shadow-sm {{ Request::routeIs('admin.dashboard') ? 'bg-gray-100 font-semibold border-indigo-500' : 'border-gray-200' }}">
-                <i class="fas fa-user text-gold"></i>
+                <i class="fas fa-user text-acorn"></i>
                 <span class="sidebar-text">Founder</span>
             </a>
         </li>
@@ -31,12 +31,13 @@
         @foreach ([
             ['route' => 'admin.carousel.index', 'icon' => 'fas fa-images', 'label' => 'Carousel'],
             ['route' => 'admin.about', 'icon' => 'fas fa-info-circle', 'label' => 'About Us'],
+            ['route' => 'admin.purpose.edit', 'icon' => 'fas fa-info-circle', 'label' => 'Our Purpose'],
+            ['route' => 'admin.core-values.index', 'icon' => 'fas fa-info-circle', 'label' => 'Our Core Values'],
             ['route' => 'admin.services.index', 'icon' => 'fas fa-wrench', 'label' => 'Services'],
             ['route' => 'admin.clients.index', 'icon' => 'fas fa-users', 'label' => 'Clients'],
             ['route' => 'admin.feedbacks.index', 'icon' => 'fas fa-comments', 'label' => 'Client Feedbacks'],
             ['route' => 'admin.blogs.index', 'icon' => 'fas fa-blog', 'label' => 'Blog Posts'],
             ['route' => 'admin.users.index', 'icon' => 'fas fa-user-cog', 'label' => 'Users'],
-            ['route' => 'admin.reports.index', 'icon' => 'fas fa-chart-bar', 'label' => 'Reports'],
             ['route' => 'admin.kyc.index', 'icon' => 'fas fa-id-card', 'label' => 'KYC'],
             ['route' => 'admin.subscribers.index', 'icon' => 'fas fa-envelope-open-text', 'label' => 'Subscribers'],
             ['route' => 'admin.sms.index', 'icon' => 'fas fa-sms', 'label' => 'SMS'],
@@ -46,7 +47,7 @@
             <li>
                 <a href="{{ route($link['route']) ?? '#' }}"
                    class="flex items-center gap-3 px-3 py-2 rounded-md border border-gray-200 transition hover:bg-gray-100 hover:shadow-sm">
-                    <i class="{{ $link['icon'] }} text-gold"></i>
+                    <i class="{{ $link['icon'] }} text-acorn"></i>
                     <span class="sidebar-text">{{ $link['label'] }}</span>
                 </a>
             </li>
@@ -57,10 +58,10 @@
             <a href="{{ route('admin.bookings.index') ?? '#' }}"
                class="flex items-center justify-between px-3 py-2 rounded-md border border-gray-200 transition hover:bg-gray-100 hover:shadow-sm">
                 <span class="flex items-center gap-3">
-                    <i class="fas fa-calendar-check text-gold"></i>
+                    <i class="fas fa-calendar-check text-acorn"></i>
                     <span class="sidebar-text">Bookings</span>
                 </span>
-                <span class="text-xs font-semibold text-white bg-red-500 rounded-full px-2 py-0.5">
+                <span class="text-xs font-semibold text-white bg-acorn_green rounded-full px-2 py-0.5">
                     {{ $notificationCount ?? 1 }}
                 </span>
             </a>
@@ -72,7 +73,7 @@
             <button @click="activeDropdown = activeDropdown === 'billing' ? '' : 'billing'"
                 class="flex items-center justify-between w-full px-3 py-2 rounded-md border border-gray-200 transition hover:bg-gray-100 hover:shadow-sm">
                 <span class="flex items-center gap-3">
-                    <i class="fas fa-file-invoice-dollar text-gold"></i>
+                    <i class="fas fa-file-invoice-dollar text-acorn"></i>
                     <span class="sidebar-text">Billing</span>
                 </span>
                 <i :class="activeDropdown === 'billing' ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
@@ -122,7 +123,7 @@
             <button @click="activeDropdown = activeDropdown === 'legal' ? '' : 'legal'"
                 class="flex items-center justify-between w-full px-3 py-2 rounded-md border border-gray-200 transition hover:bg-gray-100 hover:shadow-sm">
                 <span class="flex items-center gap-3">
-                    <i class="fas fa-balance-scale text-yellow-500"></i>
+                    <i class="fas fa-balance-scale text-acorn"></i>
                     <span class="sidebar-text">Legal</span>
                 </span>
                 <i :class="activeDropdown === 'legal' ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
