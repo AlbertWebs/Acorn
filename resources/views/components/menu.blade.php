@@ -46,7 +46,7 @@
                       @endforeach
                     </ul>
                   </li>
-                  <li> <a href="{{url('/')}}">Events & Updates</a>
+                  <li> <a href="{{route('updates')}}">Events & Updates</a>
 
                   </li>
 
@@ -167,7 +167,7 @@
 
                     </ul>
                   </li>
-                  <li> <a href="{{url('/')}}">Events & Updates</a>
+                  <li> <a href="{{route('updates')}}">Events & Updates</a>
 
                   </li>
 

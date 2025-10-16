@@ -27,6 +27,16 @@
             </a>
         </li>
 
+                <!-- History -->
+        <li>
+            <a href="{{ route('admin.history.index') }}"
+            class="flex items-center gap-3 px-3 py-2 rounded-md border transition hover:bg-gray-100 hover:shadow-sm
+            {{ Request::routeIs('admin.history.*') ? 'bg-gray-100 font-semibold border-indigo-500' : 'border-gray-200' }}">
+                <i class="fas fa-history text-acorn"></i>
+                <span class="sidebar-text">Company History</span>
+            </a>
+        </li>
+
         <!-- Simple Links -->
         @foreach ([
             ['route' => 'admin.carousel.index', 'icon' => 'fas fa-images', 'label' => 'Carousel'],

@@ -43,6 +43,7 @@ class HomeController extends Controller
 
         public function history()
     {
+        $histories = \App\Models\History::orderBy('order', 'asc')->get();
         $faqs = \App\Models\Faq::where('is_active', true)->get();
         $blogs = \App\Models\Blog::latest()->take(6)->get();
         $clients = \App\Models\Client::all();
@@ -51,7 +52,21 @@ class HomeController extends Controller
         $Founder = \App\Models\Founder::first();
         $Settings = \App\Models\Setting::first();
         $testimonials  = \App\Models\Feedback::latest()->take(10)->get();
-        return view('frontend.history', compact('faqs','About','testimonials','page_title','Settings','blogs','clients','Founder'));
+        return view('frontend.history', compact('histories','faqs','About','testimonials','page_title','Settings','blogs','clients','Founder'));
+    }
+
+            public function director()
+    {
+        $histories = \App\Models\History::orderBy('order', 'asc')->get();
+        $faqs = \App\Models\Faq::where('is_active', true)->get();
+        $blogs = \App\Models\Blog::latest()->take(6)->get();
+        $clients = \App\Models\Client::all();
+        $page_title = "About Us";
+        $About = \App\Models\About::first();
+        $founder = \App\Models\Founder::first();
+        $Settings = \App\Models\Setting::first();
+        $testimonials  = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.director', compact('histories','faqs','About','testimonials','page_title','Settings','blogs','clients','founder'));
     }
 
 
@@ -68,7 +83,7 @@ class HomeController extends Controller
     public function updates()
     {
         $blogs = \App\Models\Blog::latest()->paginate(12);
-        $page_title = "Contact Us";
+        $page_title = "Updates and Events";
         $About = \App\Models\About::first();
         // $teams = \App\Models\Team::where('is_active', true)->get();
         $Settings = \App\Models\Setting::first();
@@ -98,12 +113,18 @@ class HomeController extends Controller
     }
 
 
-    public function services_single($slug){
+    public function services_single($slug)
+    {
         $page_title = "Services";
-        $Services = \App\Models\Service::where('slug' ,$slug)->first();
+        $service = \App\Models\Service::where('slug', $slug)->firstOrFail();
         $Settings = \App\Models\Setting::first();
         $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
-        return view('frontend.services_single', compact('feedbacks','Settings','page_title','Services'));
+
+        // Fetch next and previous services
+        $next = \App\Models\Service::where('id', '>', $service->id)->orderBy('id', 'asc')->first();
+        $previous = \App\Models\Service::where('id', '<', $service->id)->orderBy('id', 'desc')->first();
+
+        return view('frontend.services_single', compact('feedbacks', 'Settings', 'page_title', 'service', 'next', 'previous'));
     }
 
     public function show_single_fleets($car,$slug){

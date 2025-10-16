@@ -40,12 +40,14 @@ Route::get('/our-history', [HomeController::class, 'history'])->name('our-histor
 
 
 Route::get('/services/{slug}', [HomeController::class, 'services_single'])->name('services-single');
+Route::get('/services', [HomeController::class, 'services'])->name('frontend.services');
+
 
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact-us');
 Route::get('/book-consultation', [HomeController::class, 'consultation'])->name('book-consultation');
 
 Route::get('/updates', [HomeController::class, 'updates'])->name('updates');
-Route::get('/updates/{slung}', [HomeController::class, 'show'])->name('blogs.show');
+Route::get('/updates/{slung}', [HomeController::class, 'show'])->name('blog.show');
 
 Route::post('/send-message', [HomeController::class, 'contactFormSubmit'])->name('contact.submit');
 Route::post('/subscribe/ajax', [SubscriberPostController::class, 'ajaxStore'])->name('subscribe.ajax');
@@ -81,6 +83,8 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     Route::resource('bookings', BookingController::class);
 
     Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+
+    Route::resource('history', App\Http\Controllers\Admin\HistoryController::class);
 
     // Payments CRUD
     Route::resource('payments', PaymentController::class);
