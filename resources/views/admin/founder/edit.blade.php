@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('admin.founder.update') }}">
+    <form method="POST" action="{{ route('admin.founder.update') }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -31,6 +31,37 @@
         <div class="mb-4">
             <label class="block font-semibold">Roles</label>
             <input type="text" name="roles" class="w-full border p-2 rounded" value="{{ old('roles', $founder->roles) }}">
+        </div>
+
+        <!-- Profile Image -->
+        <div class="mb-4">
+            <label class="block font-semibold">Profile Image</label>
+            @if($founder->image)
+                <div class="mb-2">
+                    <img src="{{ asset($founder->image) }}" alt="{{ $founder->name }}" class="w-32 h-32 object-cover rounded-full border">
+                </div>
+            @endif
+            <input type="file" name="image" class="w-full border p-2 rounded">
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+                <label class="block font-semibold">Facebook</label>
+                <input type="url" name="facebook" class="w-full border p-2 rounded" value="{{ old('facebook', $founder->facebook) }}">
+            </div>
+            <div>
+                <label class="block font-semibold">LinkedIn</label>
+                <input type="url" name="linkedin" class="w-full border p-2 rounded" value="{{ old('linkedin', $founder->linkedin) }}">
+            </div>
+            <div>
+                <label class="block font-semibold">Instagram</label>
+                <input type="url" name="instagram" class="w-full border p-2 rounded" value="{{ old('instagram', $founder->instagram) }}">
+            </div>
+            <div>
+                <label class="block font-semibold">Twitter (X)</label>
+                <input type="url" name="twitter" class="w-full border p-2 rounded" value="{{ old('twitter', $founder->twitter) }}">
+            </div>
         </div>
 
         <!-- About -->
@@ -66,7 +97,6 @@
 {{-- CKEditor 5 CDN --}}
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
-    // Apply CKEditor to all textareas with class="editor"
     document.querySelectorAll('.editor').forEach((textarea) => {
         ClassicEditor
             .create(textarea)

@@ -69,7 +69,16 @@
                 <label class="block font-semibold">Logo</label>
                 <input type="file" name="logo" class="w-full border rounded p-2">
                 @if(!empty($setting->logo))
-                    <img src="{{ asset('storage/'.$setting->logo) }}" class="h-12 mt-2">
+                    <img src="{{ asset('storage/'.$setting->logo) }}" class="h-12 mt-2" alt="Logo Preview">
+                @endif
+            </div>
+
+            {{-- ✅ White Logo --}}
+            <div>
+                <label class="block font-semibold">White Logo</label>
+                <input type="file" name="white_logo" class="w-full border rounded p-2">
+                @if(!empty($setting->white_logo))
+                    <img src="{{ asset('storage/'.$setting->white_logo) }}" class="h-12 mt-2 bg-gray-800 p-2 rounded" alt="White Logo Preview">
                 @endif
             </div>
 
@@ -78,7 +87,7 @@
                 <label class="block font-semibold">Favicon</label>
                 <input type="file" name="favicon" class="w-full border rounded p-2">
                 @if(!empty($setting->favicon))
-                    <img src="{{ asset('storage/'.$setting->favicon) }}" class="h-8 mt-2">
+                    <img src="{{ asset('storage/'.$setting->favicon) }}" class="h-8 mt-2" alt="Favicon Preview">
                 @endif
             </div>
 
@@ -154,7 +163,7 @@
                 </div>
             </div>
 
-            {{-- WhatsApp Link --}}
+            {{-- WhatsApp --}}
             <div>
                 <label class="block font-semibold">WhatsApp Link</label>
                 <div class="relative">

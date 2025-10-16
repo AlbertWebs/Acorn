@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('icon')->nullable();
             $table->string('image')->nullable(); // e.g., FontAwesome icon or image
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();

@@ -21,6 +21,7 @@ class Setting extends Model
         'youtube',
         'map_iframe',
         'logo',
+        'white_logo',
         'favicon',
         'linkedin',
         'tawkto',

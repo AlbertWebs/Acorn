@@ -88,8 +88,9 @@ START: Theme Default CSS
   --tj-color-text-body-2: #a9b8b8;
   --tj-color-text-body-3: #67787a;
   --tj-color-text-body-4: #18292c;
+  --tj-color-text-green: #c1df23;
   --tj-color-text-body-5: rgba(255, 255, 255, 0.8);
-  --tj-color-theme-primary: #abc137;
+  --tj-color-theme-primary: #b53819;
   --tj-color-theme-bg: #d8e5e5;
   --tj-color-theme-bg-2: #cee0e0;
   --tj-color-theme-bg-3: #202e30;
@@ -108,6 +109,8 @@ START: Theme Default CSS
   --tj-color-border-4: rgba(255, 255, 255, 0.2);
   --tj-color-border-5: rgba(30, 138, 138, 0.1490196078);
 }
+
+
 
 * {
   margin: 0;
@@ -763,7 +766,7 @@ img {
   width: 42px;
   height: 42px;
   overflow: hidden;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--tj-color-text-green);
   border-radius: 50%;
 }
 .tj-primary-btn .btn-icon i {
@@ -1291,10 +1294,11 @@ START: Theme Header CSS
 .mainmenu ul > li > a {
   position: relative;
   font-size: 16px;
+  font-weight:900;
   color: var(--tj-color-heading-primary);
   display: block;
   padding: 37px 0;
-  font-weight: var(--tj-fw-medium);
+  font-weight: var(--tj-fw-bold);
   line-height: 1;
 }
 .mainmenu ul > li.menu-item-has-children > a, .mainmenu ul > li.has-dropdown > a {
@@ -28686,6 +28690,76 @@ START: Blog CSS
   width: 30px;
   height: 30px;
   font-size: 20px;
+}
+
+.tj-faq-section .faq-img-area {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tj-faq-section .faq-img {
+  height: 100%;
+}
+
+.tj-faq-section .faq-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Make the image column stretch to the same height as the FAQ text */
+.tj-faq-section .row {
+  align-items: stretch;
+}
+/*  */
+.tj-testimonial-section-2 .row {
+  display: flex;
+  align-items: stretch; /* Makes columns the same height */
+}
+
+.tj-testimonial-section-2 .faq-img-area,
+.tj-testimonial-section-2 .testimonial-wrapper {
+  height: 100%;
+}
+
+.tj-testimonial-section-2 .faq-img-area .faq-img {
+  position: relative;
+  height: 100%;
+}
+
+.tj-testimonial-section-2 .faq-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills height nicely */
+  border-radius: 10px;
+}
+
+.tj-testimonial-section-2 .faq-img-area .title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+.tj-testimonial-section-2 .box-area {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/*  */
+
+.logo img{
+    width:200px;
+}
+@media (max-width: 575px) {
+.logo img{
+    width:150px;
+}
 }
 
 /* !END: Blog CSS *//*# sourceMappingURL=main.css.map */

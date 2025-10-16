@@ -38,7 +38,6 @@
             ['route' => 'admin.feedbacks.index', 'icon' => 'fas fa-comments', 'label' => 'Client Feedbacks'],
             ['route' => 'admin.blogs.index', 'icon' => 'fas fa-blog', 'label' => 'Blog Posts'],
             ['route' => 'admin.users.index', 'icon' => 'fas fa-user-cog', 'label' => 'Users'],
-            ['route' => 'admin.kyc.index', 'icon' => 'fas fa-id-card', 'label' => 'KYC'],
             ['route' => 'admin.subscribers.index', 'icon' => 'fas fa-envelope-open-text', 'label' => 'Subscribers'],
             ['route' => 'admin.sms.index', 'icon' => 'fas fa-sms', 'label' => 'SMS'],
             ['route' => 'admin.faq.index', 'icon' => 'fas fa-question', 'label' => 'FAQs'],

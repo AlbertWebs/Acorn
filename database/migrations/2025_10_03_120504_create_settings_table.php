@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('url')->nullable();
             $table->string('logo')->nullable();
+            $table->string('white_logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('shape')->nullable();
             $table->string('email')->nullable();

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             MpesaStkPaymentsSeeder::class,
 
             MpesaC2bPaymentsSeeder::class,
+            FaqsTableSeeder::class
 
         ]);
 

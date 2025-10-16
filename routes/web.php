@@ -32,10 +32,18 @@ use App\Http\Controllers\SubscriberPostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+Route::get('/about', [HomeController::class, 'about'])->name('about-us');
+Route::get('/eva-naputuni-nyoike', [HomeController::class, 'director'])->name('the-director');
+Route::get('/our-story', [HomeController::class, 'story'])->name('our-story');
+Route::get('/our-history', [HomeController::class, 'history'])->name('our-history');
+
+
 Route::get('/services/{slug}', [HomeController::class, 'services_single'])->name('services-single');
 
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact-us');
+Route::get('/book-consultation', [HomeController::class, 'consultation'])->name('book-consultation');
+
 Route::get('/updates', [HomeController::class, 'updates'])->name('updates');
 Route::get('/updates/{slung}', [HomeController::class, 'show'])->name('blogs.show');
 

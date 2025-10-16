@@ -20,6 +20,11 @@ return new class extends Migration
             $table->text('catalyst_for_change')->nullable();
             $table->text('community_impact')->nullable();
             $table->text('leadership')->nullable();
+             $table->string('image')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
             $table->timestamps();
         });
     }

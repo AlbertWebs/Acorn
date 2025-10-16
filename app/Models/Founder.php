@@ -17,5 +17,10 @@ class Founder extends Model
         'catalyst_for_change',
         'community_impact',
         'leadership',
+        'image',
+        'facebook',
+        'linkedin',
+        'instagram',
+        'twitter',
     ];
 }

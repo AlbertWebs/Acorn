@@ -4,7 +4,7 @@
 @section('page-title', 'Services')
 
 @section('content')
-<div class="max-w-12xl mx-auto px-4 py-8">
+<div class="max-w-7xl mx-auto px-4 py-8">
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-semibold text-gray-800 flex items-center gap-2">

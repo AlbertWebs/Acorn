@@ -6,32 +6,54 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\Fleet;
+use App\Models\Client;
 use App\Models\Service;
+use App\Models\Feedback;
+
 
 class HomeController extends Controller
 {
     public function index()
     {
         $page_title = "Home";
+        $clients = Client::all(); // or ->where('status', 1)->get();
         $carousels = \App\Models\Carousel::all();
         $Settings = \App\Models\Setting::first();
-        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        $Services = \App\Models\Service::limit('3')->get();
+        // $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
         $About = \App\Models\About::first();
         $faqs = \App\Models\Faq::where('is_active', true)->get();
         $blogs = \App\Models\Blog::latest()->take(6)->get();
-        return view('frontend.home', compact('carousels', 'Settings','About','faqs','feedbacks','blogs','page_title'));
+        $feedbacks = Feedback::where('is_active', true)->latest()->get();
+        return view('frontend.home', compact('feedbacks','Services','clients','carousels', 'Settings','About','faqs','feedbacks','blogs','page_title'));
     }
 
     public function about()
     {
+        $faqs = \App\Models\Faq::where('is_active', true)->get();
         $blogs = \App\Models\Blog::latest()->take(6)->get();
         $clients = \App\Models\Client::all();
         $page_title = "About Us";
         $About = \App\Models\About::first();
+        $Founder = \App\Models\Founder::first();
         $Settings = \App\Models\Setting::first();
-        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
-        return view('frontend.about', compact('About','feedbacks','page_title','Settings','blogs','clients'));
+        $testimonials  = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.about', compact('faqs','About','testimonials','page_title','Settings','blogs','clients','Founder'));
     }
+
+        public function history()
+    {
+        $faqs = \App\Models\Faq::where('is_active', true)->get();
+        $blogs = \App\Models\Blog::latest()->take(6)->get();
+        $clients = \App\Models\Client::all();
+        $page_title = "About Us";
+        $About = \App\Models\About::first();
+        $Founder = \App\Models\Founder::first();
+        $Settings = \App\Models\Setting::first();
+        $testimonials  = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.history', compact('faqs','About','testimonials','page_title','Settings','blogs','clients','Founder'));
+    }
+
 
      public function contact()
         {

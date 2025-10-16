@@ -21,11 +21,12 @@ class SettingController extends Controller
     /**
      * Store or update settings.
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
         $request->validate([
             'url' => 'nullable|url',
             'logo' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:2048',
+            'white_logo' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:2048',
             'favicon' => 'nullable|image|mimes:png,ico,jpg|max:512',
             'shape' => 'nullable|string|max:255',
             'email' => 'nullable|email',
@@ -49,14 +50,19 @@ class SettingController extends Controller
             $setting->logo = $request->file('logo')->store('settings', 'public');
         }
 
+        if ($request->hasFile('white_logo')) {
+            $setting->white_logo = $request->file('white_logo')->store('settings', 'public');
+        }
+
         if ($request->hasFile('favicon')) {
             $setting->favicon = $request->file('favicon')->store('settings', 'public');
         }
 
         // Save other fields
-        $setting->fill($request->except(['logo', 'favicon']));
+        $setting->fill($request->except(['logo', 'white_logo', 'favicon']));
         $setting->save();
 
         return redirect()->back()->with('success', 'Settings updated successfully!');
     }
+
 }

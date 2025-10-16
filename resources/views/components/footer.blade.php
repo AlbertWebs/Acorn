@@ -1,69 +1,125 @@
- <footer class="site-footer">
-            <div class="site-footer__bg" style="background-image: url(assets/images/backgrounds/site-footer-bg.jpg);">
-            </div>
+<footer class="tj-footer-section footer-2 h5-footer h10-footer section-gap-x">
 
-            <div class="site-footer__top text-center">
-                <div class="container">
-                    <div class="site-footer__top-inner flex justify-center items-center">
-                        <div class="col-xl-12 col-lg-8 col-md-10 wow fadeInUp" data-wow-delay="100ms">
-                            <div class="footer-widget__about mx-auto">
-                                <div class="footer-widget__about-logo mb-4">
-                                    <a href="index.html">
-                                        <img style="width:400px" src="{{url('/')}}/uploads/LQkKWUQZq1uxJpIeluEyc7Br0pudhpnvNF6FWXf7.png" alt="Footer Logo" class="mx-auto">
-                                    </a>
-                                </div>
-
-                                <p class="footer-widget__about-text text-lg text-gray-200 mb-6" style="max-width:600px; margin:0 auto;">
-                                        Don't miss a thing. <strong>Subscribe today</strong> to have all the
-                                        <strong>latest offers, fleet news, and exclusive car sale deals</strong>
-                                        delivered straight to your inbox the moment they're announced.
-                                </p>
-
-                               <form id="newsletter-form" class="footer-widget__form flex justify-center items-center max-w-md mx-auto">
-                                    <div class="footer-widget__input w-full relative">
-                                        <input name="email" type="email" required placeholder="Your Email Here"
-                                            class="w-full py-3 px-4 rounded-full border border-gray-300 focus:outline-none focus:ring focus:ring-yellow-400 text-center"
-                                            style="color:#666666;">
-                                    </div>
-                                    <button type="submit"
-                                        id="subscribe-btn"
-                                        class="footer-widget__btn ml-2 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-3 rounded-full flex items-center justify-center">
-                                        <span class="btn-text far fa-paper-plane"></span>
-                                        <svg class="spinner hidden ml-2 w-4 h-4 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                                        </svg>
-                                    </button>
-                                </form>
-
-                                <div id="subscribe-message" class="text-center mt-4 text-sm font-medium text-gray-600"></div>
-
-                            </div>
-                        </div>
-                    </div>
+        <div class="footer-main-area">
+          <div class="container">
+            <div class="row justify-content-between">
+              <div class="col-xl-5 col-lg-4 col-md-6">
+                <div class="footer-widget footer-col-1">
+                  <h2 class="h10-footer-title text-anim">
+                    Rooted in Ubuntu
+                    Growing Inclusive
+                    Futures.
+                  </h2>
+                  <a class="text-btn wow fadeInUp" data-wow-delay=".3s" href="mailto:{{$Settings->email}}">
+                    <span class="btn-text"><span>{{$Settings->email}}</span></span>
+                  </a>
+                  <div class="bg-shape-widget wow fadeInUpBig" data-wow-delay=".7s">
+                  </div>
                 </div>
-            </div>
-
-            <div class="site-footer__bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="site-footer__bottom-inner">
-                                <div class="site-footer__copyright">
-                                    <p class="site-footer__copyright-text">Copyright © {{date('Y')}} Nuhi Great Travels All Rights Reserved. | Powered By <a href="https://designekta.com">Designekta Studios .</a> </p>
-                                </div>
-                                <div class="site-footer__bottom-menu-box">
-                                    <ul class="list-unstyled site-footer__bottom-menu">
-                                        <li><a href="about.html">Terms of Service</a></li>
-                                        <li><a href="about.html">Privacy policy</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="footer-widget footer-col-2 widget-nav-menu wow fadeInUp" data-wow-delay=".3s">
+                  <h5 class="title">Services</h5>
+                  <ul>
+                    <?php
+                       $Services = DB::table('services')->get();
+                     ?>
+                     @foreach ($Services as $service)
+                         <li><a href="{{route('services-single', $service->slug)}}">{{$service->title}}</a></li>
+                     @endforeach
+                  </ul>
                 </div>
+              </div>
+
+              <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="footer-widget widget-contact wow fadeInUp" data-wow-delay=".7s">
+                  <h5 class="title">Our Office</h5>
+                  <div class="footer-contact-info">
+                    <div class="contact-item">
+                      <span>993 Renner Burg, West Rond, MT 94251-030, USA.</span>
+                    </div>
+                    <div class="contact-item">
+                      <a href="tel:{{$Settings->mobile}}">P: {{$Settings->mobile}}</a>
+                      <a href="mailto:{{$Settings->email}}">M: {{$Settings->email}}</a>
+                    </div>
+                    <div class="contact-item">
+                      <span><i class="tji-clock"></i> Mon-Fri 9am-6pm</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </footer>
+          </div>
+        </div>
+        <div class="h10-footer-subscribe-wrapper wow fadeInUp" data-wow-delay=".5s">
+          <div class="container">
+            <div class="row align-items-end" style="margin:0 auto">
+              <div class="col-12 col-lg-8 col-xl-7" style="margin:0 auto">
+                <div class="footer-subscribe h5-footer-subscribe">
+                  <h3 class="title text-anim">Subscribe to Our Newsletter.</h3>
+                  <div class="subscribe-form">
+                    <form action="index-10.html#">
+                      <input type="email" name="email" placeholder="Enter email">
+                      <button class="tj-primary-btn d-none d-sm-flex" type="submit">
+                        <span class="btn-text"><span>Subscribe</span></span>
+                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                      </button>
+                      <label for="agree"><input id="agree" type="checkbox">Agree to our <a href="index-10.html#">Terms &amp;
+                          Condition?</a></label>
+                      <button class="tj-primary-btn d-flex d-sm-none" type="submit">
+                        <span class="btn-text"><span>Subscribe</span></span>
+                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
+        <div class="tj-copyright-area-2 h5-footer-copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="copyright-content-area">
+                  <div class="copyright-text">
+                    <p>&copy; {{date('Y')}} <a href="https://acorn.co.ke"
+                        target="_blank">Acorn Special Tutorials</a>
+                      All right reserved</p>
+                  </div>
+                  <div class="social-links style-3">
+                    <ul>
+                      <li><a href="{{$Settings->facebook}}" target="_blank"><i
+                            class="fa-brands fa-facebook-f"></i></a>
+                      </li>
+                      <li><a href="{{$Settings->instagram}}" target="_blank"><i
+                            class="fa-brands fa-instagram"></i></a>
+                      </li>
+                      <li><a href="{{$Settings->twitter}}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                      <li><a href="{{$Settings->linkedin}}" target="_blank"><i
+                            class="fa-brands fa-linkedin-in"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="copyright-menu">
+                    <ul>
+                      <li><a href="contact.html">Privacy Policy</a></li>
+                      <li><a href="contact.html">Terms & Condition</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-shape-1">
+          <img src="{{asset('acorn/assets/images/shape/pattern-2.svg')}}" alt="">
+        </div>
+        <div class="bg-shape-2">
+          <img src="{{asset('acorn/assets/images/shape/pattern-3.svg')}}" alt="">
+        </div>
+        <div class="bg-shape-4 wow fadeInUpBig" data-wow-delay=".8s">
+          <img src="{{asset('acorn/assets/images/shape/h10-footer-shape-blur-2.svg')}}" alt="">
+        </div>
+      </footer>

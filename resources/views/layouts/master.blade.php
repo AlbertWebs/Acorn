@@ -8,10 +8,108 @@
   <meta name="description" content="">
 
   <!-- Site Title -->
-  <title>Bexon - Corporate Business HTML Template</title>
+   <title>Acorn Special Tutorials – Empowering Families & Inclusive Education in Nairobi</title>
+   <meta name="description" content="Acorn Special Tutorials in Nairobi empowers families and communities through inclusive education, individualized education plans (IEPs), auditory integration therapy (AIT), training and capacity building, and consultation services. Call 0725 959137 for professional assessments and support.">
+   <meta name="keywords" content="Acorn Special Tutorials, Special Education Nairobi, Inclusive Learning Kenya, Family Empowerment, Auditory Integration Therapy, IEPs Nairobi, Special Needs Assessments, Educational Consultation, Community Empowerment Kenya, Training and Capacity Building, Inclusive School Support, Special Educator Nairobi, Special Education Services Kenya">
+   <meta name="author" content="Acorn Special Tutorials">
+   <meta name="robots" content="index, follow">
+   <meta property="og:title" content="Acorn Special Tutorials – Inclusive Learning & Family Empowerment in Nairobi">
+   <meta property="og:description" content="Providing inclusive school support, auditory integration therapy, individualized education plans (IEPs), and training programs for families and educators in Nairobi.">
+   <meta property="og:url" content="https://www.acorn.co.ke/">
+   <meta property="og:type" content="organization">
+   <meta property="og:image" content="https://www.acorn.co.ke/images/cover.jpg">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:title" content="Acorn Special Tutorials – Special Education & Inclusive Learning in Nairobi">
+   <meta name="twitter:description" content="Empowering families through inclusive education, AIT therapy, and professional training in Nairobi.">
+   <meta name="twitter:image" content="https://www.acorn.co.ke/images/cover.jpg">
+   <link rel="canonical" href="https://www.acorn.co.ke/">
+
+   {{--  --}}
+    @verbatim
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Acorn Special Tutorials",
+    "alternateName": "Acorn Special Education Center",
+    "url": "https://www.acorn.co.ke/",
+    "logo": "https://www.acorn.co.ke/images/logo.png",
+    "image": "https://www.acorn.co.ke/images/cover.jpg",
+    "description": "Acorn Special Tutorials is a special education and family empowerment center in Nairobi offering inclusive school support, auditory integration therapy (AIT), individualized education plans (IEPs), professional training, and consultation services.",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "407 Muhuri",
+        "addressLocality": "Nairobi",
+        "addressRegion": "Nairobi County",
+        "postalCode": "00100",
+        "addressCountry": "Kenya"
+    },
+    "telephone": "+254725959137",
+    "email": "info@acorn.co.ke",
+    "sameAs": [
+        "https://www.facebook.com/acornspecialtutorials",
+        "https://www.instagram.com/acornspecialtutorials",
+        "https://www.linkedin.com/company/acornspecialtutorials"
+    ],
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -1.2921,
+        "longitude": 36.8219
+    },
+    "openingHours": "Mo-Fr 08:00-17:00",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "713"
+    },
+    "founder": {
+        "@type": "Person",
+        "name": "Acorn Special Tutorials Team"
+    },
+    "department": [
+        {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Community & Family Empowerment",
+        "description": "Supporting families and communities to build inclusive, nurturing environments for learners."
+        },
+        {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Inclusive School Support",
+        "description": "Helping schools integrate and support learners with special needs through customized interventions and professional collaboration."
+        },
+        {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Training & Capacity Building",
+        "description": "Professional training for teachers, parents, and caregivers to strengthen inclusive education practices."
+        },
+        {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Auditory Integration Therapy (AIT)",
+        "description": "Providing auditory processing interventions to enhance sensory regulation, focus, and learning performance."
+        },
+        {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Individualized Education Plans (IEPs)",
+        "description": "Developing personalized education plans tailored to each learner’s abilities and needs."
+        },
+        {
+        "@type": "EducationalOccupationalProgram",
+        "name": "Consultation Services",
+        "description": "Offering expert guidance, assessments, and educational consultations for parents and institutions."
+        }
+    ]
+    }
+    </script>
+    @endverbatim
+
+   {{--  --}}
+
 
   <!-- Place favicon.ico in the root directory -->
-  <link rel="shortcut icon" type="image/x-icon" href="{{asset('acorn/assets/images/fav.png')}}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('favicon/apple-touch-icon.png')}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon/favicon-32x32.png')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon/favicon-16x16.png')}}">
+  <link rel="manifest" href="{{asset('favicon/site.webmanifest')}}">
 
   <!-- CSS here -->
   <link rel="stylesheet" href="{{asset('acorn/assets/css/bootstrap.min.css')}}">
@@ -62,7 +160,7 @@
         <div class="hamburger_top d-flex align-items-center justify-content-between">
           <div class="hamburger_logo">
             <a href="{{url('/')}}" class="mobile_logo">
-              <img src="{{ asset('storage/'.$Settings->logo) }}" alt="Logo">
+              <img src="{{ asset('storage/'.$Settings->white_logo) }}" alt="Logo">
             </a>
           </div>
           <div class="hamburger_close">
@@ -70,9 +168,9 @@
           </div>
         </div>
         <div class="offcanvas-text">
-          <p>Developing personalize our customer journeys to increase satisfaction & loyalty of our expansion
-            recognized
-            by industry leaders.</p>
+          <p>
+            We are committed to growing inclusive futures where compassion, unity, and shared progress thrive.
+          </p>
         </div>
         <div class="hamburger-search-area">
           <h5 class="hamburger-title">Search Now!</h5>
@@ -88,15 +186,15 @@
           <div class="contact-info">
             <div class="contact-item">
               <span class="subtitle">Phone</span>
-              <a class="contact-link" href="tel:10095447818">+1 (009) 544-7818</a>
+              <a class="contact-link" href="tel:{{$Settings->mobile}}">{{$Settings->mobile}}</a>
             </div>
             <div class="contact-item">
               <span class="subtitle">Email</span>
-              <a class="contact-link" href="mailto:info@bexon.com">info@bexon.com</a>
+              <a class="contact-link" href="mailto:{{$Settings->email}}">{{$Settings->email}}</a>
             </div>
             <div class="contact-item">
               <span class="subtitle">Location</span>
-              <span class="contact-link">993 Renner Burg, West Rond, MT 94251-030</span>
+              <span class="contact-link">{{$Settings->location}}</span>
             </div>
           </div>
         </div>
@@ -173,1315 +271,14 @@
   </div>
   <!-- end: Hamburger Menu -->
 
-  <!-- start: Header Area -->
-  <header class="header-area header-1 header-absolute  section-gap-x">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="header-wrapper">
-            <!-- site logo -->
-            <div class="site_logo">
-              <a class="logo" href="{{url('/')}}"><img src="{{ asset('storage/'.$Settings->logo) }}" alt=""></a>
-            </div>
-
-            <!-- navigation -->
-            <div class="menu-area d-none d-lg-inline-flex align-items-center">
-              <nav id="mobile-menu" class="mainmenu">
-                {{--  --}}
-                 <ul>
-
-                  <li class="current-menu-ancestor"><a href="{{url('/')}}">Home</a>
-
-                  </li>
-
-                  <li class="has-dropdown"><a href="portfolio.html">Who We Are</a>
-                    <ul class="sub-menu">
-                      <li><a href="#">Our Story</a></li>
-                      <li><a href="#">The Director</a></li>
-                    </ul>
-                  </li>
-
-
-
-
-                  <li class="has-dropdown"><a href="service.html">What We Do</a>
-                    <ul class="sub-menu  mega-menu-service">
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-1"></i>
-                          </span> <span class="mega-menu-service-title">Business Strategy Development</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-2"></i>
-                          </span> <span class="mega-menu-service-title">Customer Experience Solutions</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-3"></i>
-                          </span> <span class="mega-menu-service-title">Sustainability and ESG Consulting</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-4"></i>
-                          </span> <span class="mega-menu-service-title">Training and Development Programs</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-5"></i>
-                          </span> <span class="mega-menu-service-title">IT Support & Maintenance</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-6"></i>
-                          </span> <span class="mega-menu-service-title">Marketing Strategy & Campaigns</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-
-                    </ul>
-                  </li>
-                  <li> <a href="{{url('/')}}">Updates</a>
-
-                  </li>
-
-
-                  <li><a href="contact.html">Contact</a></li>
-                </ul>
-                {{--  --}}
-              </nav>
-            </div>
-
-            <!-- header right info -->
-            <div class="header-right-item d-none d-lg-inline-flex">
-              <div class="header-search">
-                <button class="search">
-                  <i class="tji-search"></i>
-                </button>
-                <button type="button" class="search_close_btn">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17 1L1 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M1 1L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </div>
-              <div class="header-button">
-                <a class="tj-primary-btn" href="contact.html">
-                  <span class="btn-text"><span>Let’s Talk</span></span>
-                  <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                </a>
-              </div>
-              <div class="menu_bar menu_offcanvas d-none d-lg-inline-flex">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-
-            <!-- menu bar -->
-            <div class="menu_bar mobile_menu_bar d-lg-none">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Search Popup -->
-    <div class="search_popup">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-8">
-            <div class="tj_search_wrapper">
-              <div class="search_form">
-                <form action="{{url('/')}}#">
-                  <div class="search_input">
-                    <div class="search-box">
-                      <input class="search-form-input" type="text" placeholder="Type Words and Hit Enter" required>
-                      <button type="submit">
-                        <i class="tji-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- end: Header Area -->
-
-  <!-- start: Header Area -->
-  <header class="header-area header-1 header-duplicate header-sticky  section-gap-x">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="header-wrapper">
-            <!-- site logo -->
-            <div class="site_logo">
-              <a class="logo" href="{{url('/')}}"><img src="{{ asset('storage/'.$Settings->logo) }}" alt=""></a>
-            </div>
-
-            <!-- navigation -->
-            <div class="menu-area d-none d-lg-inline-flex align-items-center">
-              <nav class="mainmenu">
-                <ul>
-
-                  <li class="current-menu-ancestor"><a href="{{url('/')}}">Home</a>
-
-                  </li>
-
-                  <li class="has-dropdown"><a href="portfolio.html">Who We Are</a>
-                    <ul class="sub-menu">
-                      <li><a href="#">Our Story</a></li>
-                      <li><a href="#">The Director</a></li>
-                    </ul>
-                  </li>
-
-
-
-
-                  <li class="has-dropdown"><a href="service.html">What We Do</a>
-                    <ul class="sub-menu  mega-menu-service">
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-1"></i>
-                          </span> <span class="mega-menu-service-title">Business Strategy Development</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-2"></i>
-                          </span> <span class="mega-menu-service-title">Customer Experience Solutions</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-3"></i>
-                          </span> <span class="mega-menu-service-title">Sustainability and ESG Consulting</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-4"></i>
-                          </span> <span class="mega-menu-service-title">Training and Development Programs</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-5"></i>
-                          </span> <span class="mega-menu-service-title">IT Support & Maintenance</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-                      <li> <a class="mega-menu-service-single" href="service-details.html"> <span
-                            class="mega-menu-service-icon">
-                            <i class="tji-service-6"></i>
-                          </span> <span class="mega-menu-service-title">Marketing Strategy & Campaigns</span> <span
-                            class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i
-                              class="tji-arrow-right-long"></i></span></a></li>
-
-                    </ul>
-                  </li>
-                  <li> <a href="{{url('/')}}">Updates</a>
-
-                  </li>
-
-
-                  <li><a href="contact.html">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
-
-            <!-- header right info -->
-            <div class="header-right-item d-none d-lg-inline-flex">
-              <div class="header-search">
-                <button class="search">
-                  <i class="tji-search"></i>
-                </button>
-                <button type="button" class="search_close_btn">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17 1L1 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M1 1L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                </button>
-              </div>
-              <div class="header-button">
-                <a class="tj-primary-btn" href="contact.html">
-                  <span class="btn-text"><span>Let’s Talk</span></span>
-                  <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                </a>
-              </div>
-              <div class="menu_bar menu_offcanvas d-none d-lg-inline-flex">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-
-            <!-- menu bar -->
-            <div class="menu_bar mobile_menu_bar d-lg-none">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Search Popup -->
-    <div class="search_popup">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-8">
-            <div class="tj_search_wrapper">
-              <div class="search_form">
-                <form action="{{url('/')}}#">
-                  <div class="search_input">
-                    <div class="search-box">
-                      <input class="search-form-input" type="text" placeholder="Type Words and Hit Enter" required>
-                      <button type="submit">
-                        <i class="tji-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- end: Header Area -->
+   @include('components.menu')
 
   <div id="smooth-wrapper">
     <div id="smooth-content">
-      <main id="primary" class="site-main">
-        <div class="space-for-header"></div>
-        <!-- start: Banner Section -->
-        <section class="tj-banner-section section-gap-x">
-          <div class="banner-area">
-            <div class="banner-left-box">
-              <div class="banner-content">
-                <span class="sub-title wow fadeInDown" data-wow-delay=".2s">
-                  <i class="tji-excellence"></i> Excellence in Diversity
-                </span>
-                <h1 class="banner-title title-anim">Rooted in Ubuntu Growing Inclusive
-                  <span>Futures.</span>
-                </h1>
-                <div class="banner-desc-area wow fadeInUp" data-wow-delay=".7s">
-                  <a class="banner-link" href="about.html">
-                    <span><i class="tji-arrow-right-big"></i></span>
-                  </a>
-                  <div class="banner-desc">We are committed to growing inclusive futures where compassion, unity, and shared progress thrive.
-
-                  </div>
-                </div>
-              </div>
-              <div class="banner-shape">
-                <img src="{{asset('acorn/assets/images/shape/pattern-bg.webp')}}" alt="">
-              </div>
-            </div>
-            <div class="banner-right-box">
-              <div class="banner-img">
-                <img data-speed="0.8" src="{{asset('uploads/Ubuntu-plant.jpg')}}" alt="">
-              </div>
-              <div class="box-area">
-                <div class="customers-box">
-                  <div class="customers">
-
-                  </div>
-                  <div class="customers-number wow fadeInUp" data-wow-delay=".5s">Over 30+</div>
-                  <h6 class="customers-text wow fadeInUp" data-wow-delay=".5s">Years Experience</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="banner-scroll wow fadeInDown" data-wow-delay="2s">
-            <a href="{{url('/')}}#choose" class="scroll-down">
-              <span><i class="tji-arrow-down-long"></i></span>
-              Scroll Down
-            </a>
-          </div>
-        </section>
-        <!-- end: Banner Section -->
-
-        <!-- start: Choose Section -->
-        <section id="choose" class="tj-choose-section section-gap">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="sec-heading text-center">
-                  <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Choose the
-                    Best</span>
-                  <h2 class="sec-title title-anim">Empowering Business with <span>Expertise.</span></h2>
-                </div>
-              </div>
-            </div>
-            <div class="row row-gap-4 rightSwipeWrap">
-              <div class="col-lg-4">
-                <div class="choose-box right-swipe">
-                  <div class="choose-content">
-                    <div class="choose-icon">
-                      <i class="tji-innovative"></i>
-                    </div>
-                    <h4 class="title">Innovative Solutions</h4>
-                    <p class="desc">We stay ahead of the curve, leveraging cutting-edge technologies and strategies to
-                      keep
-                      you competitive in a marketplace.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="choose-box right-swipe">
-                  <div class="choose-content">
-                    <div class="choose-icon">
-                      <i class="tji-award"></i>
-                    </div>
-                    <h4 class="title">Award-Winning Expertise</h4>
-                    <p class="desc">Recognized by industry leaders, our award-winning team has a proven record of
-                      delivering
-                      excellence across projects.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="choose-box right-swipe">
-                  <div class="choose-content">
-                    <div class="choose-icon">
-                      <i class="tji-support"></i>
-                    </div>
-                    <h4 class="title">Dedicated Support</h4>
-                    <p class="desc">Our team is always available to address your concerns, providing quick and effective
-                      solution to keep your business.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Choose Section -->
-
-        <!-- start: Client Section -->
-        <section class="tj-client-section client-section-gap wow fadeInUp" data-wow-delay=".4s">
-          <div class="container-fluid client-container">
-            <div class="row">
-              <div class="col-12">
-                <div class="client-content">
-                  <h5 class="sec-title">Join Over <span class="client-numbers">1000+</span> Companies with
-                    <span class="client-text">Bexon</span> Here
-                  </h5>
-                </div>
-                <div class="swiper client-slider client-slider-1">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide client-item">
-                      <div class="client-logo">
-                        <img src="{{asset('acorn/assets/images/brands/brand-1.webp')}}" alt="">
-                      </div>
-                    </div>
-                    <div class="swiper-slide client-item">
-                      <div class="client-logo">
-                        <img src="{{asset('acorn/assets/images/brands/brand-2.webp')}}" alt="">
-                      </div>
-                    </div>
-                    <div class="swiper-slide client-item">
-                      <div class="client-logo">
-                        <img src="{{asset('acorn/assets/images/brands/brand-3.webp')}}" alt="">
-                      </div>
-                    </div>
-                    <div class="swiper-slide client-item">
-                      <div class="client-logo">
-                        <img src="{{asset('acorn/assets/images/brands/brand-4.webp')}}" alt="">
-                      </div>
-                    </div>
-                    <div class="swiper-slide client-item">
-                      <div class="client-logo">
-                        <img src="{{asset('acorn/assets/images/brands/brand-5.webp')}}" alt="">
-                      </div>
-                    </div>
-                    <div class="swiper-slide client-item">
-                      <div class="client-logo">
-                        <img src="{{asset('acorn/assets/images/brands/brand-6.webp')}}" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Client Section -->
-
-        <!-- start: About Section -->
-        <section class="tj-about-section section-gap">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-6 col-lg-6 order-lg-1 order-2">
-                <div class="about-img-area wow fadeInLeft" data-wow-delay=".2s">
-                  <div class="about-img overflow-hidden">
-                    <img data-speed="0.8" src="{{asset('acorn/assets/images/about/about-1.webp')}}" alt="">
-                  </div>
-                  <div class="box-area">
-                    <div class="experience-box wow fadeInUp" data-wow-delay=".3s">
-                      <span class="sub-title">Experiences</span>
-                      <div class="customers-number">13+</div>
-                      <h6 class="customers-text">Decades of Experience, Endless Innovation</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-6 col-lg-6 order-lg-2 order-1">
-                <div class="about-content-area style-1 wow fadeInLeft" data-wow-delay=".2s">
-                  <div class="sec-heading">
-                    <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Get to Know
-                      Us</span>
-                    <h2 class="sec-title title-anim">Empowering Businesses with Innovation,
-                      Expertise, and for <span>Success.</span>
-                    </h2>
-                  </div>
-                  <div class="wow fadeInUp" data-wow-delay=".5s">
-                    <a class="text-btn" href="about.html">
-                      <span class="btn-text"><span>Learn More</span></span>
-                      <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                    </a>
-                  </div>
-                </div>
-                <div class="about-bottom-area">
-                  <div class="client-review-cont wow fadeInUp" data-wow-delay=".7s">
-                    <div class="rating-area">
-                      <div class="star-ratings">
-                        <div class="fill-ratings" style="width: 100%">
-                          <span>★★★★★</span>
-                        </div>
-                        <div class="empty-ratings">
-                          <span>★★★★★</span>
-                        </div>
-                      </div>
-                    </div>
-                    <p class="desc">We believe in building lasting relationships with our clients through trust,
-                      innovation,
-                      and
-                      exceptional service.</p>
-                    <div class="client-info-area">
-                      <div class="client-info">
-                        <h6 class="title">Esther Howard</h6>
-                        <span class="designation">Co.Founder</span>
-                      </div>
-                      <span class="quote-icon"><i class="tji-quote"></i></span>
-                    </div>
-                  </div>
-                  <div class="video-img  wow fadeInUp" data-wow-delay=".9s">
-                    <img src="{{asset('acorn/assets/images/about/about-2.webp')}}" alt="">
-                    <a class="video-btn video-popup" data-autoplay="true" data-vbtype="video" data-maxwidth="1200px"
-                      href="https://www.youtube.com/watch?v=MLpWrANjFbI&amp;ab_channel=eidelchteinadvogados">
-                      <span><i class="tji-play"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: About Section -->
-
-        <!-- start: Service Section -->
-        <section class="tj-service-section overflow-hidden section-gap section-gap-x">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="sec-heading text-center">
-                  <span class="sub-title text-white wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Our
-                    Solutions</span>
-                  <h2 class="sec-title text-white title-anim">Solutions to Transform Your <span>Business.</span></h2>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="container-fluid p-0">
-            <div class="row">
-              <div class="col-12">
-                <div class="service-wrapper wow fadeInUp" data-wow-delay=".4s">
-                  <div class="swiper service-slider">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <div class="service-item style-1">
-                          <div class="service-img">
-                            <img src="{{asset('acorn/assets/images/service/service-1.webp')}}" alt="">
-                          </div>
-                          <div class="service-icon">
-                            <i class="tji-service-1"></i>
-                          </div>
-                          <div class="service-content">
-                            <h4 class="title"><a href="service-details.html">Business Strategy Development</a></h4>
-                            <p class="desc">Through a combination of data-driven insights and innovative approaches, we
-                              work
-                              closely with you to develop customized.</p>
-                            <a class="text-btn" href="service-details.html">
-                              <span class="btn-text"><span>Learn More</span></span>
-                              <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="service-item style-1">
-                          <div class="service-img">
-                            <img src="{{asset('acorn/assets/images/service/service-5.webp')}}" alt="">
-                          </div>
-                          <div class="service-icon">
-                            <i class="tji-service-2"></i>
-                          </div>
-                          <div class="service-content">
-                            <h4 class="title"><a href="service-details.html">Customer Experience Solutions</a></h4>
-                            <p class="desc">Developing personalized customer journeys to increase satisfaction and
-                              loyalty
-                              of our expansion to keep competitive.</p>
-                            <a class="text-btn" href="service-details.html">
-                              <span class="btn-text"><span>Learn More</span></span>
-                              <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="service-item style-1">
-                          <div class="service-img">
-                            <img src="{{asset('acorn/assets/images/service/service-6.webp')}}" alt="">
-                          </div>
-                          <div class="service-icon">
-                            <i class="tji-service-3"></i>
-                          </div>
-                          <div class="service-content">
-                            <h4 class="title"><a href="service-details.html">Sustainability and ESG Consulting</a></h4>
-                            <p class="desc">Provide tailored strategies that not only drive long-term value but also
-                              build
-                              trust with stakeholders, investors.</p>
-                            <a class="text-btn" href="service-details.html">
-                              <span class="btn-text"><span>Learn More</span></span>
-                              <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="service-item style-1">
-                          <div class="service-img">
-                            <img src="{{asset('acorn/assets/images/service/service-7.webp')}}" alt="">
-                          </div>
-                          <div class="service-icon">
-                            <i class="tji-service-4"></i>
-                          </div>
-                          <div class="service-content">
-                            <h4 class="title"><a href="service-details.html">Training and Development Programs</a></h4>
-                            <p class="desc">Training and Development Programs are designed to empower employees with the
-                              skills, knowledge, and tools they need.</p>
-                            <a class="text-btn" href="service-details.html">
-                              <span class="btn-text"><span>Learn More</span></span>
-                              <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-pagination-area white-pagination"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-shape-1">
-            <img src="{{asset('acorn/assets/images/shape/pattern-2.svg')}}" alt="">
-          </div>
-          <div class="bg-shape-2">
-            <img src="{{asset('acorn/assets/images/shape/pattern-3.svg')}}" alt="">
-          </div>
-        </section>
-        <!-- end: Service Section -->
-
-        <!-- start: Project Section -->
-        <section class="tj-project-section section-gap">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="sec-heading-wrap">
-                  <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Proud Projects</span>
-                  <div class="heading-wrap-content">
-                    <div class="sec-heading">
-                      <h2 class="sec-title title-anim">Breaking Boundaries, Building <span>Dreams.</span></h2>
-                    </div>
-                    <p class="desc wow fadeInUp" data-wow-delay=".5s">We work closely with our clients to understand
-                      their
-                      unique needs and craft tailored
-                      solutions that address challenges.</p>
-                    <div class="btn-wrap wow fadeInUp" data-wow-delay=".6s">
-                      <a class="tj-primary-btn" href="portfolio.html">
-                        <span class="btn-text"><span>More Projects</span></span>
-                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="project-area tj-arrange-container">
-                  <div class="project-item tj-arrange-item">
-                    <div class="project-img" data-bg-image="assets/images/project/project-1.webp')}}"></div>
-                    <div class="project-content">
-                      <span class="categories"><a href="portfolio-details.html">Connect</a></span>
-                      <div class="project-text">
-                        <h4 class="title"><a href="portfolio-details.html">Event Management Platform</a></h4>
-                        <a class="project-btn" href="portfolio-details.html">
-                          <i class="tji-arrow-right-long"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="project-item tj-arrange-item">
-                    <div class="project-img" data-bg-image="assets/images/project/project-2.webp')}}"></div>
-                    <div class="project-content">
-                      <span class="categories"><a href="portfolio-details.html">Empower</a></span>
-                      <div class="project-text">
-                        <h4 class="title"><a href="portfolio-details.html">Digital Marketing Campaign</a></h4>
-                        <a class="project-btn" href="portfolio-details.html">
-                          <i class="tji-arrow-right-long"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="project-item tj-arrange-item">
-                    <div class="project-img" data-bg-image="assets/images/project/project-3.webp')}}"></div>
-                    <div class="project-content">
-                      <span class="categories"><a href="portfolio-details.html">Support</a></span>
-                      <div class="project-text">
-                        <h4 class="title"><a href="portfolio-details.html">Interactive Learning Platform</a></h4>
-                        <a class="project-btn" href="portfolio-details.html">
-                          <i class="tji-arrow-right-long"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="project-item tj-arrange-item">
-                    <div class="project-img" data-bg-image="assets/images/project/project-4.webp')}}"></div>
-                    <div class="project-content">
-                      <span class="categories"><a href="portfolio-details.html">Business</a></span>
-                      <div class="project-text">
-                        <h4 class="title"><a href="portfolio-details.html">Environmental Impact Dashboard</a></h4>
-                        <a class="project-btn" href="portfolio-details.html">
-                          <i class="tji-arrow-right-long"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Project Section -->
-
-        <!-- start: Countup Section -->
-        <div class="tj-countup-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="countup-wrap">
-                  <div class="countup-item">
-                    <div class="inline-content">
-                      <span class="odometer countup-number" data-count="93"></span>
-                      <span class="count-plus">%</span>
-                    </div>
-                    <span class="count-text">Projects Completed.</span>
-                    <span class="count-separator" data-bg-image="assets/images/shape/separator.svg')}}"></span>
-                  </div>
-                  <div class="countup-item">
-                    <div class="inline-content">
-                      <span class="odometer countup-number" data-count="20"></span>
-                      <span class="count-plus">M</span>
-                    </div>
-                    <span class="count-text">Reach Worldwide</span>
-                    <span class="count-separator" data-bg-image="assets/images/shape/separator.svg')}}"></span>
-                  </div>
-                  <div class="countup-item">
-                    <div class="inline-content">
-                      <span class="odometer countup-number" data-count="8.5"></span>
-                      <span class="count-plus">X</span>
-                    </div>
-                    <span class="count-text">Faster Growth</span>
-                    <span class="count-separator" data-bg-image="assets/images/shape/separator.svg')}}"></span>
-                  </div>
-                  <div class="countup-item">
-                    <div class="inline-content">
-                      <span class="odometer countup-number" data-count="100"></span>
-                      <span class="count-plus">+</span>
-                    </div>
-                    <span class="count-text">Awards Archived</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end: Countup Section -->
-
-        <!-- start: Testimonial Section -->
-        <section class="tj-testimonial-section section-gap section-gap-x">
-          <div class="container">
-            <div class="row justify-content-between">
-              <div class="col-12">
-                <div class="sec-heading-wrap">
-                  <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Clients
-                    Feedback</span>
-                  <div class="heading-wrap-content">
-                    <div class="sec-heading">
-                      <h2 class="sec-title title-anim">Success <span>Stories</span> Fuel our Innovation.</h2>
-                    </div>
-                    <div class="slider-navigation d-inline-flex wow fadeInUp" data-wow-delay=".4s">
-                      <div class="slider-prev">
-                        <span class="anim-icon">
-                          <i class="tji-arrow-left"></i>
-                          <i class="tji-arrow-left"></i>
-                        </span>
-                      </div>
-                      <div class="slider-next">
-                        <span class="anim-icon">
-                          <i class="tji-arrow-right"></i>
-                          <i class="tji-arrow-right"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="testimonial-wrapper wow fadeInUp" data-wow-delay=".5s">
-                  <div class="swiper swiper-container testimonial-slider">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <span class="quote-icon"><i class="tji-quote"></i></span>
-                          <div class="desc">
-                            <p>Working with Bexon has been a game-changer for our business. Their team's
-                              professionalism,
-                              attention to detail, and innovative solutions have helped us streamline operations and
-                              achieve
-                              our goals faster than we imagined. We truly feel like a valued partner.</p>
-                          </div>
-                          <div class="testimonial-author">
-                            <div class="author-inner">
-                              <div class="author-img">
-                                <img src="{{asset('acorn/assets/images/testimonial/client-1.webp')}}" alt="">
-                              </div>
-                              <div class="author-header">
-                                <h4 class="title">Guy Hawkins</h4>
-                                <span class="designation">Co. Founder</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <span class="quote-icon"><i class="tji-quote"></i></span>
-                          <div class="desc">
-                            <p>The results we’ve seen after partnering with Bexon are beyond our expectations. They not
-                              only
-                              understood our vision but also brought new ideas to the table that have taken our business
-                              to
-                              the next level. Their expertise and commitment to success make them a trusted.
-                            </p>
-                          </div>
-                          <div class="testimonial-author">
-                            <div class="author-inner">
-                              <div class="author-img">
-                                <img src="{{asset('acorn/assets/images/testimonial/client-2.webp')}}" alt="">
-                              </div>
-                              <div class="author-header">
-                                <h4 class="title">Ralph Edwards</h4>
-                                <span class="designation">Co. Founder</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item">
-                          <span class="quote-icon"><i class="tji-quote"></i></span>
-                          <div class="desc">
-                            <p>We’ve been working with Bexonfor years, and they continue to deliver outstanding results.
-                              Their team is proactive, responsive, and always goes the extra mile to ensure our needs
-                              are
-                              met. They’ve become a key contributor to our growth and success that really help us"
-                            </p>
-                          </div>
-                          <div class="testimonial-author">
-                            <div class="author-inner">
-                              <div class="author-img">
-                                <img src="{{asset('acorn/assets/images/testimonial/client-3.webp')}}" alt="">
-                              </div>
-                              <div class="author-header">
-                                <h4 class="title">Devon Lane</h4>
-                                <span class="designation">Co. Founder</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="swiper-pagination-area"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-shape-1">
-            <img src="{{asset('acorn/assets/images/shape/pattern-2.svg')}}" alt="">
-          </div>
-          <div class="bg-shape-2">
-            <img src="{{asset('acorn/assets/images/shape/pattern-3.svg')}}" alt="">
-          </div>
-        </section>
-        <!-- end: Testimonial Section -->
-
-        <!-- start: Faq Section -->
-        <section class="tj-faq-section section-gap tj-arrange-container-2">
-          <div class="container">
-            <div class="row justify-content-between">
-              <div class="col-lg-6">
-                <div class="faq-img-area tj-arrange-item-2">
-                  <div class="faq-img overflow-hidden">
-                    <img src="{{asset('acorn/assets/images/faq/faq.webp')}}" alt="">
-                    <h2 class="title">Need Help? Start Here...</h2>
-                  </div>
-                  <div class="box-area ">
-                    <div class="call-box">
-                      <h4 class="title">Get Started Free Call? </h4>
-                      <span class="call-icon"><i class="tji-phone"></i></span>
-                      <a class="number" href="tel:18884521505"><span>1-888-452-1505</span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="accordion tj-faq tj-arrange-item-2" id="faqOne">
-                  <div class="accordion-item active">
-                    <button class=" faq-title" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1"
-                      aria-expanded="true">What services does Bexon offer to clients?</button>
-                    <div id="faq-1" class="collapse show" data-bs-parent="#faqOne">
-                      <div class="accordion-body faq-text">
-                        <p>Getting started is easy! Simply reach out to us through our contact form or give us a call,
-                          and
-                          we’ll schedule a consultation to discuss your project and how we can best assist you. Our team
-                          keeps you informed throughout the process, ensuring quality control and timely delivery.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <button class="faq-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2"
-                      aria-expanded="false">How do I get started with Corporate Business?</button>
-                    <div id="faq-2" class="collapse" data-bs-parent="#faqOne">
-                      <div class="accordion-body faq-text">
-                        <p>Getting started is easy! Simply reach out to us through our contact form or give us a call,
-                          and
-                          we’ll schedule a consultation to discuss your project and how we can best assist you. Our team
-                          keeps you informed throughout the process, ensuring quality control and timely delivery.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <button class="faq-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3"
-                      aria-expanded="false">How do you ensure the success of a project?</button>
-                    <div id="faq-3" class="collapse" data-bs-parent="#faqOne">
-                      <div class="accordion-body faq-text">
-                        <p>Getting started is easy! Simply reach out to us through our contact form or give us a call,
-                          and
-                          we’ll schedule a consultation to discuss your project and how we can best assist you. Our team
-                          keeps you informed throughout the process, ensuring quality control and timely delivery.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <button class="faq-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4"
-                      aria-expanded="false">How long will it take to complete my project?</button>
-                    <div id="faq-4" class="collapse" data-bs-parent="#faqOne">
-                      <div class="accordion-body faq-text">
-                        <p>Getting started is easy! Simply reach out to us through our contact form or give us a call,
-                          and
-                          we’ll schedule a consultation to discuss your project and how we can best assist you. Our team
-                          keeps you informed throughout the process, ensuring quality control and timely delivery.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <button class="faq-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5"
-                      aria-expanded="false">Can I track the progress of my project?</button>
-                    <div id="faq-5" class="collapse" data-bs-parent="#faqOne">
-                      <div class="accordion-body faq-text">
-                        <p>Getting started is easy! Simply reach out to us through our contact form or give us a call,
-                          and
-                          we’ll schedule a consultation to discuss your project and how we can best assist you. Our team
-                          keeps you informed throughout the process, ensuring quality control and timely delivery.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Faq Section -->
-
-        <!-- start: Contact Section -->
-        <section class="tj-contact-section section-gap section-gap-x">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="global-map wow fadeInUp" data-wow-delay=".3s">
-                  <div class="global-map-img">
-                    <img src="{{asset('acorn/assets/images/bg/map.svg')}}" alt="Image">
-                    <div class="location-indicator loc-1">
-                      <div class="location-tooltip">
-                        <span>Head office:</span>
-                        <p>993 Renner Burg, West Rond, MT 94251-030, USA.</p>
-                        <a href="tel:10095447818">P: +1 (009) 544-7818</a>
-                        <a href="mailto:support@bexon.com">M: support@bexon.com</a>
-                      </div>
-                    </div>
-                    <div class="location-indicator loc-2">
-                      <div class="location-tooltip">
-                        <span>Regional office:</span>
-                        <p>Hessisch Lichtenau 37235, Kassel, Germany.</p>
-                        <a href="tel:10098801810">P: +1 (009) 880-1810</a>
-                        <a href="mailto:support@bexon.com">M: support@bexon.com</a>
-                      </div>
-                    </div>
-                    <div class="location-indicator loc-3">
-                      <div class="location-tooltip">
-                        <span>Regional office:</span>
-                        <p>32 Altamira, State of Pará, Brazil.</p>
-                        <a href="tel:10095447818">P: +1 (009) 544-7818</a>
-                        <a href="mailto:support@bexon.com">M: support@bexon.com</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="contact-form style-2 wow fadeInUp" data-wow-delay=".4s">
-                  <div class="sec-heading">
-                    <span class="sub-title text-white"><i class="tji-box"></i>Get in Touch</span>
-                    <h2 class="sec-title title-anim">Drop Us a <span>Line.</span></h2>
-                  </div>
-                  <form id="contact-form-2">
-                    <div class="row wow fadeInUp" data-wow-delay=".5s">
-                      <div class="col-sm-6">
-                        <div class="form-input">
-                          <input type="text" name="cfName2" placeholder="Full Name *">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-input">
-                          <input type="email" name="cfEmail2" placeholder="Email Address *">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-input">
-                          <input type="tel" name="cfPhone2" placeholder="Phone number *">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-input">
-                          <div class="tj-nice-select-box">
-                            <div class="tj-select">
-                              <select name="cfSubject2">
-                                <option value="0">Chose a option</option>
-                                <option value="1">Business Strategy</option>
-                                <option value="2">Customer Experience</option>
-                                <option value="3">Sustainability and ESG</option>
-                                <option value="4">Training and Development</option>
-                                <option value="5">IT Support & Maintenance</option>
-                                <option value="6">Marketing Strategy</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12">
-                        <div class="form-input message-input">
-                          <textarea name="cfMessage2" id="message" placeholder="Type message *"></textarea>
-                        </div>
-                      </div>
-                      <div class="submit-btn">
-                        <button class="tj-primary-btn" type="submit">
-                          <span class="btn-text"><span>Send Message</span></span>
-                          <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-shape-1">
-            <img src="{{asset('acorn/assets/images/shape/pattern-2.svg')}}" alt="">
-          </div>
-          <div class="bg-shape-2">
-            <img src="{{asset('acorn/assets/images/shape/pattern-3.svg')}}" alt="">
-          </div>
-        </section>
-        <!-- end: Contact Section -->
-
-        <!-- start: Blog Section -->
-        <section class="tj-blog-section section-gap">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="sec-heading text-center">
-                  <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Insights &
-                    Ideas</span>
-                  <h2 class="sec-title title-anim">The Ultimate <span>Resource.</span></h2>
-                </div>
-              </div>
-            </div>
-            <div class="row row-gap-4">
-              <div class="col-xl-4 col-md-6">
-                <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                  <div class="blog-thumb">
-                    <a href="blog-details.html"><img src="{{asset('acorn/assets/images/blog/blog-1.webp')}}" alt=""></a>
-                    <div class="blog-date">
-                      <span class="date">28</span>
-                      <span class="month">Feb</span>
-                    </div>
-                  </div>
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <span class="categories"><a href="blog-details.html">Business</a></span>
-                      <span>By <a href="blog-details.html">Ellinien Loma</a></span>
-                    </div>
-                    <h4 class="title"><a href="blog-details.html">Innovative Solutions for every Business Success.</a>
-                    </h4>
-                    <a class="text-btn" href="blog-details.html">
-                      <span class="btn-text"><span>Read More</span></span>
-                      <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-md-6">
-                <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                  <div class="blog-thumb">
-                    <a href="blog-details.html"><img src="{{asset('acorn/assets/images/blog/blog-2.webp')}}" alt=""></a>
-                    <div class="blog-date">
-                      <span class="date">28</span>
-                      <span class="month">Feb</span>
-                    </div>
-                  </div>
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <span class="categories"><a href="blog-details.html">Business</a></span>
-                      <span>By <a href="blog-details.html">Ellinien Loma</a></span>
-                    </div>
-                    <h4 class="title"><a href="blog-details.html">Harnessing Digital Transform a Roadmap Businesses.</a>
-                    </h4>
-                    <a class="text-btn" href="blog-details.html">
-                      <span class="btn-text"><span>Read More</span></span>
-                      <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-md-6">
-                <div class="blog-item wow fadeInUp" data-wow-delay=".4s">
-                  <div class="blog-thumb">
-                    <a href="blog-details.html"><img src="{{asset('acorn/assets/images/blog/blog-3.webp')}}" alt=""></a>
-                    <div class="blog-date">
-                      <span class="date">28</span>
-                      <span class="month">Feb</span>
-                    </div>
-                  </div>
-                  <div class="blog-content">
-                    <div class="blog-meta">
-                      <span class="categories"><a href="blog-details.html">Business</a></span>
-                      <span>By <a href="blog-details.html">Ellinien Loma</a></span>
-                    </div>
-                    <h4 class="title"><a href="blog-details.html">Mastering Change Management Lessons for
-                        Businesses.</a>
-                    </h4>
-                    <a class="text-btn" href="blog-details.html">
-                      <span class="btn-text"><span>Read More</span></span>
-                      <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Blog Section -->
-
-        <!-- start: Cta Section -->
-        <section class="tj-cta-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="cta-area">
-                  <div class="cta-content">
-                    <h2 class="title title-anim">Let’s Build Future Together.</h2>
-                    <div class="cta-btn wow fadeInUp" data-wow-delay=".6s">
-                      <a class="tj-primary-btn btn-dark" href="contact.html">
-                        <span class="btn-text"><span>Get Started Now</span></span>
-                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="cta-img">
-                    <img src="{{asset('acorn/assets/images/cta/cta-bg.webp')}}" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Cta Section -->
-      </main>
+      @yield('content')
 
       <!-- start: Footer Section -->
-      <footer class="tj-footer-section footer-1 section-gap-x">
-        <div class="footer-main-area">
-          <div class="container">
-            <div class="row justify-content-between">
-              <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="footer-widget wow fadeInUp" data-wow-delay=".1s">
-                  <div class="footer-logo">
-                    <a href="{{url('/')}}">
-                      <img src="{{asset('acorn/assets/images/logos/logo.webp')}}" alt="Logos">
-                    </a>
-                  </div>
-                  <div class="footer-text">
-                    <p>Developing personalze our customer journeys to increase satisfaction & loyalty of our expansion.
-                    </p>
-                  </div>
-                  <div class="award-logo-area">
-                    <div class="award-logo">
-                      <img src="{{asset('acorn/assets/images/footer/award-logo-1.webp')}}" alt="">
-                    </div>
-                    <div class="award-logo">
-                      <img src="{{asset('acorn/assets/images/footer/award-logo-2.webp')}}" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="footer-widget widget-nav-menu wow fadeInUp" data-wow-delay=".3s">
-                  <h5 class="title">Services</h5>
-                  <ul>
-                    <li><a href="{{url('/')}}#">Customer Experience</a></li>
-                    <li><a href="{{url('/')}}#">Training Programs</a></li>
-                    <li><a href="{{url('/')}}#">Business Strategy</a></li>
-                    <li><a href="{{url('/')}}#">Training Program</a></li>
-                    <li><a href="{{url('/')}}#">ESG Consulting</a></li>
-                    <li><a href="{{url('/')}}#">Development Hub</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-2 col-lg-4 col-md-6">
-                <div class="footer-widget widget-nav-menu wow fadeInUp" data-wow-delay=".5s">
-                  <h5 class="title">Resources</h5>
-                  <ul>
-                    <li><a href="{{url('/')}}#">Contact us</a></li>
-                    <li><a href="{{url('/')}}#">Team Member</a></li>
-                    <li><a href="{{url('/')}}#">Recognitions</a></li>
-                    <li><a href="careers.html">Careers <span class="badge">New</span></a></li>
-                    <li><a href="{{url('/')}}#">News</a></li>
-                    <li><a href="{{url('/')}}#">Feedback</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-5 col-md-6">
-                <div class="footer-widget widget-subscribe wow fadeInUp" data-wow-delay=".7s">
-                  <h3 class="title">Subscribe to Our Newsletter.</h3>
-                  <div class="subscribe-form">
-                    <form action="{{url('/')}}#">
-                      <input type="email" name="email" placeholder="Enter email">
-                      <button type="submit"><i class="tji-plane"></i></button>
-                      <label for="agree"><input id="agree" type="checkbox">Agree to our <a href="{{url('/')}}#">Terms &
-                          Condition?</a></label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tj-copyright-area">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="copyright-content-area">
-                  <div class="footer-contact">
-                    <ul>
-                      <li>
-                        <a href="tel:10095447818">
-                          <span class="icon"><i class="tji-phone-2"></i></span>
-                          <span class="text">+1 (009) 544-7818</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="mailto:info@bexon.com">
-                          <span class="icon"><i class="tji-envelop-2"></i></span>
-                          <span class="text">info@bexon.com</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="social-links">
-                    <ul>
-                      <li><a href="https://www.facebook.com/" target="_blank"><i
-                            class="fa-brands fa-facebook-f"></i></a>
-                      </li>
-                      <li><a href="https://www.instagram.com/" target="_blank"><i
-                            class="fa-brands fa-instagram"></i></a>
-                      </li>
-                      <li><a href="https://x.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                      <li><a href="https://www.linkedin.com/" target="_blank"><i
-                            class="fa-brands fa-linkedin-in"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="copyright-text">
-                    <p>&copy; 2025 <a href="https://themeforest.net/user/theme-junction/portfolio"
-                        target="_blank">Bexon</a>
-                      All right reserved</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-shape-1">
-          <img src="{{asset('acorn/assets/images/shape/pattern-2.svg')}}" alt="">
-        </div>
-        <div class="bg-shape-2">
-          <img src="{{asset('acorn/assets/images/shape/pattern-3.svg')}}" alt="">
-        </div>
-      </footer>
+      @include('components.footer')
       <!-- end: Footer Section -->
     </div>
   </div>
@@ -1504,3 +301,5 @@
 </body>
 
 </html>
+
+
