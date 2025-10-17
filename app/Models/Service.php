@@ -8,10 +8,19 @@ use Illuminate\Support\Str;
 class Service extends Model
 {
     protected $fillable = [
-        'title', 'image', 'short_description', 'description', 'is_active', 'slug'
+        'title',
+        'slug',
+        'icon',
+        'image',
+        'short_description',
+        'description',
+        'seo_title',
+        'seo_description',
+        'seo_keywords',
+        'is_active',
     ];
 
-    // Auto-generate slug when creating a new service
+    // Auto-generate slug when creating/updating
     protected static function boot()
     {
         parent::boot();

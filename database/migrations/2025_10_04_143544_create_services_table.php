@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('image')->nullable(); // e.g., FontAwesome icon or image
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
+            // ✅ SEO fields
+            $table->string('seo_title')->nullable();
+            $table->text('seo_description')->nullable();
+            $table->text('seo_keywords')->nullable();
+
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

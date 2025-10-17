@@ -44,13 +44,20 @@ Route::get('/services', [HomeController::class, 'services'])->name('frontend.ser
 
 
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact-us');
-Route::get('/book-consultation', [HomeController::class, 'consultation'])->name('book-consultation');
+
 
 Route::get('/updates', [HomeController::class, 'updates'])->name('updates');
 Route::get('/updates/{slung}', [HomeController::class, 'show'])->name('blog.show');
 
 Route::post('/send-message', [HomeController::class, 'contactFormSubmit'])->name('contact.submit');
 Route::post('/subscribe/ajax', [SubscriberPostController::class, 'ajaxStore'])->name('subscribe.ajax');
+
+Route::get('/book-consultation', [HomeController::class, 'consultation'])->name('book-consultation');
+Route::post('/book-consultation-submit', [BookingController::class, 'submit'])->name('book-consultation.submit');
+
+// New route for payment page
+Route::get('/booking/{booking}/payment', [BookingController::class, 'showPaymentPage'])->name('booking.payment');
+Route::post('/booking/{booking}/payment', [BookingController::class, 'processPayment'])->name('booking.payment.submit');
 
 
 // ====================
@@ -80,7 +87,7 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
 
 
     // Bookings CRUD
-    Route::resource('bookings', BookingController::class);
+    Route::resource('bookings', App\Http\Controllers\Admin\BookingController::class);
 
     Route::resource('users', App\Http\Controllers\Admin\UserController::class);
 

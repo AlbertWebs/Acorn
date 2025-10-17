@@ -6,27 +6,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
+    <!-- Site Title -->
+    <title>Book Consultation – Acorn Special Tutorials, Nairobi</title>
+    <meta name="description" content="Book a professional consultation with Acorn Special Tutorials in Nairobi. We provide expert guidance on inclusive education, IEPs, AIT therapy, training, and family support. Call 0725 959137 to schedule your consultation.">
+    <meta name="keywords" content="Book Consultation Nairobi, Acorn Special Tutorials, Special Education Consultation, Inclusive Education Guidance, IEP Assessment, AIT Therapy Consultation, Family Empowerment, Inclusive School Support">
+    <meta name="author" content="Acorn Special Tutorials">
+    <meta name="robots" content="index, follow">
 
-  <!-- Site Title -->
-   <title>Acorn Special Tutorials – Empowering Families & Inclusive Education in Nairobi</title>
-   <meta name="description" content="Acorn Special Tutorials in Nairobi empowers families and communities through inclusive education, individualized education plans (IEPs), auditory integration therapy (AIT), training and capacity building, and consultation services. Call 0725 959137 for professional assessments and support.">
-   <meta name="keywords" content="Acorn Special Tutorials, Special Education Nairobi, Inclusive Learning Kenya, Family Empowerment, Auditory Integration Therapy, IEPs Nairobi, Special Needs Assessments, Educational Consultation, Community Empowerment Kenya, Training and Capacity Building, Inclusive School Support, Special Educator Nairobi, Special Education Services Kenya">
-   <meta name="author" content="Acorn Special Tutorials">
-   <meta name="robots" content="index, follow">
-   <meta property="og:title" content="Acorn Special Tutorials – Inclusive Learning & Family Empowerment in Nairobi">
-   <meta property="og:description" content="Providing inclusive school support, auditory integration therapy, individualized education plans (IEPs), and training programs for families and educators in Nairobi.">
-   <meta property="og:url" content="https://www.acorn.co.ke/">
-   <meta property="og:type" content="organization">
-   <meta property="og:site_name" content="Acorn Special Tutorials">
+    <meta property="og:title" content="Book Consultation – Acorn Special Tutorials, Nairobi">
+    <meta property="og:description" content="Schedule a consultation with Acorn Special Tutorials for expert support in inclusive education, individualized education plans, AIT therapy, and family guidance in Nairobi.">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Acorn Special Tutorials">
     <meta property="og:locale" content="en_KE">
-   <meta property="og:image" content="https://www.acorn.co.ke/images/cover.jpg">
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="Acorn Special Tutorials – Special Education & Inclusive Learning in Nairobi">
-   <meta name="twitter:description" content="Empowering families through inclusive education, AIT therapy, and professional training in Nairobi.">
-   <meta name="twitter:image" content="https://www.acorn.co.ke/images/cover.jpg">
-   <link rel="canonical" href="https://www.acorn.co.ke/">
+    <meta property="og:image" content="https://www.acorn.co.ke/images/cover.jpg">
 
-   {{--  --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Book Consultation – Acorn Special Tutorials, Nairobi">
+    <meta name="twitter:description" content="Book a consultation with Acorn Special Tutorials to get professional guidance on inclusive education, IEPs, AIT therapy, and family support.">
+    <meta name="twitter:image" content="https://www.acorn.co.ke/images/cover.jpg">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Structured Data --}}
     @verbatim
     <script type="application/ld+json">
     {
@@ -34,10 +36,10 @@
     "@type": "EducationalOrganization",
     "name": "Acorn Special Tutorials",
     "alternateName": "Acorn Special Education Center",
-    "url": "https://www.acorn.co.ke/",
+    "url": "https://www.acorn.co.ke/book-consultation",
     "logo": "https://www.acorn.co.ke/images/logo.png",
     "image": "https://www.acorn.co.ke/images/cover.jpg",
-    "description": "Acorn Special Tutorials is a special education and family empowerment center in Nairobi offering inclusive school support, auditory integration therapy (AIT), individualized education plans (IEPs), professional training, and consultation services.",
+    "description": "Book a professional consultation with Acorn Special Tutorials in Nairobi for inclusive education guidance, individualized education plans (IEPs), auditory integration therapy (AIT), training, and family support.",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "407 Muhuri",
@@ -59,11 +61,6 @@
         "longitude": 36.8219
     },
     "openingHours": "Mo-Fr 08:00-17:00",
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.7",
-        "reviewCount": "713"
-    },
     "founder": {
         "@type": "Person",
         "name": "Acorn Special Tutorials Team"
@@ -71,38 +68,14 @@
     "department": [
         {
         "@type": "EducationalOccupationalProgram",
-        "name": "Community & Family Empowerment",
-        "description": "Supporting families and communities to build inclusive, nurturing environments for learners."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Inclusive School Support",
-        "description": "Helping schools integrate and support learners with special needs through customized interventions and professional collaboration."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Training & Capacity Building",
-        "description": "Professional training for teachers, parents, and caregivers to strengthen inclusive education practices."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Auditory Integration Therapy (AIT)",
-        "description": "Providing auditory processing interventions to enhance sensory regulation, focus, and learning performance."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Individualized Education Plans (IEPs)",
-        "description": "Developing personalized education plans tailored to each learner’s abilities and needs."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Consultation Services",
-        "description": "Offering expert guidance, assessments, and educational consultations for parents and institutions."
+        "name": "Book Consultation",
+        "description": "Professional consultation services providing guidance on inclusive education, IEPs, AIT therapy, and family empowerment."
         }
     ]
     }
     </script>
     @endverbatim
+
 
    {{--  --}}
 
@@ -124,6 +97,7 @@
   <link rel="stylesheet" href="{{asset('acorn/assets/css/odometer-theme-default.css')}}">
   <link rel="stylesheet" href="{{asset('acorn/assets/css/meanmenu.css')}}">
   <link rel="stylesheet" href="{{asset('acorn/assets/css/main.css')}}">
+  <link rel="stylesheet" href="{{asset('acorn/assets/css/shop.css')}}">
 </head>
 
 <body>

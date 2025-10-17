@@ -80,6 +80,19 @@ class HomeController extends Controller
             return view('frontend.contact', compact('About', 'feedbacks','Settings','page_title'));
         }
 
+    public function consultation()
+        {
+            $page_title = "Book Cosultation";
+            $About = \App\Models\About::first();
+            $Services =  \App\Models\Service::latest()->get();
+            // $teams = \App\Models\Team::where('is_active', true)->get();
+            $Settings = \App\Models\Setting::first();
+            $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+            return view('frontend.consultation', compact('Services','About', 'feedbacks','Settings','page_title'));
+        }
+
+
+
     public function updates()
     {
         $blogs = \App\Models\Blog::latest()->paginate(12);
@@ -101,16 +114,7 @@ class HomeController extends Controller
         return view('frontend.update', compact('blogs', 'feedbacks','Settings','page_title'));
     }
 
-    public function show_fleet($slug){
-        $car = \App\Models\Car::where('slug', $slug)->first();
-        $Fleet = \App\Models\Fleet::where('car_id', $car->id)->get();
-        $page_title = "Fleet";
-        $About = \App\Models\About::first();
-        // $teams = \App\Models\Team::where('is_active', true)->get();
-        $Settings = \App\Models\Setting::first();
-        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
-        return view('frontend.show_fleet', compact('feedbacks','Settings','page_title','car','Fleet'));
-    }
+
 
 
     public function services_single($slug)

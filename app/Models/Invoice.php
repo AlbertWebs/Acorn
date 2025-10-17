@@ -15,7 +15,7 @@ class Invoice extends Model
     ];
 
     protected $fillable = [
-        'appointment_id',
+        'booking_id', // change from appointment_id if using Booking
         'user_id',
         'consultant_id',
         'client_name',
@@ -37,9 +37,9 @@ class Invoice extends Model
     ];
 
     // Relationships
-    public function appointment()
+    public function booking()
     {
-        return $this->belongsTo(Appointment::class);
+        return $this->belongsTo(Booking::class);
     }
 
     public function user()
@@ -52,3 +52,4 @@ class Invoice extends Model
         return $this->belongsTo(User::class, 'consultant_id');
     }
 }
+

@@ -32,15 +32,16 @@
   /**
      @Color Declaration
    */
-  --tj-color-common-white: #ffffff;
+ --tj-color-common-white: #ffffff;
   --tj-color-common-black: #000000;
   --tj-color-heading-primary: #0c1e21;
   --tj-color-text-body: #364e52;
   --tj-color-text-body-2: #a9b8b8;
   --tj-color-text-body-3: #67787a;
   --tj-color-text-body-4: #18292c;
+  --tj-color-text-green: #c1df23;
   --tj-color-text-body-5: rgba(255, 255, 255, 0.8);
-  --tj-color-theme-primary: #1e8a8a;
+  --tj-color-theme-primary: #b53819;
   --tj-color-theme-bg: #d8e5e5;
   --tj-color-theme-bg-2: #cee0e0;
   --tj-color-theme-bg-3: #202e30;

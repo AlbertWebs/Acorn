@@ -62,19 +62,22 @@
             </li>
         @endforeach
 
+        <?php
+           $notificationCount = \App\Models\Booking::count(); // Total number of bookings
+        ?>
         <!-- Bookings with Badge -->
-        <li>
-            <a href="{{ route('admin.bookings.index') ?? '#' }}"
-               class="flex items-center justify-between px-3 py-2 rounded-md border border-gray-200 transition hover:bg-gray-100 hover:shadow-sm">
-                <span class="flex items-center gap-3">
-                    <i class="fas fa-calendar-check text-acorn"></i>
-                    <span class="sidebar-text">Bookings</span>
-                </span>
-                <span class="text-xs font-semibold text-white bg-acorn_green rounded-full px-2 py-0.5">
-                    {{ $notificationCount ?? 1 }}
-                </span>
-            </a>
-        </li>
+       <li>
+        <a href="{{ route('admin.bookings.index') ?? '#' }}"
+        class="flex items-center justify-between px-3 py-2 rounded-md border border-gray-200 transition hover:bg-gray-100 hover:shadow-sm">
+            <span class="flex items-center gap-3">
+                <i class="fas fa-calendar-check text-acorn"></i>
+                <span class="sidebar-text">Bookings</span>
+            </span>
+            <span class="text-xs font-semibold text-white bg-acorn_green rounded-full px-2 py-0.5">
+                {{ $notificationCount ?? 0 }}
+            </span>
+        </a>
+    </li>
 
         <!-- Billing Dropdown -->
         <!-- Billing Dropdown -->

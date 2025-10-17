@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
 
             // Foreign keys (relations)
-            $table->foreignId('appointment_id')
+            $table->foreignId('booking_id')
                 ->nullable()
-                ->constrained('appointments')
+                ->constrained('bookings') // points to bookings table
                 ->onDelete('cascade');
 
             $table->foreignId('user_id')

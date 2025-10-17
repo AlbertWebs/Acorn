@@ -3,7 +3,7 @@
 @section('page-title', 'Invoices')
 
 @section('content')
-<div class="max-w-12xl mx-auto bg-white p-6 rounded-lg shadow">
+<div class="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow">
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-bold flex items-center gap-2">
             <i class="fas fa-file-invoice text-gold"></i>
@@ -41,7 +41,7 @@
                                 {{ $invoice->user->name }} <br>
                                 <span class="text-gray-500 text-xs">{{ $invoice->user->email }}</span>
                             @else
-                                {{ $invoice->full_name }} <br>
+                                {{ $invoice->client_name }} <br>
                                 <span class="text-gray-500 text-xs">{{ $invoice->email }}</span>
                             @endif
                         </td>

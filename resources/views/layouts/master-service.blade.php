@@ -7,102 +7,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
 
-  <!-- Site Title -->
-   <title>Acorn Special Tutorials – Empowering Families & Inclusive Education in Nairobi</title>
-   <meta name="description" content="Acorn Special Tutorials in Nairobi empowers families and communities through inclusive education, individualized education plans (IEPs), auditory integration therapy (AIT), training and capacity building, and consultation services. Call 0725 959137 for professional assessments and support.">
-   <meta name="keywords" content="Acorn Special Tutorials, Special Education Nairobi, Inclusive Learning Kenya, Family Empowerment, Auditory Integration Therapy, IEPs Nairobi, Special Needs Assessments, Educational Consultation, Community Empowerment Kenya, Training and Capacity Building, Inclusive School Support, Special Educator Nairobi, Special Education Services Kenya">
-   <meta name="author" content="Acorn Special Tutorials">
-   <meta name="robots" content="index, follow">
-   <meta property="og:title" content="Acorn Special Tutorials – Inclusive Learning & Family Empowerment in Nairobi">
-   <meta property="og:description" content="Providing inclusive school support, auditory integration therapy, individualized education plans (IEPs), and training programs for families and educators in Nairobi.">
-   <meta property="og:url" content="https://www.acorn.co.ke/">
-   <meta property="og:type" content="organization">
-   <meta property="og:site_name" content="Acorn Special Tutorials">
-    <meta property="og:locale" content="en_KE">
-   <meta property="og:image" content="https://www.acorn.co.ke/images/cover.jpg">
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="Acorn Special Tutorials – Special Education & Inclusive Learning in Nairobi">
-   <meta name="twitter:description" content="Empowering families through inclusive education, AIT therapy, and professional training in Nairobi.">
-   <meta name="twitter:image" content="https://www.acorn.co.ke/images/cover.jpg">
-   <link rel="canonical" href="https://www.acorn.co.ke/">
 
-   {{--  --}}
+    <title>{{ $service->meta_title ?? $service->title . ' – Acorn Special Tutorials' }}</title>
+    <meta name="description" content="{{ $service->meta_description ?? 'Learn more about ' . $service->title . ' at Acorn Special Tutorials in Nairobi, empowering inclusive education and family support.' }}">
+    <meta name="keywords" content="{{ $service->meta_keywords ?? 'Acorn Special Tutorials, Special Education Nairobi, Inclusive Learning Kenya, ' . $service->title }}">
+    <meta name="author" content="Acorn Special Tutorials">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ $service->meta_title ?? $service->title . ' – Acorn Special Tutorials' }}">
+    <meta property="og:description" content="{{ $service->meta_description ?? 'Discover how Acorn Special Tutorials supports inclusive education through ' . $service->title . '.' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ asset('storage/' . $service->image) }}">
+    <meta property="og:image:alt" content="{{ $service->title }} - Acorn Special Tutorials">
+    <meta property="og:site_name" content="Acorn Special Tutorials">
+    <meta property="og:locale" content="en_KE">
+    <meta property="article:published_time" content="{{ $service->created_at->toIso8601String() }}">
+    <meta property="article:modified_time" content="{{ $service->updated_at->toIso8601String() }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $service->meta_title ?? $service->title . ' – Acorn Special Tutorials' }}">
+    <meta name="twitter:description" content="{{ $service->meta_description ?? 'Empowering families through inclusive education and ' . $service->title . '.' }}">
+    <meta name="twitter:image" content="{{ asset('storage/' . $service->image) }}">
+    <meta name="twitter:image:alt" content="{{ $service->title }} - Acorn Special Tutorials">
+    <meta name="twitter:site" content="@acornspecialtutorials">
+
+    <!-- Canonical & hreflang -->
+    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="alternate" href="{{ url()->current() }}" hreflang="en-ke">
+
+    <!-- Schema: Service Info -->
     @verbatim
     <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "Acorn Special Tutorials",
-    "alternateName": "Acorn Special Education Center",
-    "url": "https://www.acorn.co.ke/",
-    "logo": "https://www.acorn.co.ke/images/logo.png",
-    "image": "https://www.acorn.co.ke/images/cover.jpg",
-    "description": "Acorn Special Tutorials is a special education and family empowerment center in Nairobi offering inclusive school support, auditory integration therapy (AIT), individualized education plans (IEPs), professional training, and consultation services.",
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "407 Muhuri",
-        "addressLocality": "Nairobi",
-        "addressRegion": "Nairobi County",
-        "postalCode": "00100",
-        "addressCountry": "Kenya"
-    },
-    "telephone": "+254725959137",
-    "email": "info@acorn.co.ke",
-    "sameAs": [
-        "https://www.facebook.com/acornspecialtutorials",
-        "https://www.instagram.com/acornspecialtutorials",
-        "https://www.linkedin.com/company/acornspecialtutorials"
-    ],
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -1.2921,
-        "longitude": 36.8219
-    },
-    "openingHours": "Mo-Fr 08:00-17:00",
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.7",
-        "reviewCount": "713"
-    },
-    "founder": {
-        "@type": "Person",
-        "name": "Acorn Special Tutorials Team"
-    },
-    "department": [
         {
+        "@context": "https://schema.org",
         "@type": "EducationalOccupationalProgram",
-        "name": "Community & Family Empowerment",
-        "description": "Supporting families and communities to build inclusive, nurturing environments for learners."
+        "name": "{{ $service->title }}",
+        "description": "{{ $service->meta_description ?? 'Professional support service by Acorn Special Tutorials focused on inclusive education and family empowerment.' }}",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "Acorn Special Tutorials",
+            "url": "https://www.acorn.co.ke/",
+            "logo": "https://www.acorn.co.ke/images/logo.png",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressRegion": "Nairobi County",
+                "addressCountry": "Kenya"
+            },
+            "telephone": "+254725959137",
+            "email": "info@acorn.co.ke"
         },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Inclusive School Support",
-        "description": "Helping schools integrate and support learners with special needs through customized interventions and professional collaboration."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Training & Capacity Building",
-        "description": "Professional training for teachers, parents, and caregivers to strengthen inclusive education practices."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Auditory Integration Therapy (AIT)",
-        "description": "Providing auditory processing interventions to enhance sensory regulation, focus, and learning performance."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Individualized Education Plans (IEPs)",
-        "description": "Developing personalized education plans tailored to each learner’s abilities and needs."
-        },
-        {
-        "@type": "EducationalOccupationalProgram",
-        "name": "Consultation Services",
-        "description": "Offering expert guidance, assessments, and educational consultations for parents and institutions."
+        "url": "{{ url()->current() }}",
+        "image": "{{ asset('storage/' . $service->image) }}"
         }
-    ]
-    }
     </script>
     @endverbatim
+
+    <!-- Schema: Breadcrumb -->
+    @verbatim
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Home","item": "https://www.acorn.co.ke/"},
+        {"@type": "ListItem","position": 2,"name": "Services","item": "https://www.acorn.co.ke/services"},
+        {"@type": "ListItem","position": 3,"name": "{{ $service->title }}","item": "{{ url()->current() }}"}
+        ]
+        }
+    </script>
+    @endverbatim
+
+
 
    {{--  --}}
 
@@ -220,7 +199,7 @@
   <!-- end: Offcanvas Menu -->
 
   <!-- start: Hamburger Menu -->
-   <div class="hamburger-area d-lg-none">
+  <div class="hamburger-area d-lg-none">
     <div class="hamburger_bg"></div>
     <div class="hamburger_wrapper">
       <div class="hamburger_inner">
