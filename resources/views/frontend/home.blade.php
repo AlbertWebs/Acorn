@@ -297,18 +297,18 @@
                           <input type="tel" name="cfPhone3">
                         </div>
                       </div>
+                      <?php
+                        $Ser = \App\Models\Service::all();
+                      ?>
                       <div class="col-sm-6">
                         <div class="form-input">
                           <div class="tj-nice-select-box">
                             <div class="tj-select">
-                              <label class="cf-label">Chose a option</label>
+                              <label class="cf-label">Chose a Service</label>
                               <select name="cfSubject3">
-                                <option value="1">Business Strategy</option>
-                                <option value="2">Customer Experience</option>
-                                <option value="3">Sustainability and ESG</option>
-                                <option value="4">Training and Development</option>
-                                <option value="5">IT Support & Maintenance</option>
-                                <option value="6">Marketing Strategy</option>
+                                @foreach ($Ser as $service)
+                                    <option value="{{$service->id}}">{{$service->title}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
