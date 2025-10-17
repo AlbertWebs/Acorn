@@ -15,16 +15,16 @@
    <meta name="robots" content="index, follow">
    <meta property="og:title" content="Acorn Special Tutorials – Inclusive Learning & Family Empowerment in Nairobi">
    <meta property="og:description" content="Providing inclusive school support, auditory integration therapy, individualized education plans (IEPs), and training programs for families and educators in Nairobi.">
-   <meta property="og:url" content="https://www.acorn.co.ke/">
+   <meta property="og:url" content="{{url('/')}}/">
    <meta property="og:type" content="organization">
    <meta property="og:site_name" content="Acorn Special Tutorials">
     <meta property="og:locale" content="en_KE">
-   <meta property="og:image" content="https://www.acorn.co.ke/images/cover.jpg">
+   <meta property="og:image" content="{{url('/')}}/uploads/ubuntu.webp">
    <meta name="twitter:card" content="summary_large_image">
    <meta name="twitter:title" content="Acorn Special Tutorials – Special Education & Inclusive Learning in Nairobi">
    <meta name="twitter:description" content="Empowering families through inclusive education, AIT therapy, and professional training in Nairobi.">
-   <meta name="twitter:image" content="https://www.acorn.co.ke/images/cover.jpg">
-   <link rel="canonical" href="https://www.acorn.co.ke/">
+   <meta name="twitter:image" content="{{url('/')}}/uploads/ubuntu.webp">
+   <link rel="canonical" href="{{url('/')}}/">
 
    {{--  --}}
     @verbatim
@@ -34,9 +34,9 @@
     "@type": "EducationalOrganization",
     "name": "Acorn Special Tutorials",
     "alternateName": "Acorn Special Education Center",
-    "url": "https://www.acorn.co.ke/",
-    "logo": "https://www.acorn.co.ke/images/logo.png",
-    "image": "https://www.acorn.co.ke/images/cover.jpg",
+    "url": "{{url('/')}}/",
+    "logo": "{{url('/')}}/images/logo.png",
+    "image": "{{url('/')}}/uploads/ubuntu.webp",
     "description": "Acorn Special Tutorials is a special education and family empowerment center in Nairobi offering inclusive school support, auditory integration therapy (AIT), individualized education plans (IEPs), professional training, and consultation services.",
     "address": {
         "@type": "PostalAddress",
