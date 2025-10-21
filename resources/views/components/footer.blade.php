@@ -36,7 +36,7 @@
                   <h5 class="title">Our Office</h5>
                   <div class="footer-contact-info">
                     <div class="contact-item">
-                      <span>993 Renner Burg, West Rond, MT 94251-030, USA.</span>
+                      <span>{{$Settings->location}}</span>
                     </div>
                     <div class="contact-item">
                       <a href="tel:{{$Settings->mobile}}">P: {{$Settings->mobile}}</a>
