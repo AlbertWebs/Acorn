@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
 
-  <!-- Site Title -->
+   <meta name="csrf-token" content="{{ csrf_token() }}">
+   <!-- Site Title -->
    <title>Acorn Special Tutorials – Empowering Families & Inclusive Education in Nairobi</title>
    <meta name="description" content="Acorn Special Tutorials in Nairobi empowers families and communities through inclusive education, individualized education plans (IEPs), auditory integration therapy (AIT), training and capacity building, and consultation services. Call 0725 959137 for professional assessments and support.">
    <meta name="keywords" content="Acorn Special Tutorials, Special Education Nairobi, Inclusive Learning Kenya, Family Empowerment, Auditory Integration Therapy, IEPs Nairobi, Special Needs Assessments, Educational Consultation, Community Empowerment Kenya, Training and Capacity Building, Inclusive School Support, Special Educator Nairobi, Special Education Services Kenya">
@@ -300,6 +301,57 @@
   <script src="{{asset('acorn/assets/js/wow.min.js')}}"></script>
   <script src="{{asset('acorn/assets/js/meanmenu.js')}}"></script>
   <script src="{{asset('acorn/assets/js/main.js')}}"></script>
+
+  <script>
+        $(document).ready(function () {
+        // Set CSRF token for all AJAX requests
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // Handle subscription form submit
+        $('#subscribeForms').on('submit', function (e) {
+            e.preventDefault();
+
+            let email = $('input[name="email"]').val();
+            let agree = $('#agree').is(':checked');
+
+            if (!agree) {
+            $('#message').html('<span style="color:red;">Please agree to our Terms & Conditions.</span>');
+            return;
+            }
+
+            $.ajax({
+            url: "{{ route('subscribe') }}", // ✅ Ensure route exists in web.php
+            type: "POST",
+            data: { email: email },
+            beforeSend: function () {
+                $('#message').html('<span style="color:#555;">Subscribing...</span>');
+            },
+            success: function (response) {
+                $('#message').html('<span style="color:green;">' + response.message + '</span>');
+                $('#subscribeForms')[0].reset();
+            },
+            error: function (xhr) {
+                if (xhr.status === 422) {
+                let errors = xhr.responseJSON.errors;
+                let firstError = errors ? Object.values(errors)[0][0] : 'Invalid email.';
+                $('#message').html('<span style="color:red;">' + firstError + '</span>');
+                } else if (xhr.status === 419) {
+                $('#message').html('<span style="color:red;">Session expired. Refresh and try again.</span>');
+                } else {
+                $('#message').html('<span style="color:red;">Something went wrong. Please try again.</span>');
+                }
+            }
+            });
+        });
+        });
+  </script>
+
+
+
 </body>
 
 </html>

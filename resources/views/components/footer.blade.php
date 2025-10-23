@@ -58,19 +58,20 @@
                 <div class="footer-subscribe h5-footer-subscribe">
                   <h3 class="title text-anim">Subscribe to Our Newsletter.</h3>
                   <div class="subscribe-form">
-                    <form action="index-10.html#">
-                      <input type="email" name="email" placeholder="Enter email">
-                      <button class="tj-primary-btn d-none d-sm-flex" type="submit">
-                        <span class="btn-text"><span>Subscribe</span></span>
-                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                      </button>
-                      <label for="agree"><input id="agree" type="checkbox">Agree to our <a href="index-10.html#">Terms &amp;
-                          Condition?</a></label>
-                      <button class="tj-primary-btn d-flex d-sm-none" type="submit">
-                        <span class="btn-text"><span>Subscribe</span></span>
-                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                      </button>
+                    <form id="subscribeFormse" method="post" action="{{route('subscribe')}}">
+                        @csrf
+                        <input type="email" name="email" placeholder="Enter email" required>
+                        <label for="agree">
+                            <input id="agree" type="checkbox" required>
+                            Agree to our <a href="#">Terms & Condition?</a>
+                        </label>
+                        <button class="tj-primary-btn" type="submit">
+                            <span class="btn-text"><span>Subscribe</span></span>
+                            <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                        </button>
                     </form>
+                        <div id="message" style="margin-top:10px;"></div>
+                    <div id="message" style="margin-top:10px;"></div>
                   </div>
                 </div>
               </div>
@@ -123,3 +124,5 @@
           <img src="{{asset('acorn/assets/images/shape/h10-footer-shape-blur-2.svg')}}" alt="">
         </div>
       </footer>
+
+

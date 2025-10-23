@@ -58,6 +58,7 @@ Route::post('/book-consultation-submit', [BookingController::class, 'submit'])->
 // New route for payment page
 Route::get('/booking/{booking}/payment', [BookingController::class, 'showPaymentPage'])->name('booking.payment');
 Route::post('/booking/{booking}/payment', [BookingController::class, 'processPayment'])->name('booking.payment.submit');
+Route::post('/subscribe', [App\Http\Controllers\SubscriberPostController::class, 'store'])->name('subscribe');
 
 
 // ====================
