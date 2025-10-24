@@ -21092,7 +21092,11 @@ START: Choose CSS
   text-align: center;
 }
 .h6-choose-box .choose-icon i {
-  width: 42px;
+  /* width: 42px; */
+}
+.choose-icon i{
+     transform: scale(0.6); /* 90% of original size */
+  transform-origin: center center; /* keep it centered */
 }
 .h6-choose-box .choose-icon .tji-support {
   -webkit-margin-start: -8px;

@@ -130,90 +130,97 @@
         </section>
         <!-- end: About Section -->
 
+
+
         <!-- start: Choose Section -->
-        <section id="about" class="tj-choose-section h8-choose  section-gap-x">
-          <div class="container-fluid gap-0">
-            <div class="row align-items-center flex-column-reverse flex-lg-row">
-              <div class="col-12 col-lg-6 align-self-stretch">
-                <div class="h8-choose-banner">
-                  <img data-speed=".8" class="wow fadeInLeftBig" data-wow-delay=".3s"
-                    src="{{asset('uploads/ubuntu.webp')}}" alt="">
-                </div>
-              </div>
-
-              <div class="col-12 col-lg-6">
-                <div class="h8-choose-content-wrapper">
-                  <div class="sec-heading style-3">
-                    <span class="sub-title wow fadeInUp" data-wow-delay=".3s"><i class="tji-box"></i>Our Purpose</span>
-                    <h2 class="sec-title title-anim">Bridge of hope, Connection and Possibility.</h2>
-                  </div>
-                  <div class="h8-choose-box-wrapper ">
-                    <div class="choose-box h6-choose-box h8-choose-box  wow fadeInUp" data-wow-delay=".3s">
-                      <div class="choose-content">
-                        <div class="choose-icon">
-                          <i class="tji-award"></i>
-                        </div>
-                        <div>
-                          <h4 class="title">For Learners:</h4>
-                          <p class="desc">We open doors to discovery, designing personalized pathways that help every child grow, flourish, and believe in their own brilliance.</p>
-                        </div>
-                      </div>
+        <section id="about" class="tj-choose-section h8-choose section-gap-x">
+            <div class="container-fluid gap-0">
+                <div class="row align-items-center flex-column-reverse flex-lg-row">
+                <div class="col-12 col-lg-6 align-self-stretch">
+                    <div class="h8-choose-banner">
+                    <img data-speed=".8" class="wow fadeInLeftBig" data-wow-delay=".3s"
+                        src="{{ asset('uploads/ubuntu.webp') }}" alt="">
                     </div>
-                    <div class="choose-box h6-choose-box h8-choose-box  wow fadeInUp" data-wow-delay=".4s">
-                      <div class="choose-content">
-                        <div class="choose-icon">
-                          <i class="tji-award"></i>
-                        </div>
-                        <div>
-                          <h4 class="title">For parents and families:</h4>
-                          <p class="desc">
-                            We walk alongside you, offering guidance, encouragement, and strength, so that no family ever feels alone on this journey.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="choose-box h6-choose-box h8-choose-box  wow fadeInUp" data-wow-delay=".5s">
-                      <div class="choose-content">
-                        <div class="choose-icon">
-                          <i class="tji-award"></i>
-                        </div>
-                        <div>
-                          <h4 class="title">For schools and educators:</h4>
-                          <p class="desc">
-                            We equip teachers with knowledge, tools, and confidence to create classrooms where diversity is celebrated, not feared.
-                          </p>
-                        </div>
-
-
-                      </div>
-                    </div>
-                    <div class="choose-box h6-choose-box h8-choose-box  wow fadeInUp" data-wow-delay=".5s">
-                      <div class="choose-content">
-                        <div class="choose-icon">
-                          <i class="tji-award"></i>
-                        </div>
-
-                        <div>
-                          <h4 class="title">For society:</h4>
-                          <p class="desc">
-                            We stand as advocates for inclusion and dignity, raising awareness, breaking down barriers, and building communities where everyone belongs.
-                          </p>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
                 </div>
 
-              </div>
+                <div class="col-12 col-lg-6">
+                    <div class="h8-choose-content-wrapper">
+                    <div class="sec-heading style-3">
+                        <span class="sub-title wow fadeInUp" data-wow-delay=".3s">
+                        <i class="tji-box"></i>Our Purpose
+                        </span>
+                        <h2 class="sec-title title-anim">Bridge of hope, Connection and Possibility.</h2>
+                    </div>
+
+                    <div class="h8-choose-box-wrapper">
+
+                        <div class="choose-box h6-choose-box h8-choose-box wow fadeInUp" data-wow-delay=".3s">
+                        <div class="choose-content">
+                            <div class="choose-icon">
+                            <i class="fa-solid fa-child-reaching"></i>
+                            </div>
+                            <div>
+                            <h4 class="title">For Learners:</h4>
+                            <p class="desc">We open doors to discovery, designing personalized pathways that help every child grow, flourish, and believe in their own brilliance.</p>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="choose-box h6-choose-box h8-choose-box wow fadeInUp" data-wow-delay=".4s">
+                        <div class="choose-content">
+                            <div class="choose-icon">
+                            <i class="fa-solid fa-people-roof"></i>
+                            </div>
+                            <div>
+                            <h4 class="title">For parents and families:</h4>
+                            <p class="desc">
+                                We walk alongside you, offering guidance, encouragement, and strength, so that no family ever feels alone on this journey.
+                            </p>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="choose-box h6-choose-box h8-choose-box wow fadeInUp" data-wow-delay=".5s">
+                        <div class="choose-content">
+                            <div class="choose-icon">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div>
+                            <h4 class="title">For schools and educators:</h4>
+                            <p class="desc">
+                                We equip teachers with knowledge, tools, and confidence to create classrooms where diversity is celebrated, not feared.
+                            </p>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="choose-box h6-choose-box h8-choose-box wow fadeInUp" data-wow-delay=".6s">
+                        <div class="choose-content">
+                            <div class="choose-icon">
+                            <i class="fa-solid fa-earth-africa"></i>
+                            </div>
+                            <div>
+                            <h4 class="title">For society:</h4>
+                            <p class="desc">
+                                We stand as advocates for inclusion and dignity, raising awareness, breaking down barriers, and building communities where everyone belongs.
+                            </p>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                    </div>
+
+                </div>
+                </div>
             </div>
-          </div>
-          <div class="bg-shape-2">
-            <img src="{{asset('acorn/assets/images/shape/pattern-3.svg')}}" alt="">
-          </div>
+
+            <div class="bg-shape-2">
+                <img src="{{ asset('acorn/assets/images/shape/pattern-3.svg') }}" alt="">
+            </div>
         </section>
         <!-- end: Choose Section -->
+
 
           <!-- start: Service Section -->
         <section class="tj-service-section-5 section-gap">
