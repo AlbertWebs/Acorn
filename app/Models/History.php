@@ -11,6 +11,7 @@ class History extends Model
 
     protected $fillable = [
         'year',
+        'meta',
         'step_number',
         'title',
         'description',

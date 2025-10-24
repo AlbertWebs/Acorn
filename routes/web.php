@@ -37,7 +37,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about-us');
 Route::get('/eva-naputuni-nyoike', [HomeController::class, 'director'])->name('the-director');
 Route::get('/our-story', [HomeController::class, 'story'])->name('our-story');
 Route::get('/our-history', [HomeController::class, 'history'])->name('our-history');
-
+Route::get('/our-history/{id}', [HomeController::class, 'history_single'])->name('our-history-single');
 
 Route::get('/services/{slug}', [HomeController::class, 'services_single'])->name('services-single');
 Route::get('/services', [HomeController::class, 'services'])->name('frontend.services');

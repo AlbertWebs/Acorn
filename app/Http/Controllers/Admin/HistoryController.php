@@ -24,6 +24,7 @@ class HistoryController extends Controller
         $validated = $request->validate([
             'year' => 'required|numeric',
             'step_number' => 'nullable|string',
+            'meta' => 'nullable|string',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image_one' => 'nullable|image',
@@ -52,6 +53,7 @@ class HistoryController extends Controller
     {
         $validated = $request->validate([
             'year' => 'required|numeric',
+            'meta' => 'nullable|string',
             'step_number' => 'nullable|string',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',

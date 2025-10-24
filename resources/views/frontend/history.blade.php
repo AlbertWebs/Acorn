@@ -72,21 +72,31 @@
                 @foreach ($histories as $index => $history)
                     <div class="timeline-inner wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                     <div class="date">{{ $history->year }}</div>
-                    <div class="content">
-                        <div class="top">
-                        <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}.</span>
-                        <h4 class="title">{{ $history->title }}</h4>
-                        <p>{!! $history->description !!}</p>
+                        <div class="content">
+                            <div class="top">
+                            <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}.</span>
+                            <h4 class="title">{{ $history->title }}</h4>
+                            <p>{!! $history->meta !!}</p>
+                            </div>
+                            <div class="bottom">
+                            @if ($history->image_one)
+                                <img style="width:240px; height:200px; object-fit:cover" src="{{ asset('storage/' . $history->image_one) }}" alt="history">
+                            @endif
+                            @if ($history->image_two)
+                                <img style="width:240px; height:200px; object-fit:cover" src="{{ asset('storage/' . $history->image_two) }}" alt="history">
+                            @endif
+                            </div>
+                            <br>
+                            {{--  --}}
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <a class="tj-primary-btn" href="{{url('/')}}/our-history/{{$history->id}}" style="text-align: center;">
+                                    <span class="btn-text"><span>View More</span></span>
+                                    <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                                </a>
+                            </div>
+
+                            {{--  --}}
                         </div>
-                        <div class="bottom">
-                        @if ($history->image_one)
-                            <img src="{{ asset('storage/' . $history->image_one) }}" alt="history">
-                        @endif
-                        @if ($history->image_two)
-                            <img src="{{ asset('storage/' . $history->image_two) }}" alt="history">
-                        @endif
-                        </div>
-                    </div>
                     </div>
                 @endforeach
                 </div>

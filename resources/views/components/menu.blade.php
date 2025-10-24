@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
-                        <a href="{{ route('about-us') }}">Who We Are</a>
+                        <a href="#">Who We Are</a>
                         <ul class="sub-menu">
                             <li><a class="{{ request()->routeIs('about-us') ? 'active' : '' }}" href="{{ route('about-us') }}">Our Story</a></li>
                             <li><a class="{{ request()->routeIs('our-history') ? 'active' : '' }}" href="{{ route('our-history') }}">Our History</a></li>

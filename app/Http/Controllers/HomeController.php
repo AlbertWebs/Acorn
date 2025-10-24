@@ -55,6 +55,22 @@ class HomeController extends Controller
         return view('frontend.history', compact('histories','faqs','About','testimonials','page_title','Settings','blogs','clients','Founder'));
     }
 
+            public function history_single($id)
+    {
+        $histories = \App\Models\History::where('id',$id)->orderBy('order', 'asc')->first();
+        $faqs = \App\Models\Faq::where('is_active', true)->get();
+        $blogs = \App\Models\Blog::latest()->take(6)->get();
+        $clients = \App\Models\Client::all();
+        $page_title = "About Us";
+        $About = \App\Models\About::first();
+        $Founder = \App\Models\Founder::first();
+        $Settings = \App\Models\Setting::first();
+        $testimonials  = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.histories', compact('histories','faqs','About','testimonials','page_title','Settings','blogs','clients','Founder'));
+    }
+
+
+
             public function director()
     {
         $histories = \App\Models\History::orderBy('order', 'asc')->get();

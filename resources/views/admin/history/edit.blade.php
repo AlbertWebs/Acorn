@@ -41,11 +41,16 @@
             </div>
 
             <div class="md:col-span-2">
-                <label class="block font-semibold mb-1">Description</label>
-                <textarea name="description" rows="5" class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">{{ old('description', $history->description) }}</textarea>
+                <label class="block font-semibold mb-1">Meta</label>
+                <textarea name="meta" rows="5" class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">{{ old('meta', $history->meta) }}</textarea>
             </div>
 
-            <div>
+            <div class="md:col-span-2">
+                <label class="block font-semibold mb-1">Description</label>
+                <textarea id="description" name="description" rows="5" class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">{{ old('description', $history->description) }}</textarea>
+            </div>
+
+            <div class="md:col-span-2">
                 <label class="block font-semibold mb-1">Order</label>
                 <input type="number" name="order" value="{{ old('order', $history->order) }}" class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
@@ -78,4 +83,47 @@
         </div>
     </form>
 </div>
+
+{{--  --}}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editorElement = document.querySelector('#description');
+    if (editorElement) {
+        ClassicEditor.create(editorElement, {
+            toolbar: [
+                'heading', '|',
+                'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                'blockQuote', 'insertTable', 'undo', 'redo'
+            ],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
+                ]
+            }
+        })
+        .then(editor => {
+            console.log('CKEditor initialized successfully');
+            // Set height to 500px
+            editor.editing.view.change(writer => {
+                writer.setStyle('height', '300px', editor.editing.view.document.getRoot());
+            });
+        })
+        .catch(error => {
+            console.error('CKEditor initialization error:', error);
+        });
+    } else {
+        console.warn('Description textarea not found.');
+    }
+});
+</script>
+
+{{--  --}}
 @endsection
+
+
+
+
