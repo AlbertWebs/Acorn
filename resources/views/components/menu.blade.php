@@ -61,7 +61,7 @@
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ route('contact-us') }}">Contact</a>
                     </li>
-                </ul>
+                 </ul>
                 {{--  --}}
               </nav>
             </div>
@@ -151,7 +151,7 @@
                     </li>
 
                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
-                        <a href="{{ route('about-us') }}">Who We Are</a>
+                        <a href="#">About Us</a>
                         <ul class="sub-menu">
                             <li><a class="{{ request()->routeIs('about-us') ? 'active' : '' }}" href="{{ route('about-us') }}">Our Story</a></li>
                             <li><a class="{{ request()->routeIs('our-history') ? 'active' : '' }}" href="{{ route('our-history') }}">Our History</a></li>
@@ -159,32 +159,38 @@
                         </ul>
                     </li>
 
+
+
                     <li class="has-dropdown {{ request()->routeIs('services-single') ? 'current-menu-ancestor' : '' }}">
-                        <a href="#">What We Do</a>
-                        <ul class="sub-menu mega-menu-service">
+                        <a href="#">Our Services</a>
+                        <ul class="sub-menu">
                             @foreach ($Services as $service)
                                 <li>
                                     <a class="mega-menu-service-single {{ request()->routeIs('services-single') && request()->segment(2) == $service->slug ? 'active' : '' }}"
-                                    href="{{ route('services-single', $service->slug) }}">
-                                        <span class="mega-menu-service-icon">
-                                            <i class="tji-{{ $service->icon }}"></i>
-                                        </span>
-                                        <span class="mega-menu-service-title">{{ $service->title }}</span>
-                                        <span class="mega-menu-service-nav"><i class="tji-arrow-right-long"></i><i class="tji-arrow-right-long"></i></span>
+                                        href="{{ route('services-single', $service->slug) }}">{{ $service->title }}
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
                     </li>
 
-                    <li class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}">
-                        <a href="{{ route('updates') }}">Events & Updates</a>
+
+
+                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
+                        <a href="#">Updates</a>
+                        <ul class="sub-menu">
+                            <li><a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('about-us') }}">Webinars</a></li>
+                            <li><a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('updates') }}">Updates</a></li>
+                        </ul>
+                    </li>
+                    <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
+                       <a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('updates') }}">Events</a>
                     </li>
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ route('contact-us') }}">Contact</a>
                     </li>
-                </ul>
+                 </ul>
               </nav>
             </div>
 
