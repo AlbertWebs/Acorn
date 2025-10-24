@@ -97,7 +97,7 @@
                             <div class="countup-item style-2">
                               <div class="count-inner">
                                 <div class="inline-content">
-                                  <span class="odometer countup-number" data-count="30"></span>
+                                  <span class="odometer countup-number" data-count="35"></span>
                                   <sup class="count-plus">+</sup>
                                 </div>
                                 <span class="count-text">Years of Industry Experience.</span>
