@@ -35,7 +35,7 @@
               {{--  --}}
                <div class="box-area">
                 <div class="call-box wow fadeInUp" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
-                    <h4 class="title">Need Assessment? </h4>
+                    <h4 class="title">Need Consultation? </h4>
                     <span class="call-icon"><i class="tji-phone"></i></span>
                     <a class="number" href="tel:{{$Settings->mobile}}"><span>{{$Settings->mobile}}</span></a>
                 </div>
@@ -433,7 +433,7 @@
                     </div>
                     <div class="box-area">
                         <div class="call-box wow fadeInUp" data-wow-delay=".5s">
-                        <h4 class="title">Need Assessment?</h4>
+                        <h4 class="title">Need Consultation?</h4>
                         <span class="call-icon"><i class="tji-phone"></i></span>
                         <a class="number" href="tel:{{ $Settings->mobile }}">
                             <span>{{ $Settings->mobile }}</span>
