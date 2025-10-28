@@ -40,7 +40,7 @@
           <div class="blog-item wow fadeInUp" data-wow-delay=".1s">
             <div class="blog-thumb">
               <a href="{{ route('blog.show', $blog->slug) }}">
-                <img src="{{ asset('storage/' . $blog->featured_image) }}" alt="{{ $blog->title }}">
+                <img style="height: 300px; width: 100%; object-fit: cover;" src="{{ asset('storage/' . $blog->featured_image) }}" alt="{{ $blog->title }}">
               </a>
               <div class="blog-date">
                 <span class="date">{{ $blog->created_at->format('d') }}</span>
