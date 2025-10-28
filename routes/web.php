@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\MpesaStkPaymentController;
 use App\Http\Controllers\Admin\MpesaC2bPaymentController;
 use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Admin\CoreValueController;
+use App\Http\Controllers\Admin\WebinarController;
+use App\Http\Controllers\Admin\EventController;
 
 
 
@@ -51,6 +53,8 @@ Route::get('/webinars', [HomeController::class, 'webinars'])->name('webinars');
 
 // events
 Route::get('/events', [HomeController::class, 'events'])->name('events');
+Route::get('/events/{slug}', [HomeController::class, 'event_show'])->name('events.show');
+Route::post('/events/book', [\App\Http\Controllers\EventRegistrationController::class, 'store'])->name('events.book');
 
 
 
@@ -137,6 +141,14 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
 
     // NEW: Blog
     Route::resource('blogs', App\Http\Controllers\Admin\BlogController::class);
+
+    // NEW: Event Registrations
+    Route::get('event-registrations', [\App\Http\Controllers\Admin\EventRegistrationController::class, 'index'])->name('event-registrations.index');
+    Route::get('events/{event}/registrations', [\App\Http\Controllers\Admin\EventRegistrationController::class, 'byEvent'])->name('events.registrations');
+
+    // NEW: Webinars & Events
+    Route::resource('webinars', WebinarController::class);
+    Route::resource('events', EventController::class);
 
     // NEW: Notifications
     Route::resource('notifications', \App\Http\Controllers\Admin\NotificationController::class);

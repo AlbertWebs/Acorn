@@ -15,7 +15,7 @@ class Invoice extends Model
     ];
 
     protected $fillable = [
-        'booking_id', // change from appointment_id if using Booking
+        'booking_id', // legacy booking link
         'user_id',
         'consultant_id',
         'client_name',
@@ -34,6 +34,13 @@ class Invoice extends Model
         'payment_status',
         'transaction_reference',
         'status',
+        // Polymorphic billable
+        'billable_id',
+        'billable_type',
+        // Generic item fields
+        'item_name',
+        'quantity',
+        'unit_price',
     ];
 
     // Relationships
@@ -50,6 +57,11 @@ class Invoice extends Model
     public function consultant()
     {
         return $this->belongsTo(User::class, 'consultant_id');
+    }
+
+    public function billable()
+    {
+        return $this->morphTo();
     }
 }
 

@@ -120,6 +120,35 @@ class HomeController extends Controller
         return view('frontend.updates', compact('blogs', 'feedbacks','Settings','page_title'));
     }
 
+    public function webinars()
+    {
+        $webinars = \App\Models\Webinar::latest()->paginate(12);
+        $page_title = "Webinars";
+        $About = \App\Models\About::first();
+        $Settings = \App\Models\Setting::first();
+        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.webinars', compact('webinars', 'feedbacks','Settings','page_title'));
+    }
+
+    public function events()
+    {
+        $events = \App\Models\Event::latest()->paginate(12);
+        $page_title = "Events";
+        $About = \App\Models\About::first();
+        $Settings = \App\Models\Setting::first();
+        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.events', compact('events', 'feedbacks','Settings','page_title'));
+    }
+
+    public function event_show($slug)
+    {
+        $event = \App\Models\Event::where('slug', $slug)->firstOrFail();
+        $page_title = $event->title;
+        $Settings = \App\Models\Setting::first();
+        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.event', compact('event','Settings','feedbacks','page_title'));
+    }
+
     public function show($slug){
         $blogs = \App\Models\Blog::where('slug', $slug)->firstOrFail();
         $page_title = "Contact Us";

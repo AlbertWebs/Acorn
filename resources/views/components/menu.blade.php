@@ -47,15 +47,13 @@
 
 
 
-                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
+                     <li class="has-dropdown {{ request()->routeIs('updates','webinars','events') ? 'current-menu-ancestor' : '' }}">
                         <a href="#">Updates</a>
                         <ul class="sub-menu">
-                            <li><a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('about-us') }}">Webinars</a></li>
-                            <li><a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('updates') }}">Updates</a></li>
+                            <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
+                            <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
+                            <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
                         </ul>
-                    </li>
-                    <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
-                       <a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('updates') }}">Events</a>
                     </li>
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
@@ -176,15 +174,13 @@
 
 
 
-                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
+                     <li class="has-dropdown {{ request()->routeIs('updates','webinars','events') ? 'current-menu-ancestor' : '' }}">
                         <a href="#">Updates</a>
                         <ul class="sub-menu">
-                            <li><a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('about-us') }}">Webinars</a></li>
-                            <li><a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('updates') }}">Updates</a></li>
+                            <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
+                            <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
+                            <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
                         </ul>
-                    </li>
-                    <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
-                       <a class="{{ request()->routeIs('updates') ? 'current-menu-ancestor' : '' }}" href="{{ route('updates') }}">Events</a>
                     </li>
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">

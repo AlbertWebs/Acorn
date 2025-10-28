@@ -5,7 +5,7 @@
 @section('content')
 <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
     <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-        <i class="fas fa-file-invoice text-gold"></i> Invoice #{{ $invoice->id }}
+        <i class="fas fa-file-invoice text-gold"></i> Invoice {{ $invoice->invoice_number ?? ('#'.$invoice->id) }}
     </h2>
 
     <div class="mb-4">
@@ -27,17 +27,36 @@
 
     <hr class="my-4">
 
-    <p><strong>Service:</strong> {{ $invoice->service_type ?? '—' }}</p>
-    <p><strong>Hours:</strong> {{ $invoice->hours ?? 0 }}</p>
-    <p><strong>Rate per Hour:</strong> {{ number_format($invoice->rate_per_hour ?? 0, 2) }}</p>
-    <p><strong>Subtotal:</strong> {{ number_format($invoice->subtotal ?? 0, 2) }}</p>
-    <p><strong>Tax:</strong> {{ number_format($invoice->tax_amount ?? 0, 2) }}</p>
-    <p><strong>Total:</strong> {{ number_format($invoice->total_amount ?? 0, 2) }}</p>
+    <div class="mb-2">
+        <p class="font-semibold">Items</p>
+        @php
+            $itemsSummary = trim((string)($invoice->item_name ?? ''));
+            $items = $itemsSummary !== '' ? array_filter(array_map('trim', explode(';', $itemsSummary))) : [];
+        @endphp
+        @if (!empty($items))
+            <ul class="list-disc list-inside text-sm">
+                @foreach ($items as $line)
+                    <li>{{ $line }}</li>
+                @endforeach
+            </ul>
+        @else
+            <p>—</p>
+        @endif
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+        <div><strong>Subtotal:</strong> {{ number_format($invoice->subtotal ?? 0, 2) }}</div>
+        <div><strong>Tax:</strong> {{ number_format($invoice->tax_amount ?? 0, 2) }}</div>
+        <div><strong>Total:</strong> {{ number_format($invoice->total_amount ?? 0, 2) }}</div>
+    </div>
 
     <hr class="my-4">
 
     <p><strong>Payment Method:</strong> {{ ucfirst($invoice->payment_method ?? '—') }}</p>
     <p><strong>Payment Status:</strong> {{ ucfirst($invoice->payment_status ?? 'unpaid') }}</p>
     <p><strong>Status:</strong> {{ ucfirst($invoice->status ?? 'draft') }}</p>
+    @if(!empty($invoice->transaction_reference))
+        <p><strong>Transaction Ref:</strong> {{ $invoice->transaction_reference }}</p>
+    @endif
 </div>
 @endsection
