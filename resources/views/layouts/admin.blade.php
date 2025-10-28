@@ -6,6 +6,9 @@
   <title>@yield('title', 'Admin Panel')</title>
   @vite(['resources/css/app.css','resources/js/app.js'])
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- TinyMCE Editor -->
+  <script src="https://cdn.tiny.cloud/1/6h4pkvna1tu8uo94gmnt21aw9se5dewpet9bkvr1hbjhoe9k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <?php $Settings = DB::table('settings')->first(); ?>

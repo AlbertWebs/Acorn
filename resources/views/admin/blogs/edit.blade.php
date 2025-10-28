@@ -43,10 +43,8 @@
         <!-- Content -->
         <div>
             <label class="block mb-2 font-semibold text-gray-700">Content</label>
-            <div class="flex items-start border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-300">
-                <span class="px-3 py-2 text-gray-500 bg-gray-50"><i class="fas fa-file-alt"></i></span>
-                <textarea name="content" rows="6"
-                          class="w-full p-2 outline-none focus:ring-0" required>{{ $blog->content }}</textarea>
+            <div class="border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-300">
+                <textarea id="content-editor" name="content" required>{{ $blog->content }}</textarea>
             </div>
         </div>
 
@@ -74,4 +72,63 @@
         </div>
     </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    tinymce.init({
+        selector: '#content-editor',
+        height: 500,
+        menubar: true,
+        plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'help', 'wordcount', 'emoticons',
+            'template', 'codesample', 'hr', 'pagebreak', 'nonbreaking', 'toc',
+            'imagetools', 'textpattern', 'noneditable', 'quickbars', 'accordion'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+            'bold italic forecolor backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help | image | link | code | fullscreen | ' +
+            'searchreplace | table | emoticons | template | codesample',
+        content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; }',
+        branding: false,
+        promotion: false,
+        resize: true,
+        elementpath: true,
+        statusbar: true,
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+        },
+        // Image upload configuration
+        images_upload_handler: function (blobInfo, success, failure) {
+            // For now, we'll use a simple base64 approach
+            // In production, you might want to upload to a server
+            var reader = new FileReader();
+            reader.onload = function() {
+                success(reader.result);
+            };
+            reader.readAsDataURL(blobInfo.blob());
+        },
+        // Custom styles
+        content_css: false,
+        // Language
+        language: 'en',
+        // Accessibility
+        accessibility_focus: true,
+        // Auto-save
+        autosave_ask_before_unload: true,
+        // Templates
+        templates: [
+            {
+                title: 'Blog Post Template',
+                description: 'A basic blog post template',
+                content: '<h2>Introduction</h2><p>Start your blog post with an engaging introduction...</p><h2>Main Content</h2><p>Add your main content here...</p><h2>Conclusion</h2><p>Wrap up your post with a conclusion...</p>'
+            }
+        ]
+    });
+});
+</script>
 @endsection

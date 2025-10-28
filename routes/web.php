@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
@@ -45,12 +44,21 @@ Route::get('/services', [HomeController::class, 'services'])->name('frontend.ser
 
 
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact-us');
+Route::get('/contact-store', [HomeController::class, 'contact_store'])->name('contact.store');
+
+// webinars
+Route::get('/webinars', [HomeController::class, 'webinars'])->name('webinars');
+
+// events
+Route::get('/events', [HomeController::class, 'events'])->name('events');
+
 
 
 Route::get('/updates', [HomeController::class, 'updates'])->name('updates');
 Route::get('/updates/{slung}', [HomeController::class, 'show'])->name('blog.show');
 
 Route::post('/send-message', [HomeController::class, 'contactFormSubmit'])->name('contact.submit');
+Route::post('/homepage-contact', [HomeController::class, 'homepageContactSubmit'])->name('homepage.contact.submit');
 Route::post('/subscribe/ajax', [SubscriberPostController::class, 'ajaxStore'])->name('subscribe.ajax');
 
 Route::get('/book-consultation', [HomeController::class, 'consultation'])->name('book-consultation');
@@ -95,8 +103,9 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
 
     Route::resource('history', App\Http\Controllers\Admin\HistoryController::class);
 
-    // Payments CRUD
-    Route::resource('payments', PaymentController::class);
+
+    // Reports
+    Route::get('/payments', [ReportController::class, 'payments'])->name('payments.index');
 
     // Reports
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
@@ -108,12 +117,6 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     Route::get('/settings', [SettingController::class, 'index'])->name('settings');
     Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
 
-      // Payments
-    Route::prefix('payments')->name('payments.')->group(function () {
-    Route::get('/mpesa', [PaymentController::class, 'mpesa'])->name('mpesa');
-    Route::get('/card', [PaymentController::class, 'card'])->name('card');
-    Route::get('/crypto', [PaymentController::class, 'crypto'])->name('crypto');
-    });
        // NEW: KYC
     Route::get('/kyc', [KycController::class, 'index'])->name('kyc.index');
     Route::get('/kyc/create', [KycController::class, 'create'])->name('kyc.create');

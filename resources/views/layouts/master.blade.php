@@ -347,6 +347,115 @@
             }
             });
         });
+
+        // Handle homepage contact form submission
+        $('#contact-form-3').on('submit', function (e) {
+            e.preventDefault();
+            
+            const form = $(this);
+            const submitBtn = $('#contact-submit-btn');
+            const statusDiv = $('#contact-form-status');
+            
+            // Disable submit button to prevent double submission
+            submitBtn.prop('disabled', true);
+            submitBtn.find('.btn-text span').text('Sending...');
+            
+            // Clear previous status messages
+            statusDiv.hide().empty();
+            
+            // Basic client-side validation
+            const name = $('input[name="cfName3"]').val().trim();
+            const email = $('input[name="cfEmail3"]').val().trim();
+            const phone = $('input[name="cfPhone3"]').val().trim();
+            const service = $('select[name="cfSubject3"]').val();
+            const message = $('textarea[name="cfMessage3"]').val().trim();
+            
+            if (!name || !email || !phone || !service || !message) {
+                showStatus('Please fill in all required fields.', 'error');
+                resetSubmitButton();
+                return;
+            }
+            
+            if (message.length < 10) {
+                showStatus('Message must be at least 10 characters long.', 'error');
+                resetSubmitButton();
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showStatus('Please enter a valid email address.', 'error');
+                resetSubmitButton();
+                return;
+            }
+            
+            // Show sending status
+            showStatus('Sending your message...', 'info');
+            
+            // Submit form via AJAX
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    if (response.status === 'success') {
+                        showStatus(response.message, 'success');
+                        form[0].reset(); // Reset form
+                        
+                        // Scroll to status message
+                        $('html, body').animate({
+                            scrollTop: statusDiv.offset().top - 100
+                        }, 500);
+                    } else {
+                        showStatus(response.message || 'An error occurred.', 'error');
+                    }
+                },
+                error: function (xhr) {
+                    let errorMessage = 'Sorry, there was an error sending your message. Please try again.';
+                    
+                    if (xhr.status === 422) {
+                        // Validation errors
+                        const errors = xhr.responseJSON.errors;
+                        if (errors) {
+                            const firstError = Object.values(errors)[0][0];
+                            errorMessage = firstError;
+                        }
+                    } else if (xhr.status === 429) {
+                        // Rate limiting
+                        errorMessage = 'Too many submissions. Please wait before trying again.';
+                    } else if (xhr.status === 400) {
+                        // Spam detected
+                        errorMessage = 'Spam detected. Please try again.';
+                    } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage = xhr.responseJSON.message;
+                    }
+                    
+                    showStatus(errorMessage, 'error');
+                },
+                complete: function () {
+                    resetSubmitButton();
+                }
+            });
+            
+            function showStatus(message, type) {
+                const colors = {
+                    success: '#28a745',
+                    error: '#dc3545',
+                    info: '#17a2b8'
+                };
+                
+                statusDiv.html('<span style="color: ' + colors[type] + '; font-weight: 500;">' + message + '</span>').show();
+            }
+            
+            function resetSubmitButton() {
+                submitBtn.prop('disabled', false);
+                submitBtn.find('.btn-text span').text('Send Message');
+            }
+        });
         });
   </script>
 

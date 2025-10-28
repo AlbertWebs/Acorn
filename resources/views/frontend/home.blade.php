@@ -284,24 +284,29 @@
                     <span class="sub-title"><i class="tji-box"></i>Get in Touch</span>
                     <h2 class="sec-title title-anim">Drop us a Line Here.</h2>
                   </div>
-                  <form id="contact-form-3">
+                  <form id="contact-form-3" method="POST" action="{{ route('homepage.contact.submit') }}">
+                    @csrf
+                    <!-- Honeypot fields for spam protection -->
+                    <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                    <input type="text" name="url" style="display: none;" tabindex="-1" autocomplete="off">
+                    
                     <div class="row wow fadeInUp" data-wow-delay=".5s">
                       <div class="col-sm-6">
                         <div class="form-input">
                           <label class="cf-label">Full Name *</label>
-                          <input type="text" name="cfName3">
+                          <input type="text" name="cfName3" required maxlength="255">
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-input">
                           <label class="cf-label">Email Address *</label>
-                          <input type="email" name="cfEmail3">
+                          <input type="email" name="cfEmail3" required maxlength="255">
                         </div>
                       </div>
                       <div class="col-sm-6">
                         <div class="form-input">
                           <label class="cf-label">Phone number *</label>
-                          <input type="tel" name="cfPhone3">
+                          <input type="tel" name="cfPhone3" required maxlength="20">
                         </div>
                       </div>
                       <?php
@@ -311,8 +316,9 @@
                         <div class="form-input">
                           <div class="tj-nice-select-box">
                             <div class="tj-select">
-                              <label class="cf-label">Chose a Service</label>
-                              <select name="cfSubject3">
+                              <label class="cf-label">Choose a Service *</label>
+                              <select name="cfSubject3" required>
+                                <option value="">Select a service...</option>
                                 @foreach ($Ser as $service)
                                     <option value="{{$service->id}}">{{$service->title}}</option>
                                 @endforeach
@@ -324,16 +330,19 @@
                       <div class="col-sm-12">
                         <div class="form-input message-input">
                           <label class="cf-label">Message here... *</label>
-                          <textarea name="cfMessage3" id="message"></textarea>
+                          <textarea name="cfMessage3" id="message" required minlength="10" maxlength="2000" placeholder="Please tell us more about your needs..."></textarea>
                         </div>
                       </div>
                       <div class="submit-btn">
-                        <button class="tj-primary-btn" type="submit">
+                        <button class="tj-primary-btn" type="submit" id="contact-submit-btn">
                           <span class="btn-text"><span>Send Message</span></span>
                           <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                         </button>
                       </div>
                     </div>
+                    
+                    <!-- Form status message -->
+                    <div id="contact-form-status" class="form-status" style="margin-top: 15px; display: none;"></div>
                   </form>
                 </div>
               </div>

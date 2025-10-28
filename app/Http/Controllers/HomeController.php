@@ -121,7 +121,7 @@ class HomeController extends Controller
     }
 
     public function show($slug){
-        $blogs = \App\Models\Blog::where('slug', $slug)->first();
+        $blogs = \App\Models\Blog::where('slug', $slug)->firstOrFail();
         $page_title = "Contact Us";
         $About = \App\Models\About::first();
         // $teams = \App\Models\Team::where('is_active', true)->get();
@@ -215,6 +215,100 @@ class HomeController extends Controller
                 'status'  => 'error',
                 'message' => 'Sorry, there was an issue sending your message. Please try again later.'
             ], 500); // HTTP 500 status for server error
+        }
+    }
+
+    /**
+     * Handle homepage contact form submission with spam protection
+     */
+    public function homepageContactSubmit(Request $request)
+    {
+        // 1. Rate limiting check (max 3 submissions per IP per hour)
+        $ip = $request->ip();
+        $key = 'contact_form_' . $ip;
+        $submissions = \Cache::get($key, 0);
+        
+        if ($submissions >= 3) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Too many submissions. Please wait before trying again.'
+            ], 429);
+        }
+
+        // 2. Honeypot spam protection
+        if ($request->filled('website') || $request->filled('url')) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Spam detected.'
+            ], 400);
+        }
+
+        // 3. Validate the incoming data
+        $validated = $request->validate([
+            'cfName3'    => 'required|string|max:255',
+            'cfEmail3'   => 'required|email|max:255',
+            'cfPhone3'   => 'required|string|max:20',
+            'cfSubject3' => 'required|integer|exists:services,id',
+            'cfMessage3' => 'required|string|min:10|max:2000',
+        ], [
+            'cfName3.required' => 'Full name is required.',
+            'cfEmail3.required' => 'Email address is required.',
+            'cfEmail3.email' => 'Please enter a valid email address.',
+            'cfPhone3.required' => 'Phone number is required.',
+            'cfSubject3.required' => 'Please select a service.',
+            'cfSubject3.exists' => 'Please select a valid service.',
+            'cfMessage3.required' => 'Message is required.',
+            'cfMessage3.min' => 'Message must be at least 10 characters.',
+            'cfMessage3.max' => 'Message must not exceed 2000 characters.',
+        ]);
+
+        // 4. Get service name
+        $service = \App\Models\Service::find($validated['cfSubject3']);
+        $serviceName = $service ? $service->title : 'Unknown Service';
+
+        // 5. Increment submission counter
+        \Cache::put($key, $submissions + 1, 3600); // 1 hour
+
+        // 6. Send email notification
+        try {
+            $settings = \App\Models\Setting::first();
+            $adminEmail = $settings->email ?? 'info@acorn.co.ke';
+
+            Mail::raw("New Contact Form Submission from Homepage:\n\n" .
+                      "Name: " . $validated['cfName3'] . "\n" .
+                      "Email: " . $validated['cfEmail3'] . "\n" .
+                      "Phone: " . $validated['cfPhone3'] . "\n" .
+                      "Service Interest: " . $serviceName . "\n" .
+                      "Message: " . $validated['cfMessage3'] . "\n\n" .
+                      "IP Address: " . $ip . "\n" .
+                      "Submitted at: " . now()->format('Y-m-d H:i:s'),
+                function ($message) use ($validated, $adminEmail) {
+                    $message->to($adminEmail)
+                            ->subject('New Contact Inquiry from ' . $validated['cfName3'])
+                            ->from($validated['cfEmail3'], $validated['cfName3']);
+                });
+
+            // 7. Log successful submission
+            \Log::info('Homepage contact form submitted successfully', [
+                'name' => $validated['cfName3'],
+                'email' => $validated['cfEmail3'],
+                'service' => $serviceName,
+                'ip' => $ip
+            ]);
+
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Thank you! Your message has been sent successfully. We will get back to you soon.'
+            ]);
+
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Homepage contact form submission failed: ' . $e->getMessage());
+
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Sorry, there was an issue sending your message. Please try again later or contact us directly.'
+            ], 500);
         }
     }
 

@@ -2,57 +2,53 @@
 
 @section('content')
 
+<div class="space-for-header"></div>
 
-    <div class="space-for-header"></div>
-    <!-- start: Breadcrumb Section -->
-    <section class="tj-page-header section-gap-x" data-bg-image="{{asset('uploads/ubuntu.webp')}}">
-        <div class="container">
+<!-- start: Breadcrumb Section -->
+<section class="tj-page-header section-gap-x" data-bg-image="{{ asset('uploads/ubuntu.webp') }}">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
-            <div class="tj-page-header-content text-center">
-                <h1 class="tj-page-title">Events & Updates</h1>
-                <div class="tj-page-link">
-                <span><i class="tji-home"></i></span>
-                <span>
-                    <a href="index.html">Home</a>
-                </span>
-                <span><i class="tji-arrow-right"></i></span>
-                <span>
-                    <span>Events & Updates</span>
-                </span>
+                <div class="tj-page-header-content text-center">
+                    <h1 class="tj-page-title">{{ $blogs->title ?? 'Events & Updates' }}</h1>
+                    <div class="tj-page-link">
+                        <span><i class="tji-home"></i></span>
+                        <span><a href="{{ url('/') }}">Home</a></span>
+                        <span><i class="tji-arrow-right"></i></span>
+                        <span><span>{{ $blogs->title ?? 'Events & Updates' }}</span></span>
+                    </div>
                 </div>
             </div>
-            </div>
         </div>
-        </div>
-        <div class="page-header-overlay" data-bg-image="{{asset('acorn/assets/images/shape/pheader-overlay.webp')}}"></div>
-    </section>
-    <!-- end: Breadcrumb Section -->
+    </div>
+    <div class="page-header-overlay" data-bg-image="{{ asset('acorn/assets/images/shape/pheader-overlay.webp') }}"></div>
+</section>
+<!-- end: Breadcrumb Section -->
 
-
-    <!-- start: Blog Section -->
+<!-- start: Blog Section -->
 <section class="tj-blog-section section-gap slidebar-stickiy-container">
   <div class="container">
     <div class="row row-gap-5">
       <div class="col-lg-8">
         <div class="post-details-wrapper">
+       
 
           <div class="blog-images wow fadeInUp" data-wow-delay=".1s">
-            <img src="{{ asset('assets/images/blog/blog-1.webp') }}" alt="Images">
+            <img src="{{ asset('storage/' . $blogs->featured_image ?? 'assets/images/blog/blog-1.webp') }}" alt="{{ $blogs->title }}">
           </div>
 
           <h2 class="title title-anim">
-            Unlocking Business Potential: Innovative Solutions for Unmatched Success
+            {{ $blogs->title }}
           </h2>
 
           <div class="blog-category-two wow fadeInUp" data-wow-delay=".3s">
             <div class="category-item">
               <div class="cate-images">
-                <img src="{{ asset('assets/images/testimonial/client-2.webp') }}" alt="Images">
+                <img src="{{ asset('assets/images/testimonial/client-2.webp') }}" alt="Author">
               </div>
               <div class="cate-text">
                 <span class="degination">Authored by</span>
-                <h6 class="title"><a href="#">Burdee Nicolas</a></h6>
+                <h6 class="title"><a href="#">{{ $blogs->author ?? 'Admin' }}</a></h6>
               </div>
             </div>
 
@@ -62,7 +58,7 @@
               </div>
               <div class="cate-text">
                 <span class="degination">Date Released</span>
-                <h6 class="text">29 December, 2025</h6>
+                <h6 class="text">{{ $blogs->created_at->format('d F, Y') }}</h6>
               </div>
             </div>
 
@@ -78,29 +74,15 @@
           </div>
 
           <div class="blog-text">
+            {{-- Short intro or excerpt --}}
             <p class="wow fadeInUp" data-wow-delay=".3s">
-              In today’s competitive landscape, businesses must continuously adapt and innovate to thrive.
-              Unlocking Business Potential means identifying untapped opportunities and leveraging innovative
-              solutions to drive growth, enhance efficiency, and foster lasting success.
+              {!! $blogs->excerpt !!}
             </p>
 
-            <blockquote class="wow fadeInUp" data-wow-delay=".3s">
-              <p>The true entrepreneur is a doer, not a dreamer. Innovation is the catalyst that transforms
-                ideas into reality. In today’s fast-paced world, success depends not on just surviving change.
-              </p>
-              <cite>Kevin Hooks</cite>
-            </blockquote>
-
-            <h3 class="wow fadeInUp" data-wow-delay=".3s">Key Lessons of Business Potential</h3>
-            <ul class="wow fadeInUp" data-wow-delay=".3s">
-              <li><span><i class="tji-check"></i></span>Embrace Innovation</li>
-              <li><span><i class="tji-check"></i></span>Customer-Centric Approach</li>
-              <li><span><i class="tji-check"></i></span>Effective Leadership</li>
-              <li><span><i class="tji-check"></i></span>Operational Efficiency</li>
-              <li><span><i class="tji-check"></i></span>Scalable Systems</li>
-              <li><span><i class="tji-check"></i></span>Resilience</li>
-              <li><span><i class="tji-check"></i></span>Continuous Learning</li>
-            </ul>
+            {{-- Full content --}}
+            <div class="wow fadeInUp" data-wow-delay=".3s">
+              {!! $blogs->content !!}
+            </div>
           </div>
 
           <div class="tj-tags-post wow fadeInUp" data-wow-delay=".3s">
@@ -158,6 +140,5 @@
   </div>
 </section>
 <!-- end: Blog Section -->
-
 
 @endsection
