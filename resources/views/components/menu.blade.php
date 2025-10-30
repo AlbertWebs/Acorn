@@ -53,7 +53,7 @@
                             <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
                             <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
                             <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
-                            
+                            <li><a class="{{ request()->routeIs('gallery.context') ? 'active' : '' }}" href="{{ route('gallery.context', ['type'=>'trainings']) }}">Gallery</a></li>
                             <li><a class="{{ request()->routeIs('trainings') ? 'active' : '' }}" href="{{ route('trainings') }}">Teacher’s Training</a></li>
                         </ul>
                     </li>
@@ -189,7 +189,7 @@
                             <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
                             <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
                             <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
-                            
+                            <li><a class="{{ request()->routeIs('gallery.context') ? 'active' : '' }}" href="{{ route('gallery.context', ['type'=>'trainings']) }}">Gallery</a></li>
                             <li><a class="{{ request()->routeIs('trainings') ? 'active' : '' }}" href="{{ route('trainings') }}">Teacher’s Training</a></li>
                         </ul>
                     </li>

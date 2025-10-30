@@ -61,6 +61,10 @@ Route::post('/events/book', [\App\Http\Controllers\EventRegistrationController::
 Route::get('/our-calendar', [HomeController::class, 'calendar'])->name('calendar');
 Route::get('/trainings', [HomeController::class, 'trainings'])->name('trainings');
 
+// gallery (frontend)
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/gallery/{type}/{slug?}', [HomeController::class, 'gallery_context'])->name('gallery.context');
+
 
 
 

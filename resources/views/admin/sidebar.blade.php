@@ -49,6 +49,7 @@
             ['route' => 'admin.blogs.index', 'icon' => 'fas fa-blog', 'label' => 'Blog Posts'],
             ['route' => 'admin.webinars.index', 'icon' => 'fas fa-video', 'label' => 'Webinars'],
             ['route' => 'admin.events.index', 'icon' => 'fas fa-calendar', 'label' => 'Events'],
+            ['route' => 'admin.galleries.index', 'icon' => 'fas fa-photo-film', 'label' => 'Gallery'],
             ['route' => 'admin.event-registrations.index', 'icon' => 'fas fa-clipboard-list', 'label' => 'Event Registrations'],
             ['route' => 'admin.users.index', 'icon' => 'fas fa-user-cog', 'label' => 'Users'],
             ['route' => 'admin.subscribers.index', 'icon' => 'fas fa-envelope-open-text', 'label' => 'Subscribers'],

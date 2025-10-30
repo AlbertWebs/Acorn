@@ -9,6 +9,7 @@ use App\Models\Fleet;
 use App\Models\Client;
 use App\Models\Service;
 use App\Models\Feedback;
+use App\Models\Gallery;
 
 
 class HomeController extends Controller
@@ -360,6 +361,28 @@ class HomeController extends Controller
         $Settings = \App\Models\Setting::first();
         $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
         return view('frontend.trainings', compact('feedbacks','Settings','page_title'));
+    }
+
+    public function gallery(Request $request)
+    {
+        $type = $request->query('type');
+        $slug = $request->query('ref');
+        $query = Gallery::where('is_active', true);
+        if ($type) $query->where('context_type', $type);
+        if ($slug) $query->where('context_slug', $slug);
+        $items = $query->latest()->paginate(24);
+
+        $page_title = 'Gallery' . ($type ? ' - ' . ucfirst($type) : '');
+        $Settings = \App\Models\Setting::first();
+        return view('frontend.gallery', compact('items','page_title','Settings','type','slug'));
+    }
+
+    public function gallery_context($type, $slug = null)
+    {
+        $request = request();
+        $request->merge(['type' => $type]);
+        if ($slug) $request->merge(['ref' => $slug]);
+        return $this->gallery($request);
     }
 
 }

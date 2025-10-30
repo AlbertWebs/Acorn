@@ -38,6 +38,12 @@
                             <span class="sub-title"><i class="tji-box"></i>Programs & Reach</span>
                             <h2 class="sec-title title-anim">Acorn Teacher’s Training Participation</h2>
                             <p class="mt-2 mb-0 text-muted">A snapshot of partner schools and total teachers reached across cohorts and dedicated trainings.</p>
+                            <div class="about-btn-area-2 mt-3">
+                                <a class="tj-primary-btn" href="{{ route('gallery.context', ['type'=>'trainings']) }}">
+                                  <span class="btn-text"><span>View Gallery</span></span>
+                                  <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                                </a>
+                            </div>
                         </div>
 
                         <div class="mt-4">

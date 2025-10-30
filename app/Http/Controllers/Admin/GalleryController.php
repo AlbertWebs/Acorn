@@ -27,6 +27,8 @@ class GalleryController extends Controller
             'title' => 'nullable|string|max:255',
             'caption' => 'nullable|string|max:255',
             'image' => 'required|image|max:5120',
+            'context_type' => 'nullable|in:general,trainings,history,event',
+            'context_slug' => 'nullable|string|max:255',
         ]);
 
         $path = $request->file('image')->store('gallery', 'public');
@@ -36,6 +38,8 @@ class GalleryController extends Controller
             'caption' => $validated['caption'] ?? null,
             'image' => $path,
             'is_active' => true,
+            'context_type' => $validated['context_type'] ?? null,
+            'context_slug' => $validated['context_slug'] ?? null,
         ]);
 
         return redirect()->route('admin.galleries.index')->with('success', 'Image added to gallery');
@@ -46,6 +50,8 @@ class GalleryController extends Controller
         // Dropzone async upload (one file per request)
         $request->validate([
             'file' => 'required|image|max:5120',
+            'context_type' => 'nullable|in:general,trainings,history,event',
+            'context_slug' => 'nullable|string|max:255',
         ]);
 
         $path = $request->file('file')->store('gallery', 'public');
@@ -53,6 +59,8 @@ class GalleryController extends Controller
         $item = Gallery::create([
             'image' => $path,
             'is_active' => true,
+            'context_type' => $request->input('context_type'),
+            'context_slug' => $request->input('context_slug'),
         ]);
 
         return response()->json([
@@ -74,6 +82,8 @@ class GalleryController extends Controller
             'caption' => 'nullable|string|max:255',
             'image' => 'nullable|image|max:5120',
             'is_active' => 'nullable|boolean',
+            'context_type' => 'nullable|in:general,trainings,history,event',
+            'context_slug' => 'nullable|string|max:255',
         ]);
 
         if ($request->hasFile('image')) {
@@ -83,6 +93,12 @@ class GalleryController extends Controller
 
         $gallery->title = $validated['title'] ?? $gallery->title;
         $gallery->caption = $validated['caption'] ?? $gallery->caption;
+        if (array_key_exists('context_type', $validated)) {
+            $gallery->context_type = $validated['context_type'];
+        }
+        if (array_key_exists('context_slug', $validated)) {
+            $gallery->context_slug = $validated['context_slug'];
+        }
         if (isset($validated['is_active'])) {
             $gallery->is_active = (bool)$validated['is_active'];
         }
