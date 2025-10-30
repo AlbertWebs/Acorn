@@ -67,8 +67,31 @@
                 @endforelse
             </div>
 
-            <div class="mt-4">
-                {{ $items->withQueryString()->links() }}
+            <div class="row mt-4">
+                <div class="col-sm-12">
+                    <div class="basic-pagination text-start">
+                        <nav class=" tj-pagination shop">
+                            <ul class="page-numbers">
+                                @for ($page = 1; $page <= $items->lastPage(); $page++)
+                                    @if ($page === $items->currentPage())
+                                        <li><span class="page-numbers current">{{ $page }}</span></li>
+                                    @else
+                                        <li>
+                                            <a aria-label="Page {{ $page }}" class="page-numbers" href="{{ $items->appends(request()->query())->url($page) }}">{{ $page }}</a>
+                                        </li>
+                                    @endif
+                                @endfor
+                                @if ($items->hasMorePages())
+                                    <li>
+                                        <a class="next page-numbers" href="{{ $items->nextPageUrl() }}">
+                                            <i class="tji-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
