@@ -136,11 +136,11 @@
       <div class="tj-preloader-ball-wrap">
         <div class="tj-preloader-ball-inner-wrap">
           <div class="tj-preloader-ball-inner">
-            <div class="tj-preloader-ball"></div>
+            <img src="{{ asset('favicon/favicon-32x32.png') }}" alt="Loading" class="tj-preloader-ball tj-preloader-favicon">
           </div>
           <div class="tj-preloader-ball-shadow"></div>
         </div>
-        <div id="tj-weave-anim" class="tj-preloader-text">Loading...</div>
+        <div id="tj-weave-anim" class="tj-preloader-text">Acorn Special Tutorials...</div>
       </div>
     </div>
     <div class="tj-preloader-overlay"></div>
@@ -301,6 +301,10 @@
   <script src="{{asset('acorn/assets/js/wow.min.js')}}"></script>
   <script src="{{asset('acorn/assets/js/meanmenu.js')}}"></script>
   <script src="{{asset('acorn/assets/js/main.js')}}"></script>
+
+  <style>
+    .tj-preloader-favicon { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 14px rgba(0,0,0,.15); background: #fff; }
+  </style>
 
   <script>
         $(document).ready(function () {
