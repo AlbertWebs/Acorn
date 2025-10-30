@@ -37,6 +37,23 @@
         </div>
 
         <div>
+            <label class="block mb-2 font-semibold text-gray-700">Event Date</label>
+            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-300">
+                <span class="px-3 text-gray-500 bg-gray-50"><i class="fas fa-calendar-day"></i></span>
+                <input type="date" name="event_date" class="w-full p-2 outline-none focus:ring-0">
+            </div>
+        </div>
+
+        <div>
+            <label class="block mb-2 font-semibold text-gray-700">Event Time</label>
+            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-300">
+                <span class="px-3 text-gray-500 bg-gray-50"><i class="fas fa-clock"></i></span>
+                <input type="time" name="event_time" class="w-full p-2 outline-none focus:ring-0" step="900">
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Optional. Set HH:MM to reserve that hour in the calendar.</p>
+        </div>
+
+        <div>
             <label class="block mb-2 font-semibold text-gray-700">Content</label>
             <div class="border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-blue-300">
                 <textarea id="content-editor" name="content" placeholder="Describe the event in detail..." required></textarea>
@@ -50,6 +67,15 @@
                 <input type="file" name="featured_image"
                        class="w-full p-2 outline-none focus:ring-0">
             </div>
+        </div>
+
+        <div>
+            <label class="block mb-2 font-semibold text-gray-700">Status</label>
+            <label class="inline-flex items-center gap-2">
+                <input type="hidden" name="is_published" value="0">
+                <input type="checkbox" name="is_published" value="1" class="rounded">
+                <span>Publish this event</span>
+            </label>
         </div>
 
         <div class="pt-4">

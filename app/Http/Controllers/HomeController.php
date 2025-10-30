@@ -130,6 +130,18 @@ class HomeController extends Controller
         return view('frontend.webinars', compact('webinars', 'feedbacks','Settings','page_title'));
     }
 
+    public function calendar()
+    {
+        $page_title = "Our Calendar";
+        $About = \App\Models\About::first();
+        $Settings = \App\Models\Setting::first();
+        // Prefer explicit event_date; fallback to created_at on the view side
+        $events = \App\Models\Event::where('is_published', true)
+            ->get(['id', 'title', 'slug', 'featured_image', 'event_date', 'event_time', 'created_at']);
+
+        return view('frontend.calendar', compact('events', 'Settings', 'About', 'page_title'));
+    }
+
     public function events()
     {
         $events = \App\Models\Event::latest()->paginate(12);

@@ -83,7 +83,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-input">
                                                 <label class="cf-label">Select Date <span>*</span></label>
-                                                <input type="datetime-local" name="booking_datetime">
+                                                <input type="datetime-local" name="booking_datetime" value="{{ request('date') ? request('date').'T09:00' : '' }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">

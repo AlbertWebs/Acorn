@@ -17,6 +17,8 @@
                 <th class="p-3 text-left">Title</th>
                 <th class="p-3 text-left">Author</th>
                 <th class="p-3 text-left">Registrations</th>
+                <th class="p-3 text-left">Date</th>
+                <th class="p-3 text-left">Time</th>
                 <th class="p-3 text-left">Status</th>
                 <th class="p-3 text-left">Actions</th>
             </tr>
@@ -29,6 +31,14 @@
                     <td class="p-3">
                         @php($count = \App\Models\EventRegistration::where('event_id', $event->id)->count())
                         <a class="text-blue-600 hover:underline" href="{{ route('admin.events.registrations', $event) }}">{{ $count }}</a>
+                    </td>
+                    <td class="p-3">
+                        <span class="px-2 py-1 text-xs rounded {{ $event->date ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-600' }}">
+                            {{ $event->event_date ? $event->event_date->format('d-m-Y') : 'N/A' }}
+                        </span>
+                    </td>
+                    <td class="p-3">
+                        {{ $event->event_time ? substr($event->event_time, 0, 5) : 'N/A' }}
                     </td>
                     <td class="p-3">
                         <span class="px-2 py-1 text-xs rounded {{ $event->is_published ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-600' }}">

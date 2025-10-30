@@ -18,7 +18,14 @@ class Event extends Model
         'content',
         'featured_image',
         'is_published',
+        'event_date',
+        'event_time',
         'price',
+    ];
+
+    protected $casts = [
+        'event_date' => 'date',
+        'is_published' => 'boolean',
     ];
 
     protected static function boot()

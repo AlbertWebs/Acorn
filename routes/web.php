@@ -56,6 +56,9 @@ Route::get('/events', [HomeController::class, 'events'])->name('events');
 Route::get('/events/{slug}', [HomeController::class, 'event_show'])->name('events.show');
 Route::post('/events/book', [\App\Http\Controllers\EventRegistrationController::class, 'store'])->name('events.book');
 
+// calendar
+Route::get('/our-calendar', [HomeController::class, 'calendar'])->name('calendar');
+
 
 
 Route::get('/updates', [HomeController::class, 'updates'])->name('updates');

@@ -134,6 +134,9 @@
                                     <li>
                                         <a href="{{route('updates')}}">Updates & Travel Guides</a>
                                     </li>
+                                    <li class="@if($page_title=='Our Calendar') current @endif">
+                                        <a href="{{ route('calendar') }}">Our Calendar</a>
+                                    </li>
                                     <li  class="@if($page_title=='Contact Us') current @endif">
                                         <a href="{{route('contact-us')}}">Contact Us</a>
                                     </li>

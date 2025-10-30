@@ -45,7 +45,7 @@
                         </ul>
                     </li>
 
-
+                 
 
                      <li class="has-dropdown {{ request()->routeIs('updates','webinars','events') ? 'current-menu-ancestor' : '' }}">
                         <a href="#">Updates</a>
@@ -53,7 +53,12 @@
                             <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
                             <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
                             <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
+                            <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('calendar') }}">Our Calendar</a></li>
                         </ul>
+                    </li>
+
+                    <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
+                        <a href="{{ route('calendar') }}">Our Calendar</a>
                     </li>
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
