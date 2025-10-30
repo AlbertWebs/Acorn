@@ -1,6 +1,41 @@
 @extends('layouts.master')
 
 @section('content')
+<style>
+ .choose-box {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.choose-image div {
+  flex: 1;
+  overflow: hidden;
+}
+
+.choose-image div:first-child {
+  margin-bottom: 6px;
+  border-radius: 20px 0 0 0;
+}
+
+.choose-image div:last-child {
+  margin-top: 6px;
+  border-radius: 0 0 0 20px;
+}
+
+.choose-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.choose-content {
+  padding: 35px;
+  display: flex;
+  align-items: center;
+}
+
+</style>
 
 <main id="primary" class="site-main">
 
@@ -51,16 +86,40 @@
                 </div>
               </div>
             </div>
+            <!--  -->
             <div class="row row-gap-4 rightSwipeWrap">
-              <div class="col-lg-12">
-                <div class="choose-box right-swipe">
-                  <div class="choose-content">
+            <div class="row">
+  <!-- Images Column -->
+  <div class="col-12 col-lg-6 d-flex flex-column mb-3 mb-lg-0" style="gap:8px;">
+    <div class="flex-fill overflow-hidden rounded" style="height:50%;">
+      <img src="{{ asset('storage/' . $histories->image_one) }}" 
+           class="w-100 h-100" 
+           style="object-fit:cover;" 
+           alt="">
+    </div>
 
-                    <p class="desc">{!!$histories->description!!}</p>
-                  </div>
-                </div>
-              </div>
+    <div class="flex-fill overflow-hidden rounded" style="height:50%;">
+      <img src="{{ asset('storage/' . $histories->image_two) }}" 
+           class="w-100 h-100" 
+           style="object-fit:cover;" 
+           alt="">
+    </div>
+  </div>
+
+  <!-- Text Column -->
+  <div class="col-12 col-lg-6 d-flex align-items-center">
+    <div style="padding:25px;">
+      <p class="mb-0" style="font-size:17px; line-height:1.7;">
+        {!! $histories->description !!}
+      </p>
+    </div>
+  </div>
+</div>
+
+
             </div>
+
+            <!--  -->
           </div>
         </section>
         <!-- end: Choose Section -->
