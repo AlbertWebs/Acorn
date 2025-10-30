@@ -17,9 +17,9 @@
               <nav id="mobile-menu" class="mainmenu">
                 {{--  --}}
                  <ul>
-                    <li class="{{ request()->routeIs('home') ? 'current-menu-ancestor' : '' }}">
+                    <!-- <li class="{{ request()->routeIs('home') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ url('/') }}">Home</a>
-                    </li>
+                    </li> -->
 
                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
                         <a href="#">About Us</a>
@@ -48,18 +48,21 @@
                  
 
                      <li class="has-dropdown {{ request()->routeIs('updates','webinars','events') ? 'current-menu-ancestor' : '' }}">
-                        <a href="#">Updates</a>
+                        <a href="#">Resources</a>
                         <ul class="sub-menu">
                             <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
                             <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
                             <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
-                            <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('calendar') }}">Our Calendar</a></li>
+                            
+                            <li><a class="{{ request()->routeIs('trainings') ? 'active' : '' }}" href="{{ route('trainings') }}">Teacher’s Training</a></li>
                         </ul>
                     </li>
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ route('calendar') }}">Our Calendar</a>
                     </li>
+
+                 
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ route('contact-us') }}">Contact</a>
@@ -148,10 +151,11 @@
             <!-- navigation -->
             <div class="menu-area d-none d-lg-inline-flex align-items-center">
               <nav class="mainmenu">
+                <!--  -->
                 <ul>
-                    <li class="{{ request()->routeIs('home') ? 'current-menu-ancestor' : '' }}">
+                    <!-- <li class="{{ request()->routeIs('home') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ url('/') }}">Home</a>
-                    </li>
+                    </li> -->
 
                     <li class="has-dropdown {{ request()->routeIs('about-us','our-history','the-director') ? 'current-menu-ancestor' : '' }}">
                         <a href="#">About Us</a>
@@ -177,21 +181,30 @@
                         </ul>
                     </li>
 
-
+                 
 
                      <li class="has-dropdown {{ request()->routeIs('updates','webinars','events') ? 'current-menu-ancestor' : '' }}">
-                        <a href="#">Updates</a>
+                        <a href="#">Resources</a>
                         <ul class="sub-menu">
                             <li><a class="{{ request()->routeIs('webinars') ? 'active' : '' }}" href="{{ route('webinars') }}">Webinars</a></li>
                             <li><a class="{{ request()->routeIs('events') ? 'active' : '' }}" href="{{ route('events') }}">Events</a></li>
                             <li><a class="{{ request()->routeIs('updates') ? 'active' : '' }}" href="{{ route('updates') }}">Updates</a></li>
+                            
+                            <li><a class="{{ request()->routeIs('trainings') ? 'active' : '' }}" href="{{ route('trainings') }}">Teacher’s Training</a></li>
                         </ul>
                     </li>
+
+                    <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
+                        <a href="{{ route('calendar') }}">Our Calendar</a>
+                    </li>
+
+                 
 
                     <li class="{{ request()->routeIs('contact-us') ? 'current-menu-ancestor' : '' }}">
                         <a href="{{ route('contact-us') }}">Contact</a>
                     </li>
                  </ul>
+                <!--  -->
               </nav>
             </div>
 

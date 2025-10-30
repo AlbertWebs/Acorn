@@ -353,4 +353,13 @@ class HomeController extends Controller
         }
     }
 
+    public function trainings()
+    {
+        $page_title = "Trainings";
+        $About = \App\Models\About::first();
+        $Settings = \App\Models\Setting::first();
+        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.trainings', compact('feedbacks','Settings','page_title'));
+    }
+
 }

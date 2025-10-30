@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Admin\CoreValueController;
 use App\Http\Controllers\Admin\WebinarController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\GalleryController;
 
 
 
@@ -58,6 +59,10 @@ Route::post('/events/book', [\App\Http\Controllers\EventRegistrationController::
 
 // calendar
 Route::get('/our-calendar', [HomeController::class, 'calendar'])->name('calendar');
+Route::get('/trainings', [HomeController::class, 'trainings'])->name('trainings');
+
+
+
 
 
 
@@ -152,6 +157,10 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     // NEW: Webinars & Events
     Route::resource('webinars', WebinarController::class);
     Route::resource('events', EventController::class);
+
+    // NEW: Galleries (admin)
+    Route::resource('galleries', GalleryController::class)->names('galleries');
+    Route::post('galleries/upload', [GalleryController::class, 'upload'])->name('galleries.upload');
 
     // NEW: Notifications
     Route::resource('notifications', \App\Http\Controllers\Admin\NotificationController::class);
