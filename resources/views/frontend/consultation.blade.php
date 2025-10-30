@@ -88,7 +88,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-input">
-                                                <label class="cf-label">Service <span>*</span></label>
+                                                <label class="cf-label">Service(You are consulting on...) <span>*</span></label>
                                                 <select name="service" required>
                                                     <option value="">Select Service</option>
                                                     @foreach($Services as $service)
@@ -106,7 +106,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-input">
                                                 <label class="cf-label">Consultation Fee</label>
-                                                <input type="text" name="consultation_fee" value="5000" readonly>
+                                                <input type="text" name="consultation_fee" value="8000" readonly>
                                             </div>
                                         </div>
                                     </div>

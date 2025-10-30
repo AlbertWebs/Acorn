@@ -32,6 +32,7 @@ use App\Http\Controllers\SubscriberPostController;
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MpesaController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -83,6 +84,9 @@ Route::post('/book-consultation-submit', [BookingController::class, 'submit'])->
 // New route for payment page
 Route::get('/booking/{booking}/payment', [BookingController::class, 'showPaymentPage'])->name('booking.payment');
 Route::post('/booking/{booking}/payment', [BookingController::class, 'processPayment'])->name('booking.payment.submit');
+Route::get('/booking/{booking}/payment/status', [BookingController::class, 'paymentStatus'])->name('booking.payment.status');
+// M-Pesa STK callback (sandbox)
+Route::post('/mpesa/stk/callback', [MpesaController::class, 'stkCallback'])->name('mpesa.stk.callback');
 Route::post('/subscribe', [App\Http\Controllers\SubscriberPostController::class, 'store'])->name('subscribe');
 
 

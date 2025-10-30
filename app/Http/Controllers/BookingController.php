@@ -8,6 +8,8 @@ use App\Models\Invoice;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use App\Services\MpesaService;
+use App\Models\MpesaStkPayment;
 
 class BookingController extends Controller
 {
@@ -37,7 +39,7 @@ class BookingController extends Controller
             'booking_datetime' => $request->booking_datetime,
             'service' => $request->service,
             'additional_info' => $request->additional_info,
-            'consultation_fee' => 5000,
+            'consultation_fee' => 8000,
             'payment_status' => 'Not Paid',
         ]);
 
@@ -90,11 +92,67 @@ class BookingController extends Controller
         $request->validate([
             'mpesa_phone' => 'required|digits_between:10,12',
         ]);
+        $phone = preg_replace('/\D+/', '', $request->input('mpesa_phone'));
+        // Normalize to 2547XXXXXXXX / 2541XXXXXXXX
+        if (str_starts_with($phone, '07')) { $phone = '254' . substr($phone, 1); }
+        elseif (str_starts_with($phone, '01')) { $phone = '254' . substr($phone, 1); }
+        elseif (str_starts_with($phone, '7')) { $phone = '254' . $phone; }
+        elseif (str_starts_with($phone, '1')) { $phone = '254' . $phone; }
+        elseif (!str_starts_with($phone, '254')) { $phone = '254' . ltrim($phone, '0'); }
+        $amount = (int) $booking->consultation_fee;
+        $accountRef = 'BK-' . $booking->id;
+        $invoice = \App\Models\Invoice::where('booking_id', $booking->id)->first();
+        $desc = 'Invoice ' . ($invoice->invoice_number ?? $booking->id);
 
-        // Here you can integrate M-Pesa API for real payment
-        // For now, just mark booking as Paid for demo
-        $booking->update(['payment_status' => 'Paid']);
+        try {
+            $service = new MpesaService();
+            $callbackUrl = config('mpesa.callback_url');
+            $response = $service->initiateStkPush($phone, $amount, $accountRef, $desc, $callbackUrl);
 
-        return redirect()->route('book-consultation')->with('success', 'Payment successful!');
+            // Persist initiation to map callback later
+            MpesaStkPayment::create([
+                'phone_number' => $phone,
+                'amount' => $amount,
+                'merchant_request_id' => $response['MerchantRequestID'] ?? null,
+                'checkout_request_id' => $response['CheckoutRequestID'] ?? null,
+                'status' => 'pending',
+                'raw_response' => json_encode([
+                    'init_response' => $response,
+                    'booking_id' => $booking->id,
+                    'account_reference' => $accountRef,
+                ]),
+            ]);
+
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json([
+                    'status' => 'initiated',
+                    'booking_id' => $booking->id,
+                    'message' => 'Payment initiated successfully.'
+                ]);
+            }
+
+            return redirect()->route('booking.payment', $booking)->with('success', 'Payment initiated. Complete on your phone.');
+        } catch (\Throwable $e) {
+            \Log::error('M-Pesa STK initiation failed', [
+                'booking_id' => $booking->id,
+                'phone' => $phone,
+                'error' => $e->getMessage(),
+            ]);
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Failed to initiate payment: ' . $e->getMessage(),
+                ], 500);
+            }
+            return back()->withErrors('Failed to initiate payment');
+        }
+    }
+
+    public function paymentStatus(Request $request, Booking $booking)
+    {
+        return response()->json([
+            'booking_id' => $booking->id,
+            'payment_status' => $booking->payment_status,
+        ]);
     }
 }
