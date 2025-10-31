@@ -205,7 +205,12 @@
 
                 // Wait for server to reflect the M-Pesa callback (no websockets shortcut)
                 const st = await pollStatus({{ $booking->id }}, 180000);
-                if (st==='paid') { setStep(step2,'done'); setStep(step3,'active'); toggleGif(3, true); setTimeout(()=>location.href = "{{ route('book-consultation') }}?paid=1", 800); }
+                if (st==='paid') { 
+                    setStep(step2,'done'); 
+                    setStep(step3,'active'); 
+                    toggleGif(3, true); 
+                    setTimeout(()=>location.href = "{{ route('payment.thank-you', $booking->id) }}", 1500); 
+                }
                 else { submitBtn.disabled=false; setStep(step1,'idle'); toggleGif(null, false); alert('No confirmation received yet. If you approved the prompt, please wait and try checking again.'); }
             }catch(err){
                 submitBtn.disabled = false;

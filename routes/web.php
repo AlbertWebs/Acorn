@@ -85,6 +85,8 @@ Route::post('/book-consultation-submit', [BookingController::class, 'submit'])->
 Route::get('/booking/{booking}/payment', [BookingController::class, 'showPaymentPage'])->name('booking.payment');
 Route::post('/booking/{booking}/payment', [BookingController::class, 'processPayment'])->name('booking.payment.submit');
 Route::get('/booking/{booking}/payment/status', [BookingController::class, 'paymentStatus'])->name('booking.payment.status');
+Route::get('/payment/thank-you/{booking}', [BookingController::class, 'thankYou'])->name('payment.thank-you');
+Route::get('/payment/receipt/{booking}', [BookingController::class, 'receipt'])->name('payment.receipt');
 // M-Pesa STK callback (sandbox)
 Route::post('/mpesa/stk/callback', [MpesaController::class, 'stkCallback'])->name('mpesa.stk.callback');
 Route::post('/subscribe', [App\Http\Controllers\SubscriberPostController::class, 'store'])->name('subscribe');

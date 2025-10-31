@@ -11,6 +11,7 @@ class MpesaStkPayment extends Model
 
     protected $fillable = [
         'user_id',
+        'booking_id',
         'phone_number',
         'amount',
         'merchant_request_id',
@@ -26,5 +27,10 @@ class MpesaStkPayment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function booking()
+    {
+        return $this->belongsTo(Booking::class);
     }
 }

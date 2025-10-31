@@ -111,6 +111,7 @@ class BookingController extends Controller
 
             // Persist initiation to map callback later
             MpesaStkPayment::create([
+                'booking_id' => $booking->id,
                 'phone_number' => $phone,
                 'amount' => $amount,
                 'merchant_request_id' => $response['MerchantRequestID'] ?? null,
@@ -154,5 +155,34 @@ class BookingController extends Controller
             'booking_id' => $booking->id,
             'payment_status' => $booking->payment_status,
         ]);
+    }
+
+    public function thankYou(Booking $booking)
+    {
+        $Settings = \App\Models\Setting::first();
+        $invoice = Invoice::where('booking_id', $booking->id)->first();
+        $payment = \App\Models\MpesaStkPayment::where('booking_id', $booking->id)
+            ->where('status', 'success')
+            ->latest()
+            ->first();
+
+        return view('frontend.thank-you', compact('booking', 'invoice', 'payment', 'Settings'));
+    }
+
+    public function receipt(Booking $booking)
+    {
+        $Settings = \App\Models\Setting::first();
+        $invoice = Invoice::where('booking_id', $booking->id)->first();
+        $payment = \App\Models\MpesaStkPayment::where('booking_id', $booking->id)
+            ->where('status', 'success')
+            ->latest()
+            ->first();
+
+        if (!$payment || $payment->status !== 'success') {
+            return redirect()->route('book-consultation')
+                ->with('error', 'Receipt not available. Payment not found or not completed.');
+        }
+
+        return view('frontend.receipt', compact('booking', 'invoice', 'payment', 'Settings'));
     }
 }

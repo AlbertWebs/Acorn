@@ -7,6 +7,8 @@ use App\Models\MpesaStkPayment;
 use App\Models\Booking;
 use App\Models\Invoice;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentConfirmationMail;
 
 class MpesaController extends Controller
 {
@@ -62,18 +64,27 @@ class MpesaController extends Controller
 
         $payment->update($update);
 
-        // Map back to booking id from stored raw_response during initiation
-        $bookingId = null;
-        $raw = json_decode($payment->raw_response ?? '[]', true);
-        if (isset($raw['booking_id'])) {
-            $bookingId = (int)$raw['booking_id'];
-        } elseif (isset($raw['init_response'])) {
-            // try regex fallback
-            if (preg_match('/BK-(\d+)/', json_encode($raw), $m)) {
+        // Get booking_id directly from payment or from raw_response
+        $bookingId = $payment->booking_id;
+        if (!$bookingId) {
+            $raw = json_decode($payment->raw_response ?? '[]', true);
+            if (isset($raw['booking_id'])) {
+                $bookingId = (int)$raw['booking_id'];
+            } elseif (isset($raw['init_response'])) {
+                $initData = $raw['init_response'] ?? [];
+                if (isset($initData['booking_id'])) {
+                    $bookingId = (int)$initData['booking_id'];
+                } elseif (preg_match('/BK-(\d+)/', json_encode($raw), $m)) {
+                    $bookingId = (int)$m[1];
+                }
+            } elseif (preg_match('/BK-(\d+)/', $payment->raw_response ?? '', $m)) {
                 $bookingId = (int)$m[1];
             }
-        } elseif (preg_match('/BK-(\d+)/', $payment->raw_response ?? '', $m)) {
-            $bookingId = (int)$m[1];
+            
+            // Update payment with booking_id if found
+            if ($bookingId) {
+                $payment->update(['booking_id' => $bookingId]);
+            }
         }
 
         if ($bookingId) {
@@ -86,6 +97,23 @@ class MpesaController extends Controller
                         'payment_status' => 'paid',
                         'transaction_reference' => $payment->mpesa_receipt_number,
                         'status' => 'paid',
+                    ]);
+                }
+
+                // Send payment confirmation email
+                try {
+                    $settings = \App\Models\Setting::first();
+                    Mail::to($booking->email)
+                        ->cc('albertmuhatia@gmail.com')
+                        ->send(new PaymentConfirmationMail($booking, $invoice, $payment));
+                    Log::info('Payment confirmation email sent', [
+                        'booking_id' => $booking->id,
+                        'email' => $booking->email
+                    ]);
+                } catch (\Exception $e) {
+                    Log::error('Failed to send payment confirmation email', [
+                        'booking_id' => $booking->id,
+                        'error' => $e->getMessage()
                     ]);
                 }
             }
