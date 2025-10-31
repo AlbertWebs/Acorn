@@ -39,7 +39,7 @@ class BookingController extends Controller
             'booking_datetime' => $request->booking_datetime,
             'service' => $request->service,
             'additional_info' => $request->additional_info,
-            'consultation_fee' => 8000,
+            'consultation_fee' => 1,
             'payment_status' => 'Not Paid',
         ]);
 
