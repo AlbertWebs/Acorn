@@ -89,6 +89,9 @@ Route::get('/payment/thank-you/{booking}', [BookingController::class, 'thankYou'
 Route::get('/payment/receipt/{booking}', [BookingController::class, 'receipt'])->name('payment.receipt');
 // M-Pesa STK callback (sandbox)
 Route::post('/mpesa/stk/callback', [MpesaController::class, 'stkCallback'])->name('mpesa.stk.callback');
+
+// Send message to admin
+Route::post('/send-message-to-admin', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('message.send');
 Route::post('/subscribe', [App\Http\Controllers\SubscriberPostController::class, 'store'])->name('subscribe');
 
 
