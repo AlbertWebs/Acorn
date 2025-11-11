@@ -60,6 +60,27 @@ class MpesaService
 
         return $response->json();
     }
+
+    public function registerC2bUrls(string $validationUrl, string $confirmationUrl, string $responseType = 'Completed'): array
+    {
+        $accessToken = $this->getAccessToken();
+
+        $payload = [
+            'ShortCode' => (int) $this->shortCode,
+            'ResponseType' => $responseType,
+            'ConfirmationURL' => $confirmationUrl,
+            'ValidationURL' => $validationUrl,
+        ];
+
+        $response = Http::withToken($accessToken)
+            ->post($this->baseUrl . '/mpesa/c2b/v1/registerurl', $payload);
+
+        if (! $response->successful()) {
+            throw new \RuntimeException('C2B URL registration failed: ' . $response->body());
+        }
+
+        return $response->json();
+    }
 }
 
 

@@ -83,13 +83,13 @@
                                     </button>
                                 </form>
 
-                                {{-- Send via SMS (optional) --}}
-                                @if (Route::has('admin.invoices.send-sms'))
-                                    <form action="{{ route('admin.invoices.send-sms', $invoice->id) }}" method="POST"
-                                          onsubmit="return confirm('Send this invoice via SMS to the client?');">
+                                {{-- Send payment link --}}
+                                @if (Route::has('admin.invoices.send-payment-link'))
+                                    <form action="{{ route('admin.invoices.send-payment-link', $invoice->id) }}" method="POST"
+                                          onsubmit="return confirm('Send this invoice payment link via email and SMS?');">
                                         @csrf
-                                        <button type="submit" class="text-green-600 hover:text-green-800" title="Send SMS">
-                                            <i class="fas fa-sms"></i>
+                                        <button type="submit" class="text-green-600 hover:text-green-800" title="Send payment link">
+                                            <i class="fas fa-paper-plane"></i>
                                         </button>
                                     </form>
                                 @endif

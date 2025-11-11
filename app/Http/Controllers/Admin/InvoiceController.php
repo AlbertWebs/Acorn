@@ -9,7 +9,9 @@ use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use App\Mail\InvoicePaymentLinkMail;
 
 class InvoiceController extends Controller
 {
@@ -169,39 +171,66 @@ public function update(Request $request, $id)
         ->with('success', 'Invoice updated successfully.');
 }
 
-public function sendSms($id)
+public function sendPaymentLink($id)
 {
-    $invoice = Invoice::with('user')->findOrFail($id);
+    $invoice = Invoice::with(['user', 'booking'])->findOrFail($id);
 
-    $clientName = $invoice->full_name ?? optional($invoice->user)->name ?? 'Customer';
-    $recipient = $invoice->mpesa_number
-               ?? optional($invoice->user)->phone
-               ?? optional($invoice->user)->mobile
-               ?? null;
+    $booking = $invoice->booking;
+    $invoiceNumber = $invoice->invoice_number ?? ('INV-' . str_pad($invoice->id, 4, '0', STR_PAD_LEFT));
 
-    if (! $recipient) {
-        return redirect()->back()->with('error', 'No phone number found for this invoice.');
+    $clientName = $invoice->client_name
+        ?? optional($invoice->user)->name
+        ?? 'Customer';
+
+    $email = $invoice->client_email
+        ?? optional($invoice->user)->email
+        ?? null;
+
+    $phone = $invoice->client_phone
+        ?? $invoice->mpesa_number
+        ?? optional($invoice->user)->phone
+        ?? optional($invoice->user)->mobile
+        ?? null;
+
+    if (! $email && ! $phone) {
+        return redirect()->back()->with('error', 'No contact details found for this invoice.');
     }
 
-    $pickup = \Carbon\Carbon::parse($invoice->pickup_date)->format('d M Y');
-    $dropoff = \Carbon\Carbon::parse($invoice->dropoff_date)->format('d M Y');
+    $paymentUrl = $booking
+        ? route('booking.payment', $booking)
+        : route('book-consultation');
 
-    $message = "Hello {$clientName}, your invoice for Ksh "
-             . number_format($invoice->total_price, 0)
-             . " is ready. Booking dates: {$pickup} to {$dropoff}.";
+    $amount = number_format($invoice->total_amount ?? 0, 2);
+    $dueDate = $invoice->due_date ? $invoice->due_date->format('d M Y') : null;
 
     try {
-        // Simulate sending SMS (replace with real API)
-        \Log::info("SMS to {$recipient}: {$message}");
-        //SendSMSHere
+        if ($email) {
+            Mail::to($email)->send(new InvoicePaymentLinkMail($invoice, $booking, $paymentUrl));
+        }
 
-        // Update the invoice status
-        $invoice->update(['is_sent' => true]);
+        if ($phone) {
+            $smsMessage = "Hello {$clientName}, please pay invoice {$invoiceNumber} "
+                . "for KES {$amount}"
+                . ($dueDate ? " (due {$dueDate})" : '')
+                . ". Pay here: {$paymentUrl}";
 
-        return redirect()->back()->with('success', 'Invoice sent via SMS successfully.');
+            Log::info("SMS to {$phone}: {$smsMessage}");
+            // TODO: Integrate real SMS provider here.
+        }
+
+        if ($invoice->status === 'draft') {
+            $invoice->update(['status' => 'sent']);
+        }
+
+        return redirect()->back()->with('success', 'Payment link sent successfully.');
     } catch (\Throwable $e) {
-        \Log::error('SMS sending failed', ['error' => $e->getMessage()]);
-        return redirect()->back()->with('error', 'Failed to send invoice SMS.');
+        Log::error('Sending payment link failed', [
+            'invoice_id' => $invoice->id,
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString(),
+        ]);
+
+        return redirect()->back()->with('error', 'Failed to send payment link. Please check the logs.');
     }
 }
 

@@ -33,6 +33,7 @@ use App\Http\Controllers\SubscriberPostController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\MpesaC2bController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -88,8 +89,10 @@ Route::get('/booking/{booking}/payment/status', [BookingController::class, 'paym
 Route::get('/payment/thank-you/{booking}', [BookingController::class, 'thankYou'])->name('payment.thank-you');
 Route::get('/payment/receipt/{booking}', [BookingController::class, 'receipt'])->name('payment.receipt');
 
-// M-Pesa STK callback (sandbox)
+// M-Pesa callbacks
 Route::post('/mpesa/stk/callback', [MpesaController::class, 'stkCallback'])->name('mpesa.stk.callback');
+Route::post('/mpesa/c2b/validation', [MpesaC2bController::class, 'validateTransaction'])->name('mpesa.c2b.validation');
+Route::post('/mpesa/c2b/confirmation', [MpesaC2bController::class, 'confirmTransaction'])->name('mpesa.c2b.confirmation');
 
 // Send message to admin
 Route::post('/send-message-to-admin', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('message.send');
@@ -179,6 +182,9 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     // NEW: Notifications
     Route::resource('notifications', \App\Http\Controllers\Admin\NotificationController::class);
 
+    // M-Pesa C2B helpers
+    Route::post('/mpesa/c2b/register', [MpesaC2bController::class, 'registerUrls'])->name('mpesa.c2b.register');
+
     Route::get('/legals', [LegalController::class, 'index'])->name('legals.index');
     Route::get('/legals/{page}/edit', [LegalController::class, 'edit'])->name('legals.edit');
     Route::put('/legals/{page}', [LegalController::class, 'update'])->name('legals.update');
@@ -220,8 +226,8 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
         Route::delete('/invoices/{id}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
         Route::get('/invoices/{id}/print', [InvoiceController::class, 'print'])
             ->name('invoices.print');
-        Route::post('/invoices/{id}/send-sms', [InvoiceController::class, 'sendSms'])
-        ->name('invoices.send-sms');
+        Route::post('/invoices/{id}/send-payment-link', [InvoiceController::class, 'sendPaymentLink'])
+        ->name('invoices.send-payment-link');
 
 
         // Store Invoice
