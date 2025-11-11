@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\TrackTraffic::class,
         ]);
         $middleware->append(TrackTraffic::class);
+        $middleware->validateCsrfTokens(except: [
+            '/mpesa/stk/callback',
+        ]);
         $middleware->alias([
             'is_admin' => \App\Http\Middleware\IsAdmin::class,
         ]);

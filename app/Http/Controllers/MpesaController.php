@@ -42,6 +42,17 @@ class MpesaController extends Controller
             'result_desc' => $resultDesc
         ]);
 
+        $items = $body['CallbackMetadata']['Item'] ?? [];
+        $metadata = [];
+        foreach ($items as $item) {
+            $metadata[$item['Name']] = $item['Value'] ?? null;
+        }
+
+        $phoneNumberFromCallback = $metadata['PhoneNumber'] ?? null;
+        $amountFromCallback = $metadata['Amount'] ?? null;
+        $receiptNumberFromCallback = $metadata['MpesaReceiptNumber'] ?? null;
+        $transactionDateFromCallback = $metadata['TransactionDate'] ?? null;
+
         $attributes = [
             'merchant_request_id' => $merchantRequestId,
             'checkout_request_id' => $checkoutRequestId,
@@ -56,6 +67,12 @@ class MpesaController extends Controller
             $payment = MpesaStkPayment::create(array_merge($attributes, [
                 'status' => 'pending',
                 'raw_response' => json_encode($payload),
+                'phone_number' => $phoneNumberFromCallback ?? '',
+                'amount' => $amountFromCallback ?? 0,
+                'result_code' => $resultCode,
+                'result_desc' => $resultDesc,
+                'mpesa_receipt_number' => $receiptNumberFromCallback,
+                'transaction_date' => $transactionDateFromCallback,
             ]));
             Log::info('M-Pesa STK Callback: Created new payment record', [
                 'payment_id' => $payment->id,
@@ -78,15 +95,10 @@ class MpesaController extends Controller
         ];
 
         if ($status === 'success') {
-            $items = $body['CallbackMetadata']['Item'] ?? [];
-            $map = [];
-            foreach ($items as $item) {
-                $map[$item['Name']] = $item['Value'] ?? null;
-            }
-            $update['mpesa_receipt_number'] = $map['MpesaReceiptNumber'] ?? null;
-            $update['transaction_date'] = $map['TransactionDate'] ?? null;
-            $update['amount'] = $map['Amount'] ?? ($payment->amount ?? null);
-            $update['phone_number'] = $map['PhoneNumber'] ?? ($payment->phone_number ?? null);
+            $update['mpesa_receipt_number'] = $receiptNumberFromCallback ?? $payment->mpesa_receipt_number;
+            $update['transaction_date'] = $transactionDateFromCallback ?? $payment->transaction_date;
+            $update['amount'] = $amountFromCallback ?? ($payment->amount ?? null);
+            $update['phone_number'] = $phoneNumberFromCallback ?? ($payment->phone_number ?? null);
 
             Log::info('M-Pesa STK Callback: Payment successful', [
                 'payment_id' => $payment->id,
