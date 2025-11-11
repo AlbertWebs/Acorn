@@ -10,17 +10,20 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::table('settings', function (Blueprint $table) {
-        $table->string('white_logo')->nullable()->after('logo');
-    });
-}
+    {
+        if (! Schema::hasColumn('settings', 'white_logo')) {
+            Schema::table('settings', function (Blueprint $table) {
+                $table->string('white_logo')->nullable()->after('logo');
+            });
+        }
+    }
 
-public function down(): void
-{
-    Schema::table('settings', function (Blueprint $table) {
-        $table->dropColumn('white_logo');
-    });
-}
-
+    public function down(): void
+    {
+        if (Schema::hasColumn('settings', 'white_logo')) {
+            Schema::table('settings', function (Blueprint $table) {
+                $table->dropColumn('white_logo');
+            });
+        }
+    }
 };

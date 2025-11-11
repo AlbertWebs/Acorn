@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -17,7 +18,29 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('galleries', function (Blueprint $table) {
-            $table->dropColumn(['context_type','context_slug']);
+            if (Schema::hasColumn('galleries', 'context_type')) {
+                DB::statement('DROP INDEX IF EXISTS galleries_context_type_index');
+            }
+
+            if (Schema::hasColumn('galleries', 'context_slug')) {
+                DB::statement('DROP INDEX IF EXISTS galleries_context_slug_index');
+            }
+        });
+
+        Schema::table('galleries', function (Blueprint $table) {
+            $columnsToDrop = [];
+
+            if (Schema::hasColumn('galleries', 'context_type')) {
+                $columnsToDrop[] = 'context_type';
+            }
+
+            if (Schema::hasColumn('galleries', 'context_slug')) {
+                $columnsToDrop[] = 'context_slug';
+            }
+
+            if (! empty($columnsToDrop)) {
+                $table->dropColumn($columnsToDrop);
+            }
         });
     }
 };

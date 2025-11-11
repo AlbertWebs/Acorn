@@ -27,13 +27,12 @@ class DatabaseSeeder extends Seeder
         );
 
         $this->call([
+            SettingsTableSeeder::class,
             ConsultantSeeder::class,
             // UsersTableSeeder::class,
             MpesaStkPaymentsSeeder::class,
-
             MpesaC2bPaymentsSeeder::class,
-            FaqsTableSeeder::class
-
+            FaqsTableSeeder::class,
         ]);
 
     }
