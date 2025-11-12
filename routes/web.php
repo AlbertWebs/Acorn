@@ -201,7 +201,7 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     Route::post('/about/update', [AboutController::class, 'update'])->name('about.update');
 
     Route::resource('faq', FaqController::class)->names('faq');
-    Route::resource('fleets', FleetController::class)->names('fleets');
+ 
 
     Route::resource('services', ServiceController::class)->names('services');
 
