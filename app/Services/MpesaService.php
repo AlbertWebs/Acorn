@@ -18,7 +18,7 @@ class MpesaService
         $this->consumerSecret = config('mpesa.consumer_secret');
         $this->shortCode = config('mpesa.short_code');
         $this->passkey = config('mpesa.passkey');
-        $this->baseUrl = rtrim(config('mpesa.base_url', 'https://sandbox.safaricom.co.ke'), '/');
+        $this->baseUrl = rtrim(config('mpesa.base_url', 'https://api.safaricom.co.ke'), '/');
     }
 
     public function getAccessToken(): string
