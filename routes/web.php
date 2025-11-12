@@ -95,7 +95,7 @@ Route::post('/mpesa/c2b/validation', [MpesaC2bController::class, 'validateTransa
 Route::post('/mpesa/c2b/confirmation', [MpesaC2bController::class, 'confirmTransaction'])->name('mpesa.c2b.confirmation');
 
 // M-Pesa C2B helpers
-Route::post('/mpesa/c2b/register', [MpesaC2bController::class, 'registerUrls'])->name('mpesa.c2b.register');
+Route::match(['get', 'post'], '/mpesa/c2b/register', [MpesaC2bController::class, 'registerUrls'])->name('mpesa.c2b.register');
 
 // Send message to admin
 Route::post('/send-message-to-admin', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('message.send');
