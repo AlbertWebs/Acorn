@@ -64,7 +64,6 @@ class MpesaService
     public function registerC2bUrls(string $validationUrl, string $confirmationUrl, string $responseType = 'Completed'): array
     {
         $accessToken = $this->getAccessToken();
-        dd($accessToken);
 
         $payload = [
             'ShortCode' => (int) $this->shortCode,
