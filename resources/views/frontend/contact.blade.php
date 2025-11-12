@@ -145,13 +145,14 @@
                           <div class="tj-nice-select-box">
                             <div class="tj-select">
                               <select name="cfSubject">
-                                <option value="0">Chose a option</option>
-                                <option value="1">Business Strategy</option>
-                                <option value="2">Customer Experience</option>
-                                <option value="3">Sustainability and ESG</option>
-                                <option value="4">Training and Development</option>
-                                <option value="5">IT Support & Maintenance</option>
-                                <option value="6">Marketing Strategy</option>
+                                <?php
+                                 $Ser = \App\Models\Service::all();
+                                 ?>
+                                 @foreach ($Ser as $service) 
+                                  <option value="{{$service->id}}">{{$service->title}}</option>
+                                 @endforeach
+                               
+                                <option value="0">Chose an option</option>
                               </select>
                             </div>
                           </div>
