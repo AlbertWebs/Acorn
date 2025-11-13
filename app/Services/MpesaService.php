@@ -24,10 +24,13 @@ class MpesaService
     public function getAccessToken(): string
     {
         $response = Http::withBasicAuth($this->consumerKey, $this->consumerSecret)
-            ->get($this->baseUrl . '/oauth/v1/generate', [ 'grant_type' => 'client_credentials' ]);
-        if (!$response->successful()) {
-            throw new \RuntimeException('Failed to get M-Pesa access token');
+            ->acceptJson()
+            ->get($this->baseUrl . '/oauth/v1/generate?grant_type=client_credentials');
+
+        if (! $response->successful()) {
+            throw new \RuntimeException('Failed to get M-Pesa access token: ' . $response->body());
         }
+
         return $response->json('access_token');
     }
 
