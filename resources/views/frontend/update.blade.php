@@ -74,10 +74,7 @@
           </div>
 
           <div class="blog-text">
-            {{-- Short intro or excerpt --}}
-            <p class="wow fadeInUp" data-wow-delay=".3s">
-              {!! $blogs->excerpt !!}
-            </p>
+            
 
             {{-- Full content --}}
             <div class="wow fadeInUp" data-wow-delay=".3s">

@@ -4,7 +4,7 @@
 <div class="max-w-lg mx-auto p-6 bg-white shadow rounded max-w-10xl">
     <h2 class="text-2xl font-bold mb-4 text-center">Add User</h2>
 
-    <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
 
         <div>
@@ -33,6 +33,12 @@
                 <option value="admin">Admin</option>
                 <option value="client" selected>Client</option>
             </select>
+        </div>
+
+        <div>
+            <label class="block mb-1 font-semibold">Avatar</label>
+            <input type="file" name="avatar" accept="image/*" class="w-full border rounded p-2">
+            <p class="text-sm text-gray-500 mt-1">Recommended size: 300x300px. Max 2MB.</p>
         </div>
 
         <button class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 w-full">Save</button>

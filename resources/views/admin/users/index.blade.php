@@ -18,6 +18,7 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="p-3 text-left">#</th>
+                    <th class="p-3 text-left">Avatar</th>
                     <th class="p-3 text-left">Name</th>
                     <th class="p-3 text-left">Email</th>
                     <th class="p-3 text-left">Role</th>
@@ -28,6 +29,17 @@
                 @foreach ($users as $user)
                     <tr class="border-t">
                         <td class="p-3">{{ $loop->iteration }}</td>
+                        <td class="p-3">
+                            <div class="flex items-center">
+                                @if($user->avatar)
+                                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="{{ $user->name }} avatar" class="h-10 w-10 rounded-full object-cover border">
+                                @else
+                                    <div class="h-10 w-10 flex items-center justify-center rounded-full bg-gray-200 text-gray-600 font-semibold">
+                                        {{ strtoupper(substr($user->name, 0, 1)) }}
+                                    </div>
+                                @endif
+                            </div>
+                        </td>
                         <td class="p-3">{{ $user->name }}</td>
                         <td class="p-3">{{ $user->email }}</td>
                         <td class="p-3 capitalize">{{ $user->role }}</td>

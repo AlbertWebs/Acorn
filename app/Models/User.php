@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'kyc_token',
+        'role',
+        'avatar',
     ];
 
     /**
