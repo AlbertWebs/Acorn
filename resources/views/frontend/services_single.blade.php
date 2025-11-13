@@ -110,10 +110,10 @@
                     <div class="feature-box">
                     <div class="feature-content">
                         <h2 class="title">Need Help?</h2>
-                        <span>Talk to Our Experts</span>
+                        <span>Talk to us today</span>
                         <a class="read-more feature-contact" href="tel:{{ $Settings->phone ?? '0700-000-000' }}">
                         <i class="tji-phone-3"></i>
-                        <span>{{ $Settings->phone ?? '+254 700 000 000' }}</span>
+                        <span>{{ $Settings->mobile ?? '+254 700 000 000' }}</span>
                         </a>
                     </div>
                     <div class="feature-images">
