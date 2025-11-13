@@ -47,19 +47,13 @@
                         </div>
 
                         <div class="mt-4">
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
-                                <div>
-                                    <h5 class="mb-1">Nyarai Caregivers Training</h5>
-                                    <small class="text-muted">Caregivers training</small>
-                                </div>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">10</span></div>
+                            <div class="mb-3 pb-3 border-bottom">
+                                <h5 class="mb-1">Nyarai Caregivers Training</h5>
+                                <small class="text-muted">Caregivers training</small>
                             </div>
 
                             <div class="mb-4 pb-3 border-bottom">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <h5 class="mb-2">Acorn Teachers Training – Cohort 1</h5>
-                                    <div><span class="badge bg-warning text-dark" style="font-size:14px">17</span></div>
-                                </div>
+                                <h5 class="mb-2">Acorn Teachers Training – Cohort 1</h5>
                                 <ul class="mb-0 ps-3">
                                     <li>Acorn Special Tutorials</li>
                                     <li>Marion Schools</li>
@@ -71,18 +65,12 @@
                                 </ul>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
-                                <div>
-                                    <h5 class="mb-1">St. Nicholas School</h5>
-                                </div>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">21</span></div>
+                            <div class="mb-3 pb-3 border-bottom">
+                                <h5 class="mb-1">St. Nicholas School</h5>
                             </div>
 
                             <div class="mb-4 pb-3 border-bottom">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <h5 class="mb-2">Acorn Teachers Training – Cohort 2 (Virtual)</h5>
-                                    <div><span class="badge bg-warning text-dark" style="font-size:14px">18</span></div>
-                                </div>
+                                <h5 class="mb-2">Acorn Teachers Training – Cohort 2 (Virtual)</h5>
                                 <ul class="mb-0 ps-3">
                                     <li>Acorn Special Tutorials</li>
                                     <li>Riara Schools</li>
@@ -93,10 +81,7 @@
                             </div>
 
                             <div class="mb-4 pb-3 border-bottom">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <h5 class="mb-2">Acorn Teachers Training – Cohort 3</h5>
-                                    <div><span class="badge bg-warning text-dark" style="font-size:14px">38</span></div>
-                                </div>
+                                <h5 class="mb-2">Acorn Teachers Training – Cohort 3</h5>
                                 <ul class="mb-0 ps-3">
                                     <li>Acorn Special Tutorials</li>
                                     <li>Juja Preparatory Schools</li>
@@ -109,34 +94,28 @@
                                 </ul>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+                            <div class="mb-3 pb-3 border-bottom">
                                 <h5 class="mb-0">Bakhita Kindergarten Sabaki</h5>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">25</span></div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+                            <div class="mb-3 pb-3 border-bottom">
                                 <h5 class="mb-0">Bakhita Kindergarten Eagles Plain</h5>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">27</span></div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+                            <div class="mb-3 pb-3 border-bottom">
                                 <h5 class="mb-0">Bakhita Primary School</h5>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">33</span></div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+                            <div class="mb-3 pb-3 border-bottom">
                                 <h5 class="mb-0">Juja Preparatory</h5>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">39</span></div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+                            <div class="mb-3 pb-3 border-bottom">
                                 <h5 class="mb-0">Green Acorn Kindergarten</h5>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">42</span></div>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-start mb-3 pb-3 border-bottom">
+                            <div class="mb-3 pb-3 border-bottom">
                                 <h5 class="mb-0">Gashie Teachers Training</h5>
-                                <div><span class="badge bg-warning text-dark" style="font-size:14px">49</span></div>
                             </div>
 
                             <div class="mb-3">
@@ -148,9 +127,8 @@
                                 <small class="text-muted">Engagement</small>
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">Total Teachers Reached</h5>
-                                <div><span class="badge bg-dark" style="font-size:14px">319</span></div>
+                            <div class="mt-4">
+                                <h5 class="mb-0">Total Teachers Reached is 1000+</h5>
                             </div>
                         </div>
                     </div>

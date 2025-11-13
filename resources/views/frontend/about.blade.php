@@ -51,9 +51,9 @@
                 </div>
               </div>
             </div>
-            <div class="row row-gap-4 rightSwipeWrap">
+            <div class="row row-gap-4">
               <div class="col-lg-12">
-                <div class="choose-box right-swipe">
+                <div class="choose-box">
                   <div class="choose-content">
 
                     <p class="desc">{!!$About->description!!}</p>
