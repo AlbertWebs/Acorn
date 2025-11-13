@@ -8673,7 +8673,7 @@ START: Choose CSS
           justify-content: flex-start;
 }
 .choose-box:hover {
-  background-color: var(--tj-color-theme-primary);
+  /* background-color: var(--tj-color-theme-primary); */
 }
 .choose-box:hover .choose-icon {
   color: var(--tj-color-common-white);
