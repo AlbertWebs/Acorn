@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->year('year');
+            $table->string('year', 32);
             $table->string('step_number')->nullable();
             $table->string('title');
             $table->text('description')->nullable();

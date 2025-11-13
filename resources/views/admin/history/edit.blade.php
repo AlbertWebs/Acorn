@@ -26,8 +26,8 @@
 
         <div class="grid md:grid-cols-2 gap-6">
             <div>
-                <label class="block font-semibold mb-1">Year <span class="text-red-500">*</span></label>
-                <input type="number" name="year" value="{{ old('year', $history->year) }}" required class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                <label class="block font-semibold mb-1">Year / Range <span class="text-red-500">*</span></label>
+                <input type="text" name="year" value="{{ old('year', $history->year) }}" placeholder="e.g. 1990-1999" required class="w-full border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <div>

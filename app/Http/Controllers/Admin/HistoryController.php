@@ -22,7 +22,7 @@ class HistoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'year' => 'required|numeric',
+            'year' => 'required|string|max:32',
             'step_number' => 'nullable|string',
             'meta' => 'nullable|string',
             'title' => 'required|string|max:255',
@@ -52,7 +52,7 @@ class HistoryController extends Controller
     public function update(Request $request, History $history)
     {
         $validated = $request->validate([
-            'year' => 'required|numeric',
+            'year' => 'required|string|max:32',
             'meta' => 'nullable|string',
             'step_number' => 'nullable|string',
             'title' => 'required|string|max:255',
