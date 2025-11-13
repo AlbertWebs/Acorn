@@ -44,7 +44,13 @@
           <div class="blog-category-two wow fadeInUp" data-wow-delay=".3s">
             <div class="category-item">
               <div class="cate-images">
-                <img src="{{ asset('assets/images/testimonial/client-2.webp') }}" alt="Author">
+                @if(!empty($authorAvatar))
+                  <img src="{{ asset('storage/' . $authorAvatar) }}" alt="{{ $blogs->author }}">
+                @else
+                  <div class="h-12 w-12 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold">
+                    {{ $authorInitial }}
+                  </div>
+                @endif
               </div>
               <div class="cate-text">
                 <span class="degination">Authored by</span>

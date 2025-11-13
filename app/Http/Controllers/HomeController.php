@@ -169,7 +169,15 @@ class HomeController extends Controller
         // $teams = \App\Models\Team::where('is_active', true)->get();
         $Settings = \App\Models\Setting::first();
         $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
-        return view('frontend.update', compact('blogs', 'feedbacks','Settings','page_title'));
+
+        $authorUser = $blogs->author
+            ? \App\Models\User::where('name', $blogs->author)->first()
+            : null;
+
+        $authorAvatar = $authorUser?->avatar;
+        $authorInitial = strtoupper(substr($blogs->author ?? 'A', 0, 1));
+
+        return view('frontend.update', compact('blogs', 'feedbacks','Settings','page_title', 'authorAvatar', 'authorInitial'));
     }
 
 
