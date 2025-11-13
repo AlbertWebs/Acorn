@@ -18749,7 +18749,7 @@ START: Blog CSS
 }
 
 .timeline-inner:nth-child(odd) .date {
-  inset-inline-end: -200px;
+  inset-inline-end: -300px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .timeline-inner:nth-child(odd) .date {
@@ -18763,7 +18763,7 @@ START: Blog CSS
 }
 
 .timeline-inner:nth-child(even) .date {
-  inset-inline-start: -200px;
+  inset-inline-start: -300px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .timeline-inner:nth-child(even) .date {
