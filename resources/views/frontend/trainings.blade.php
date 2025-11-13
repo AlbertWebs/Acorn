@@ -127,8 +127,18 @@
                                 <small class="text-muted">Engagement</small>
                             </div>
 
+                            <div class="mb-4 pb-2 border-bottom">
+                                <h5 class="mb-1">Riara Group of Schools</h5>
+                                <small class="text-muted">Teachers Training</small>
+                            </div>
+
+                            <div class="mb-4 pb-2 border-bottom">
+                                <h5 class="mb-1">Serare School</h5>
+                                <small class="text-muted">Teachers Training</small>
+                            </div>
+
                             <div class="mt-4">
-                                <h5 class="mb-0">Total Teachers Reached is 1000+</h5>
+                                <h5 class="mb-0">1000+ Teachers and Caregivers Trained</h5>
                             </div>
                         </div>
                     </div>
