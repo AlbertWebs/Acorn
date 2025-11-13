@@ -70,8 +70,9 @@
             <div class="col-12">
                 <div class="timeline">
                 @foreach ($histories as $index => $history)
-                    <div class="timeline-inner wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
-                    <div class="date">{{ $history->year }}</div>
+                    <div class="timeline-record">
+                        <div class="timeline-year">{{ $history->year }}</div>
+                        <div class="timeline-inner wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                         <div class="content">
                             <div class="top">
                             <span>{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}.</span>
@@ -96,6 +97,7 @@
                             </div>
 
                             {{--  --}}
+                        </div>
                         </div>
                     </div>
                 @endforeach
