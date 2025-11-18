@@ -47,21 +47,37 @@
                         @endif
 
                         <!-- Gallery Images -->
-                        @if($galleryImages->count() > 0)
+                        @php
+                            // Ensure we have gallery images - fetch if not passed
+                            if (!isset($galleryImages) || $galleryImages->isEmpty()) {
+                                $galleryImages = \App\Models\Gallery::where('context_type', 'csr')
+                                    ->where('context_slug', (string)$csr->id)
+                                    ->where('is_active', true)
+                                    ->get();
+                            }
+                        @endphp
+                        
+                        @if($galleryImages && $galleryImages->count() > 0)
                             <div class="mb-5">
                                 <h3 class="mb-4">Gallery</h3>
                                 <div class="row g-3">
                                     @foreach($galleryImages as $image)
                                         <div class="col-md-4 col-sm-6">
-                                            <a href="{{ asset('storage/' . $image->image) }}" data-lightbox="csr-gallery">
-                                                <img src="{{ asset('storage/' . $image->image) }}" 
-                                                     alt="{{ $csr->title }}" 
-                                                     class="img-fluid rounded shadow-sm" 
-                                                     style="width: 100%; height: 250px; object-fit: cover;">
-                                            </a>
+                                            <div class="image-box wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
+                                                <a class="gallery" data-gall="csr-gallery-{{ $csr->id }}" href="{{ asset('storage/' . $image->image) }}">
+                                                    <img src="{{ asset('storage/' . $image->image) }}" 
+                                                         alt="{{ $image->title ?? $csr->title }}" 
+                                                         class="img-fluid rounded shadow-sm" 
+                                                         style="width: 100%; height: 250px; object-fit: cover; cursor: pointer;">
+                                                </a>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
+                            </div>
+                        @else
+                            <div class="mb-5">
+                                <p class="text-muted">No gallery images available for this CSR initiative.</p>
                             </div>
                         @endif
 

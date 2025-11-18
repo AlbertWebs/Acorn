@@ -79,11 +79,12 @@ class CsrController extends Controller
         // Handle is_active checkbox
         $data['is_active'] = $request->has('is_active') && $request->is_active == '1' ? 1 : 0;
 
-        // Generate slug if title changed
+        // Generate slug if title changed (model boot will also handle this, but we do it here too for clarity)
         if (isset($data['title']) && $csr->title !== $data['title']) {
             $data['slug'] = \Illuminate\Support\Str::slug($data['title']);
         }
 
+        // Update the model (the boot method will also regenerate slug if title changed)
         $csr->update($data);
 
         return redirect()->route('admin.csrs.index')->with('success', 'CSR updated successfully!');

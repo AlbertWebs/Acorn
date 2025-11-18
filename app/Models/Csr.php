@@ -31,7 +31,8 @@ class Csr extends Model
             }
         });
         static::updating(function ($csr) {
-            if ($csr->isDirty('title') && empty($csr->slug)) {
+            // Always update slug when title changes
+            if ($csr->isDirty('title')) {
                 $csr->slug = Str::slug($csr->title);
             }
         });

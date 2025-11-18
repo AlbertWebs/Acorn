@@ -149,10 +149,14 @@ class HomeController extends Controller
         $Settings = \App\Models\Setting::first();
         $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
         
-        // Get gallery images for this CSR
+        // Get gallery images for this CSR - try both string and integer ID
         $galleryImages = \App\Models\Gallery::where('context_type', 'csr')
-            ->where('context_slug', (string)$csr->id)
+            ->where(function($query) use ($csr) {
+                $query->where('context_slug', (string)$csr->id)
+                      ->orWhere('context_slug', $csr->id);
+            })
             ->where('is_active', true)
+            ->orderBy('created_at', 'desc')
             ->get();
         
         return view('frontend.csr_single', compact('csr', 'galleryImages', 'feedbacks','Settings','page_title', 'About'));
