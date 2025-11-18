@@ -36,6 +36,11 @@ class CsrController extends Controller
 
         $data['is_active'] = $request->has('is_active') ? 1 : 0;
 
+        // Generate slug if not provided
+        if (empty($data['slug'])) {
+            $data['slug'] = \Illuminate\Support\Str::slug($data['title']);
+        }
+
         $csr = Csr::create($data);
 
         return redirect()->route('admin.csrs.index')->with('success', 'CSR created successfully!');
@@ -68,6 +73,11 @@ class CsrController extends Controller
         }
 
         $data['is_active'] = $request->has('is_active') ? 1 : 0;
+
+        // Generate slug if title changed and slug not provided
+        if ($request->has('title') && $csr->title !== $request->title && empty($data['slug'])) {
+            $data['slug'] = \Illuminate\Support\Str::slug($request->title);
+        }
 
         $csr->update($data);
 

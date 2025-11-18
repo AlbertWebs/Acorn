@@ -64,6 +64,7 @@ Route::post('/events/book', [\App\Http\Controllers\EventRegistrationController::
 Route::get('/our-calendar', [HomeController::class, 'calendar'])->name('calendar');
 Route::get('/trainings', [HomeController::class, 'trainings'])->name('trainings');
 Route::get('/csr', [HomeController::class, 'csr'])->name('csr');
+Route::get('/csr/{slug}', [HomeController::class, 'csr_show'])->name('csr.show');
 
 // gallery (frontend)
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');

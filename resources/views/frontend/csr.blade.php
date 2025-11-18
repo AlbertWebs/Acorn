@@ -36,18 +36,20 @@
                     <div class="col-lg-12">
                         <div class="blog-item wow fadeInUp">
                             <div class="blog-content">
-                                <h2 class="title mb-3">{{ $csr->title }}</h2>
+                                <h2 class="title mb-3">
+                                    <a href="{{ route('csr.show', $csr->slug) }}" class="text-decoration-none">{{ $csr->title }}</a>
+                                </h2>
                                 
                                 @if($csr->description)
                                     <div class="mb-4">
-                                        {!! $csr->description !!}
+                                        {!! Str::limit(strip_tags($csr->description), 200) !!}
                                     </div>
                                 @endif
 
                                 <!-- Gallery Images -->
                                 @php
                                     $galleryImages = \App\Models\Gallery::where('context_type', 'csr')
-                                        ->where('context_slug', $csr->id)
+                                        ->where('context_slug', (string)$csr->id)
                                         ->where('is_active', true)
                                         ->get();
                                 @endphp
@@ -57,7 +59,7 @@
                                         <div class="col-12">
                                             <h4 class="mb-3">Gallery</h4>
                                             <div class="row">
-                                                @foreach($galleryImages as $image)
+                                                @foreach($galleryImages->take(4) as $image)
                                                     <div class="col-md-3 col-sm-6 mb-3">
                                                         <a href="{{ asset('storage/' . $image->image) }}" data-lightbox="csr-gallery-{{ $csr->id }}">
                                                             <img src="{{ asset('storage/' . $image->image) }}" 
@@ -68,13 +70,22 @@
                                                     </div>
                                                 @endforeach
                                             </div>
+                                            @if($galleryImages->count() > 4)
+                                                <p class="text-muted small">+{{ $galleryImages->count() - 4 }} more images</p>
+                                            @endif
                                         </div>
                                     </div>
                                 @endif
 
-                                <!-- PDF Download -->
-                                @if($csr->pdf_file)
-                                    <div class="mt-4">
+                                <!-- Read More & PDF Download -->
+                                <div class="mt-4 d-flex gap-3">
+                                    <a href="{{ route('csr.show', $csr->slug) }}" class="tj-primary-btn">
+                                        <span class="btn-text">
+                                            <span>Read More</span>
+                                        </span>
+                                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                                    </a>
+                                    @if($csr->pdf_file)
                                         <a href="{{ asset('storage/' . $csr->pdf_file) }}" 
                                            target="_blank" 
                                            class="tj-primary-btn">
@@ -83,8 +94,8 @@
                                             </span>
                                             <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                                         </a>
-                                    </div>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

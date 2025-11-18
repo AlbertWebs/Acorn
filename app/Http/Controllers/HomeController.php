@@ -141,6 +141,23 @@ class HomeController extends Controller
         return view('frontend.csr', compact('csrs', 'feedbacks','Settings','page_title', 'About'));
     }
 
+    public function csr_show($slug)
+    {
+        $csr = \App\Models\Csr::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        $page_title = $csr->title;
+        $About = \App\Models\About::first();
+        $Settings = \App\Models\Setting::first();
+        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        
+        // Get gallery images for this CSR
+        $galleryImages = \App\Models\Gallery::where('context_type', 'csr')
+            ->where('context_slug', (string)$csr->id)
+            ->where('is_active', true)
+            ->get();
+        
+        return view('frontend.csr_single', compact('csr', 'galleryImages', 'feedbacks','Settings','page_title', 'About'));
+    }
+
     public function calendar()
     {
         $page_title = "Our Calendar";

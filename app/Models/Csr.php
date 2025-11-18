@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Csr extends Model
 {
@@ -11,6 +12,7 @@ class Csr extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'description',
         'pdf_file',
         'is_active',
@@ -19,6 +21,21 @@ class Csr extends Model
     protected $casts = [
         'is_active' => 'boolean',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($csr) {
+            if (empty($csr->slug)) {
+                $csr->slug = Str::slug($csr->title);
+            }
+        });
+        static::updating(function ($csr) {
+            if ($csr->isDirty('title') && empty($csr->slug)) {
+                $csr->slug = Str::slug($csr->title);
+            }
+        });
+    }
 
     // Relationship with gallery images
     public function galleryImages()
