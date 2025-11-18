@@ -223,6 +223,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // Get CSRF token from meta tag or use the blade token
+    const csrfToken = document.querySelector('meta[name="csrf-token"]') 
+        ? document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        : '{{ csrf_token() }}';
+
     const dz = new Dropzone('#csr-gallery-dropzone', {
         url: '{{ route('admin.csrs.gallery.upload', $csr) }}',
         method: 'post',
@@ -233,13 +238,16 @@ document.addEventListener('DOMContentLoaded', function() {
         timeout: 120000,
         autoProcessQueue: true,
         headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'X-CSRF-TOKEN': csrfToken,
             'X-Requested-With': 'XMLHttpRequest'
         },
-        params: { _token: '{{ csrf_token() }}' },
         dictDefaultMessage: 'Drop images here or click to upload',
         init: function(){
+            // Ensure CSRF token is sent in formData
             this.on('sending', function(file, xhr, formData){
+                // Add CSRF token to formData
+                formData.append('_token', csrfToken);
+                
                 if (status) status.textContent = 'Uploading "' + file.name + '"...';
             });
             this.on('success', function(file, response){
@@ -247,7 +255,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => window.location.reload(), 800);
             });
             this.on('error', function(file, message, xhr){
-                if (status) status.textContent = 'Error uploading ' + file.name + ': ' + (message && message.message ? message.message : (typeof message === 'string' ? message : 'Unknown error'));
+                let errorMsg = 'Error uploading ' + file.name + ': ';
+                if (xhr && xhr.status === 419) {
+                    errorMsg += 'Session expired. Please refresh the page and try again.';
+                    if (status) status.textContent = errorMsg;
+                } else if (xhr && xhr.status === 413) {
+                    errorMsg += 'File too large. Maximum size is 5MB.';
+                    if (status) status.textContent = errorMsg;
+                } else {
+                    errorMsg += (message && message.message ? message.message : (typeof message === 'string' ? message : 'Unknown error'));
+                    if (status) status.textContent = errorMsg;
+                }
             });
         }
     });
