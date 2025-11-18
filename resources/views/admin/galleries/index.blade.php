@@ -29,6 +29,7 @@
                                 <option value="trainings">Trainings</option>
                                 <option value="history">History</option>
                                 <option value="event">Event</option>
+                                <option value="csr">CSR</option>
                             </select>
                         </div>
                         <div>

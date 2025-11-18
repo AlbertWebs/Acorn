@@ -27,7 +27,7 @@ class GalleryController extends Controller
             'title' => 'nullable|string|max:255',
             'caption' => 'nullable|string|max:255',
             'image' => 'required|image|max:5120',
-            'context_type' => 'nullable|in:general,trainings,history,event',
+            'context_type' => 'nullable|in:general,trainings,history,event,csr',
             'context_slug' => 'nullable|string|max:255',
         ]);
 
@@ -50,7 +50,7 @@ class GalleryController extends Controller
         // Dropzone async upload (one file per request)
         $request->validate([
             'file' => 'required|image|max:5120',
-            'context_type' => 'nullable|in:general,trainings,history,event',
+            'context_type' => 'nullable|in:general,trainings,history,event,csr',
             'context_slug' => 'nullable|string|max:255',
         ]);
 
@@ -82,7 +82,7 @@ class GalleryController extends Controller
             'caption' => 'nullable|string|max:255',
             'image' => 'nullable|image|max:5120',
             'is_active' => 'nullable|boolean',
-            'context_type' => 'nullable|in:general,trainings,history,event',
+            'context_type' => 'nullable|in:general,trainings,history,event,csr',
             'context_slug' => 'nullable|string|max:255',
         ]);
 

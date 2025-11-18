@@ -35,6 +35,7 @@
                         <option value="trainings" {{ old('context_type')==='trainings' ? 'selected' : '' }}>Trainings</option>
                         <option value="history" {{ old('context_type')==='history' ? 'selected' : '' }}>History</option>
                         <option value="event" {{ old('context_type')==='event' ? 'selected' : '' }}>Event</option>
+                        <option value="csr" {{ old('context_type')==='csr' ? 'selected' : '' }}>CSR</option>
                     </select>
                 </div>
                 <div>
