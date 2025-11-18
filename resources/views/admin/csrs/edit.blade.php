@@ -6,7 +6,17 @@
         <i class="fas fa-edit text-blue-600"></i> Edit CSR
     </h2>
 
-    <form action="{{ route('admin.csrs.update', $csr) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    @if($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <ul class="list-disc list-inside">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('admin.csrs.update', $csr) }}" method="POST" enctype="multipart/form-data" class="space-y-6" id="csr-update-form">
         @csrf
         @method('PUT')
 
@@ -64,10 +74,9 @@
                     <p class="text-sm text-gray-500">Drag & drop images or click to upload. Max 5MB per image.</p>
                 </div>
                 <div class="p-4">
-                    <form action="{{ route('admin.csrs.gallery.upload', $csr) }}" method="post" enctype="multipart/form-data" 
+                    <div action="{{ route('admin.csrs.gallery.upload', $csr) }}" 
                           class="dropzone border-2 border-dashed border-gray-300 rounded-md bg-gray-50" 
                           id="csr-gallery-dropzone" style="min-height:200px;">
-                        @csrf
                         <div class="dz-message text-center text-gray-600 m-0">
                             <div class="flex flex-col items-center gap-2 py-8">
                                 <i class="fa-regular fa-images text-3xl text-gray-400"></i>
@@ -75,7 +84,7 @@
                                 <p class="text-xs">JPG, PNG, GIF • Max 5MB</p>
                             </div>
                         </div>
-                    </form>
+                    </div>
                     <div id="dz-status" class="mt-3 text-sm text-gray-600"></div>
                 </div>
             </div>
@@ -106,14 +115,15 @@
         <!-- Active Status -->
         <div>
             <label class="flex items-center gap-2">
+                <input type="hidden" name="is_active" value="0">
                 <input type="checkbox" name="is_active" value="1" {{ old('is_active', $csr->is_active) ? 'checked' : '' }} class="rounded">
                 <span class="font-semibold text-gray-700">Active</span>
             </label>
         </div>
 
         <!-- Submit Button -->
-        <div class="pt-4">
-            <button type="submit" class="w-full bg-blue-600 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-blue-700 transition">
+        <div class="pt-4 relative z-10">
+            <button type="submit" id="update-csr-btn" class="w-full bg-blue-600 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer relative z-10" style="pointer-events: auto; position: relative;">
                 <i class="fas fa-save mr-2"></i> Update CSR
             </button>
         </div>
@@ -124,11 +134,28 @@
 <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css">
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
+<style>
+    #csr-update-form {
+        position: relative;
+        z-index: 1;
+    }
+    #update-csr-btn {
+        position: relative;
+        z-index: 10;
+        pointer-events: auto !important;
+    }
+    #csr-gallery-dropzone {
+        position: relative;
+        z-index: 1;
+    }
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // TinyMCE for description
+    let editorInstance = null;
     if (typeof tinymce !== 'undefined') {
-        tinymce.init({
+        editorInstance = tinymce.init({
             selector: '#description-editor',
             height: 400,
             menubar: true,
@@ -144,7 +171,47 @@ document.addEventListener('DOMContentLoaded', function() {
             content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; }',
             branding: false,
             promotion: false,
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save();
+                });
+            },
         });
+    }
+
+    // Ensure TinyMCE content is saved before form submission
+    const form = document.getElementById('csr-update-form');
+    const updateBtn = document.getElementById('update-csr-btn');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            // Don't prevent default - let form submit normally
+            // Save TinyMCE content before submitting
+            if (typeof tinymce !== 'undefined') {
+                const editor = tinymce.get('description-editor');
+                if (editor) {
+                    editor.save();
+                }
+            }
+            
+            // Disable button to prevent double submission
+            if (updateBtn) {
+                updateBtn.disabled = true;
+                updateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Updating...';
+            }
+        });
+        
+        // Also handle button click directly as fallback
+        if (updateBtn) {
+            updateBtn.addEventListener('click', function(e) {
+                // Ensure form is submitted
+                if (form && !form.checkValidity()) {
+                    form.reportValidity();
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        }
     }
 
     // Dropzone for gallery images
@@ -164,6 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
         acceptedFiles: 'image/*',
         parallelUploads: 2,
         timeout: 120000,
+        autoProcessQueue: true,
         headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}',
             'X-Requested-With': 'XMLHttpRequest'
@@ -171,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
         params: { _token: '{{ csrf_token() }}' },
         dictDefaultMessage: 'Drop images here or click to upload',
         init: function(){
-            this.on('sending', function(file){
+            this.on('sending', function(file, xhr, formData){
                 if (status) status.textContent = 'Uploading "' + file.name + '"...';
             });
             this.on('success', function(file, response){

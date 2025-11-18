@@ -62,6 +62,7 @@ class CsrController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'pdf_file' => 'nullable|file|mimes:pdf|max:10240',
+            'is_active' => 'nullable|boolean',
         ]);
 
         // Handle PDF upload
@@ -70,13 +71,17 @@ class CsrController extends Controller
                 Storage::disk('public')->delete($csr->pdf_file);
             }
             $data['pdf_file'] = $request->file('pdf_file')->store('csr/pdfs', 'public');
+        } else {
+            // Keep existing PDF if no new file uploaded
+            unset($data['pdf_file']);
         }
 
-        $data['is_active'] = $request->has('is_active') ? 1 : 0;
+        // Handle is_active checkbox
+        $data['is_active'] = $request->has('is_active') && $request->is_active == '1' ? 1 : 0;
 
-        // Generate slug if title changed and slug not provided
-        if ($request->has('title') && $csr->title !== $request->title && empty($data['slug'])) {
-            $data['slug'] = \Illuminate\Support\Str::slug($request->title);
+        // Generate slug if title changed
+        if (isset($data['title']) && $csr->title !== $data['title']) {
+            $data['slug'] = \Illuminate\Support\Str::slug($data['title']);
         }
 
         $csr->update($data);
