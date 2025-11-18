@@ -131,6 +131,16 @@ class HomeController extends Controller
         return view('frontend.webinars', compact('webinars', 'feedbacks','Settings','page_title'));
     }
 
+    public function csr()
+    {
+        $csrs = \App\Models\Csr::where('is_active', true)->latest()->get();
+        $page_title = "CSR";
+        $About = \App\Models\About::first();
+        $Settings = \App\Models\Setting::first();
+        $feedbacks = \App\Models\Feedback::latest()->take(10)->get();
+        return view('frontend.csr', compact('csrs', 'feedbacks','Settings','page_title', 'About'));
+    }
+
     public function calendar()
     {
         $page_title = "Our Calendar";

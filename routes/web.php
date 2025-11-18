@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\CoreValueController;
 use App\Http\Controllers\Admin\WebinarController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\CsrController;
 
 
 
@@ -62,6 +63,7 @@ Route::post('/events/book', [\App\Http\Controllers\EventRegistrationController::
 // calendar
 Route::get('/our-calendar', [HomeController::class, 'calendar'])->name('calendar');
 Route::get('/trainings', [HomeController::class, 'trainings'])->name('trainings');
+Route::get('/csr', [HomeController::class, 'csr'])->name('csr');
 
 // gallery (frontend)
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
@@ -181,6 +183,11 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
     // NEW: Galleries (admin)
     Route::resource('galleries', GalleryController::class)->names('galleries');
     Route::post('galleries/upload', [GalleryController::class, 'upload'])->name('galleries.upload');
+
+    // NEW: CSR (admin)
+    Route::resource('csrs', CsrController::class)->names('csrs');
+    Route::post('csrs/{csr}/gallery/upload', [CsrController::class, 'uploadGallery'])->name('csrs.gallery.upload');
+    Route::delete('csrs/gallery/{gallery}', [CsrController::class, 'deleteGalleryImage'])->name('csrs.gallery.delete');
 
     // NEW: Notifications
     Route::resource('notifications', \App\Http\Controllers\Admin\NotificationController::class);
