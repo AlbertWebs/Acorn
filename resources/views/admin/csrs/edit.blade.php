@@ -65,50 +65,52 @@
             @enderror
         </div>
 
-        <!-- Gallery Images with Dropzone -->
+        <!-- Gallery Images Selection -->
         <div>
             <label class="block mb-2 font-semibold text-gray-700">Gallery Images</label>
-            <div class="bg-white rounded-md border shadow-sm mb-4">
-                <div class="p-4 border-b">
-                    <h3 class="font-semibold">Upload Gallery Images (Dropzone)</h3>
-                    <p class="text-sm text-gray-500">Drag & drop images or click to upload. Max 5MB per image.</p>
-                </div>
-                <div class="p-4">
-                    <div action="{{ route('admin.csrs.gallery.upload', $csr) }}" 
-                          class="dropzone border-2 border-dashed border-gray-300 rounded-md bg-gray-50" 
-                          id="csr-gallery-dropzone" style="min-height:200px;">
-                        <div class="dz-message text-center text-gray-600 m-0">
-                            <div class="flex flex-col items-center gap-2 py-8">
-                                <i class="fa-regular fa-images text-3xl text-gray-400"></i>
-                                <p><strong>Drop images here</strong> or click to upload</p>
-                                <p class="text-xs">JPG, PNG, GIF • Max 5MB</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="dz-status" class="mt-3 text-sm text-gray-600"></div>
-                </div>
-            </div>
-
-            <!-- Existing Gallery Images -->
-            @if($galleryImages->count() > 0)
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                    @foreach($galleryImages as $image)
-                        <div class="relative group">
-                            <img src="{{ asset('storage/' . $image->image) }}" alt="Gallery Image" 
-                                 class="w-full h-32 object-cover rounded border">
-                            <form action="{{ route('admin.csrs.gallery.delete', $image) }}" method="POST" class="absolute top-2 right-2">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('Delete this image?')" 
-                                        class="bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition">
-                                    <i class="fas fa-times text-xs"></i>
-                                </button>
-                            </form>
+            <p class="text-sm text-gray-500 mb-4">Select images from the CSR gallery to link to this CSR. <a href="{{ route('admin.galleries.index') }}?context_type=csr" target="_blank" class="text-blue-600 hover:underline">Manage CSR Gallery</a></p>
+            
+            @php
+                // Show images with context_type='csr' OR no context_type (unassigned)
+                // This allows selecting CSR images or linking new images to CSR
+                $allGalleryImages = \App\Models\Gallery::where('is_active', true)
+                    ->where(function($query) {
+                        $query->where('context_type', 'csr')
+                              ->orWhereNull('context_type');
+                    })
+                    ->latest()
+                    ->get();
+                $linkedImageIds = $galleryImages->pluck('id')->toArray();
+            @endphp
+            
+            @if($allGalleryImages->count() > 0)
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-h-96 overflow-y-auto border border-gray-200 rounded-lg p-4">
+                    @foreach($allGalleryImages as $image)
+                        <div class="relative">
+                            <label class="cursor-pointer">
+                                <input type="checkbox" name="gallery_images[]" value="{{ $image->id }}" 
+                                       {{ in_array($image->id, $linkedImageIds) ? 'checked' : '' }}
+                                       class="sr-only gallery-image-checkbox">
+                                <div class="relative border-2 rounded-lg overflow-hidden transition-all 
+                                    {{ in_array($image->id, $linkedImageIds) ? 'border-blue-500 ring-2 ring-blue-300' : 'border-gray-200 hover:border-gray-300' }}">
+                                    <img src="{{ asset('storage/' . $image->image) }}" 
+                                         alt="{{ $image->title ?? 'Gallery Image' }}" 
+                                         class="w-full h-24 object-cover">
+                                    @if(in_array($image->id, $linkedImageIds))
+                                        <div class="absolute top-1 right-1 bg-blue-500 text-white rounded-full p-1">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    @endif
+                                </div>
+                            </label>
                         </div>
                     @endforeach
                 </div>
+                <p class="text-sm text-gray-500 mt-2">{{ count($linkedImageIds) }} image(s) currently linked to this CSR.</p>
             @else
-                <p class="text-sm text-gray-500 mt-2">No gallery images yet. Upload images using the dropzone above.</p>
+                <div class="border border-gray-200 rounded-lg p-8 text-center">
+                    <p class="text-gray-500">No gallery images available. <a href="{{ route('admin.galleries.create') }}" target="_blank" class="text-blue-600 hover:underline">Add images to gallery first</a>.</p>
+                </div>
             @endif
         </div>
 
@@ -130,32 +132,11 @@
     </form>
 </div>
 
-<!-- Dropzone CSS/JS -->
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css">
-<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-
-<style>
-    #csr-update-form {
-        position: relative;
-        z-index: 1;
-    }
-    #update-csr-btn {
-        position: relative;
-        z-index: 10;
-        pointer-events: auto !important;
-    }
-    #csr-gallery-dropzone {
-        position: relative;
-        z-index: 1;
-    }
-</style>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // TinyMCE for description
-    let editorInstance = null;
+    // TinyMCE initialization
     if (typeof tinymce !== 'undefined') {
-        editorInstance = tinymce.init({
+        tinymce.init({
             selector: '#description-editor',
             height: 400,
             menubar: true,
@@ -185,7 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (form) {
         form.addEventListener('submit', function(e) {
-            // Don't prevent default - let form submit normally
             // Save TinyMCE content before submitting
             if (typeof tinymce !== 'undefined') {
                 const editor = tinymce.get('description-editor');
@@ -200,74 +180,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Updating...';
             }
         });
-        
-        // Also handle button click directly as fallback
-        if (updateBtn) {
-            updateBtn.addEventListener('click', function(e) {
-                // Ensure form is submitted
-                if (form && !form.checkValidity()) {
-                    form.reportValidity();
-                    e.preventDefault();
-                    return false;
-                }
-            });
-        }
     }
-
-    // Dropzone for gallery images
-    Dropzone.autoDiscover = false;
-    const status = document.getElementById('dz-status');
     
-    if (!window.Dropzone) {
-        if (status) status.textContent = 'Dropzone library failed to load. Please refresh the page.';
-        return;
-    }
-
-    // Get CSRF token from meta tag or use the blade token
-    const csrfToken = document.querySelector('meta[name="csrf-token"]') 
-        ? document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        : '{{ csrf_token() }}';
-
-    const dz = new Dropzone('#csr-gallery-dropzone', {
-        url: '{{ route('admin.csrs.gallery.upload', $csr) }}',
-        method: 'post',
-        paramName: 'file',
-        maxFilesize: 5,
-        acceptedFiles: 'image/*',
-        parallelUploads: 2,
-        timeout: 120000,
-        autoProcessQueue: true,
-        headers: {
-            'X-CSRF-TOKEN': csrfToken,
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        dictDefaultMessage: 'Drop images here or click to upload',
-        init: function(){
-            // Ensure CSRF token is sent in formData
-            this.on('sending', function(file, xhr, formData){
-                // Add CSRF token to formData
-                formData.append('_token', csrfToken);
-                
-                if (status) status.textContent = 'Uploading "' + file.name + '"...';
-            });
-            this.on('success', function(file, response){
-                if (status) status.textContent = 'Uploaded: ' + file.name;
-                setTimeout(() => window.location.reload(), 800);
-            });
-            this.on('error', function(file, message, xhr){
-                let errorMsg = 'Error uploading ' + file.name + ': ';
-                if (xhr && xhr.status === 419) {
-                    errorMsg += 'Session expired. Please refresh the page and try again.';
-                    if (status) status.textContent = errorMsg;
-                } else if (xhr && xhr.status === 413) {
-                    errorMsg += 'File too large. Maximum size is 5MB.';
-                    if (status) status.textContent = errorMsg;
-                } else {
-                    errorMsg += (message && message.message ? message.message : (typeof message === 'string' ? message : 'Unknown error'));
-                    if (status) status.textContent = errorMsg;
-                }
-            });
-        }
+    // Handle gallery image checkbox clicks for visual feedback
+    const checkboxes = document.querySelectorAll('.gallery-image-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const container = this.closest('div').querySelector('div');
+            if (this.checked) {
+                container.classList.add('border-blue-500', 'ring-2', 'ring-blue-300');
+                container.classList.remove('border-gray-200');
+            } else {
+                container.classList.remove('border-blue-500', 'ring-2', 'ring-blue-300');
+                container.classList.add('border-gray-200');
+            }
+        });
     });
 });
 </script>

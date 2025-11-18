@@ -48,9 +48,10 @@
 
                                 <!-- Gallery Images -->
                                 @php
+                                    // Only show images with context_type='csr'
                                     $galleryImages = \App\Models\Gallery::where('context_type', 'csr')
-                                        ->where('context_slug', (string)$csr->id)
                                         ->where('is_active', true)
+                                        ->orderBy('created_at', 'desc')
                                         ->get();
                                 @endphp
 

@@ -49,10 +49,16 @@
                         <!-- Gallery Images -->
                         @php
                             // Ensure we have gallery images - fetch if not passed
-                            if (!isset($galleryImages) || $galleryImages->isEmpty()) {
+                            // Only show images with context_type='csr'
+                            if (!isset($galleryImages)) {
+                                $galleryImages = collect([]);
+                            }
+                            
+                            // If empty, try to fetch again
+                            if ($galleryImages->isEmpty()) {
                                 $galleryImages = \App\Models\Gallery::where('context_type', 'csr')
-                                    ->where('context_slug', (string)$csr->id)
                                     ->where('is_active', true)
+                                    ->orderBy('created_at', 'desc')
                                     ->get();
                             }
                         @endphp

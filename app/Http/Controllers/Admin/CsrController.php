@@ -63,6 +63,8 @@ class CsrController extends Controller
             'description' => 'nullable|string',
             'pdf_file' => 'nullable|file|mimes:pdf|max:10240',
             'is_active' => 'nullable|boolean',
+            'gallery_images' => 'nullable|array',
+            'gallery_images.*' => 'exists:galleries,id',
         ]);
 
         // Handle PDF upload
@@ -87,6 +89,26 @@ class CsrController extends Controller
         // Update the model (the boot method will also regenerate slug if title changed)
         $csr->update($data);
 
+        // Handle gallery images linking
+        $selectedImageIds = $request->input('gallery_images', []);
+        
+        // Unlink all current CSR gallery images
+        Gallery::where('context_type', 'csr')
+            ->where('context_slug', (string)$csr->id)
+            ->update([
+                'context_type' => null,
+                'context_slug' => null,
+            ]);
+        
+        // Link selected images to this CSR
+        if (!empty($selectedImageIds)) {
+            Gallery::whereIn('id', $selectedImageIds)
+                ->update([
+                    'context_type' => 'csr',
+                    'context_slug' => (string)$csr->id,
+                ]);
+        }
+
         return redirect()->route('admin.csrs.index')->with('success', 'CSR updated successfully!');
     }
 
@@ -97,54 +119,17 @@ class CsrController extends Controller
             Storage::disk('public')->delete($csr->pdf_file);
         }
 
-        // Delete associated gallery images
-        $galleryImages = Gallery::where('context_type', 'csr')
-            ->where('context_slug', $csr->id)
-            ->get();
-        
-        foreach ($galleryImages as $image) {
-            if ($image->image) {
-                Storage::disk('public')->delete($image->image);
-            }
-            $image->delete();
-        }
+        // Unlink associated gallery images (don't delete them, just unlink)
+        Gallery::where('context_type', 'csr')
+            ->where('context_slug', (string)$csr->id)
+            ->update([
+                'context_type' => null,
+                'context_slug' => null,
+            ]);
 
         $csr->delete();
 
         return redirect()->route('admin.csrs.index')->with('success', 'CSR deleted successfully!');
-    }
-
-    // Handle gallery image upload via dropzone
-    public function uploadGallery(Request $request, Csr $csr)
-    {
-        $request->validate([
-            'file' => 'required|image|max:5120',
-        ]);
-
-        $path = $request->file('file')->store('csr/gallery', 'public');
-
-        $item = Gallery::create([
-            'image' => $path,
-            'is_active' => true,
-            'context_type' => 'csr',
-            'context_slug' => (string)$csr->id,
-        ]);
-
-        return response()->json([
-            'status' => 'ok',
-            'id' => $item->id,
-            'url' => asset('storage/'.$item->image),
-        ]);
-    }
-
-    // Delete gallery image
-    public function deleteGalleryImage(Gallery $gallery)
-    {
-        if ($gallery->image) {
-            Storage::disk('public')->delete($gallery->image);
-        }
-        $gallery->delete();
-        return back()->with('success', 'Image deleted successfully!');
     }
 }
 

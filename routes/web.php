@@ -187,8 +187,6 @@ Route::middleware(['auth','is_admin'])->prefix('admin')->name('admin.')->group(f
 
     // NEW: CSR (admin)
     Route::resource('csrs', CsrController::class)->names('csrs');
-    Route::post('csrs/{csr}/gallery/upload', [CsrController::class, 'uploadGallery'])->name('csrs.gallery.upload');
-    Route::delete('csrs/gallery/{gallery}', [CsrController::class, 'deleteGalleryImage'])->name('csrs.gallery.delete');
 
     // NEW: Notifications
     Route::resource('notifications', \App\Http\Controllers\Admin\NotificationController::class);
